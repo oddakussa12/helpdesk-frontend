@@ -9,6 +9,7 @@ import WorldHome from './World/Pages/WorldHome';
 import PageNotFound from "./common/PageNotFound";
 import Unauthorized from "./common/Unauthorized";
 import Login from './World/Components/Login';
+import Faq from './World/Pages/Faq';
 
 
 const ROLES = {
@@ -41,6 +42,7 @@ function App() {
         {/* common public routes */}
         <Route path="/" element={<WorldLayout />}>
           <Route path="/" element={<WorldHome />} />
+          <Route path="/faqs" element={<Faq />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
         <Route path="/unauthorized" element={<Unauthorized />} />

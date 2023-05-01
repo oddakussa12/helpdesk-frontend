@@ -1,20 +1,28 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 
 const WorldHome = () => {
     return (
-        <div>
-            <div className="drawer drawer-mobile">
-                <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-                </div>
-                <div className="drawer-side">
-                    <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
-                    </ul>
+        <div className='mt-5 text-center' style={{ maxWidth: '1000px', margin: 'auto' }} >
+            <div className="card  bg-base-100 shadow-sm mt-10">
+                <div className="card-body">
+                    <div className="form-control" style={{ marginBottom: '100px' }}>
+                        <div className="input-group">
+                            <input type="text" placeholder="Search…" className="input input-bordered sm:w-full" />
+                            <button className="btn btn-square">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="flex flex-col w-full lg:flex-row">
 
+                        <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center">
+                            <Link to="faqs" > Read FAQs</Link>
+                        </div>
+                        <div className="divider lg:divider-horizontal"></div>
+                        <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center">Create Ticket</div>
+                    </div>
                 </div>
             </div>
         </div>
