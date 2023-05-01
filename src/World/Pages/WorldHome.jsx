@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomePage = () => {
+const WorldHome = () => {
     return (
         <div>
             <div className="drawer drawer-mobile">
@@ -21,4 +21,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage
+export default WorldHome
