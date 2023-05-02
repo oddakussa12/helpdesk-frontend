@@ -9,6 +9,7 @@ import WorldHome from './World/Pages/WorldHome';
 import PageNotFound from "./common/PageNotFound";
 import Unauthorized from "./common/Unauthorized";
 import Login from './World/Components/Login';
+import Register from './World/Components/Register';
 import Faq from './World/Pages/Faq';
 
 
@@ -47,6 +48,7 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
