@@ -4,9 +4,11 @@ import { Outlet } from 'react-router-dom'
 
 const WorldLayout = () => {
   return (
-    <div style={{maxWidth:'1200px', margin:'auto'}}>
+    <div>
       <NavBar />
-      <Outlet />
+      <div style={{ maxWidth: '1200px', margin: 'auto' }}>
+        <Outlet />
+      </div>
       <Footer />
     </div>
   )

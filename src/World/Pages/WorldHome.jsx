@@ -5,7 +5,8 @@ const WorldHome = () => {
         <div className='mt-5 text-center' style={{ maxWidth: '1000px', margin: 'auto' }} >
             <div className="card  bg-base-100 shadow-sm mt-10">
                 <div className="card-body">
-                    <div className="form-control" style={{ marginBottom: '100px' }}>
+                    <h1 className="text-4xl">Search everything here...</h1>
+                    <div className="form-control my-10" style={{ marginBottom: '100px' }}>
                         <div className="input-group">
                             <input type="text" placeholder="Search…" className="input input-bordered sm:w-full" />
                             <button className="btn btn-square">
@@ -16,12 +17,16 @@ const WorldHome = () => {
                         </div>
                     </div>
                     <div className="flex flex-col w-full lg:flex-row">
-                        <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center">
-                            <Link to="faqs">Read FAQs</Link>
+                        <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center"
+                            style={{ height: "200px", maxWidth: "50%", padding: '30px' }}>
+                            <Link to="faqs">Checkout frequently asked question that might help you with your issues</Link>
+                            <button className="btn btn-warning" style={{ width: "100%" }} >Go To FAQs</button>
                         </div>
                         <div className="divider lg:divider-horizontal"></div>
-                        <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center">
-                            <Link to="create-ticket" >Create Ticket</Link>
+                        <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center"
+                            style={{ height: "200px", maxWidth: '50%', padding: '30px' }}>
+                            <p>Please create your ticket to get support for your issues</p>
+                            <Link to="create-ticket" className="btn btn-warning" style={{ width: "100%" }} >Create Ticket</Link>
                         </div>
                     </div>
                 </div>
