@@ -3,6 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import PersistLogin from "./Auth/components/PersistLogin";
 import RequireAuth from "./middleware/RequireAuth";
 
+// end user routes
+import UserHome from './EndUser/Pages/UserHome';
+import CreateTicket from './EndUser/Pages/CreateTicket';
+
 // public routes
 import WorldLayout from './World/Layouts/WorldLayout';
 import WorldHome from './World/Pages/WorldHome';
@@ -26,18 +30,19 @@ function App() {
         <Route element={<PersistLogin />}>
 
           {/*  merchant/consumers routes */}
-          {/* <Route element={<RequireAuth allowedRoles={[ROLES.USER]} />}>
-            <Route path="/user" element={<MerchantLayout />}>
-              <Route path="" element={<MerchantHome />} />
-              <Route path="profile" element={<Profile />} />
+          <Route>
+            <Route path="/home" element={<WorldLayout />}>
+              <Route path="" element={<UserHome />} />
+              <Route path="create-ticket" element={<CreateTicket />} />
+              {/* <Route path="profile" element={<Profile />} />
               <Route path="faqs" element={<Profile />} />
               <Route path="payment" element={<PaymentTab />}>
                 <Route index element={<ChoosePayment />} />
                 <Route path="choose-payment" element={<ChoosePayment />}/>
                 <Route path="payment-confirmation" element={<PaymentConfirmation />}/>
-              </Route>
+              </Route> */}
             </Route>
-          </Route> */}
+          </Route>
         </Route>
 
         {/* common public routes */}

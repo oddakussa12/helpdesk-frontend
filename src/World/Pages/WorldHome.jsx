@@ -19,14 +19,14 @@ const WorldHome = () => {
                     <div className="flex flex-col w-full lg:flex-row">
                         <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center"
                             style={{ height: "200px", maxWidth: "50%", padding: '30px' }}>
-                            <Link to="faqs">Checkout frequently asked question that might help you with your issues</Link>
-                            <button className="btn btn-warning" style={{ width: "100%" }} >Go To FAQs</button>
+                            <p>Checkout frequently asked question that might help you with your issues</p>
+                            <Link to="faqs" className="btn btn-warning" style={{ width: "100%" }} >Go To FAQs</Link>
                         </div>
                         <div className="divider lg:divider-horizontal"></div>
                         <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center"
                             style={{ height: "200px", maxWidth: '50%', padding: '30px' }}>
                             <p>Please create your ticket to get support for your issues</p>
-                            <Link to="create-ticket" className="btn btn-warning" style={{ width: "100%" }} >Create Ticket</Link>
+                            <Link to="/home/create-ticket" className="btn btn-warning" style={{ width: "100%" }} >Create Ticket</Link>
                         </div>
                     </div>
                 </div>
