@@ -21,7 +21,6 @@ const UserHome = () => {
           {/* head*/}
           <thead>
             <tr>
-
               <th>Issue</th>
               <th>Status</th>
               <th>Action</th>
