@@ -99,7 +99,10 @@ const NavBar = () => {
                 <div className="navbar-end hidden lg:flex">
                     <ul className="px-1">
                         <li>
-                            <Link className="text-warning" to="login" >Login</Link>
+                            <Link className="text-warning" to="/login" >Login</Link>
+                        </li>
+                        <li>
+                            <Link className="text-warning" to="/register" >Register</Link>
                         </li>
                     </ul>
                 </div>
