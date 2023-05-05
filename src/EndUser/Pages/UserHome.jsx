@@ -3,8 +3,8 @@ import TicketList from "./TicketList"
 
 const UserHome = () => {
   return (
-    <div>
-      <div className="hero min-h-screen bg-base-100">
+    <div className="mt-10">
+      {/* <div className="hero min-h-screen bg-base-100">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">Welcome, Odda</h1>
@@ -15,7 +15,7 @@ const UserHome = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
       <TicketList />
     </div>
   )

@@ -1,39 +1,40 @@
-import './App.css';
+import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import PersistLogin from "./Auth/components/PersistLogin";
 import RequireAuth from "./middleware/RequireAuth";
 
 // end user routes
-import UserHome from './EndUser/Pages/UserHome';
-import CreateTicket from './EndUser/Pages/CreateTicket';
+import UserHome from "./EndUser/Pages/UserHome";
+import CreateTicket from "./EndUser/Pages/CreateTicket";
+import ViewTicket from "./EndUser/Pages/ViewTicket";
 
 // public routes
-import WorldLayout from './World/Layouts/WorldLayout';
-import WorldHome from './World/Pages/WorldHome';
+import WorldLayout from "./World/Layouts/WorldLayout";
+import WorldHome from "./World/Pages/WorldHome";
 import PageNotFound from "./common/PageNotFound";
 import Unauthorized from "./common/Unauthorized";
-import Login from './World/Components/Login';
-import Register from './World/Components/Register';
-import Faq from './World/Pages/Faq';
-
+import Login from "./World/Components/Login";
+import Register from "./World/Components/Register";
+import Faq from "./World/Pages/Faq";
 
 const ROLES = {
-  'USER' : 2000,
-  'SUPPORT' : 2000,
-  'ADMIN' : 2000,
-}
+  USER: 2000,
+  SUPPORT: 2000,
+  ADMIN: 2000,
+};
 
 function App() {
   return (
     <div className="App">
-       <Routes>
+      <Routes>
         <Route element={<PersistLogin />}>
-
           {/*  merchant/consumers routes */}
           <Route>
             <Route path="/home" element={<WorldLayout />}>
               <Route path="" element={<UserHome />} />
               <Route path="create-ticket" element={<CreateTicket />} />
+              <Route path="view-ticket" element={<ViewTicket />} />
+
               {/* <Route path="profile" element={<Profile />} />
               <Route path="faqs" element={<Profile />} />
               <Route path="payment" element={<PaymentTab />}>

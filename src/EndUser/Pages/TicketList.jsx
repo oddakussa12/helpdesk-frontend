@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 
 const TicketList = () => {
     return (
-        <div>
+        <div style={{marginTop:'60px'}}>
             <h5 className='text-2xl'>Your tickets</h5>
             <div className="overflow-x-auto mt-4">
                 <table className="table table-zebra w-full">
@@ -22,7 +23,9 @@ const TicketList = () => {
                                     Open
                                 </div>
                             </td>
-                            <td>view</td>
+                            <td>
+                                <Link to="view-ticket">View</Link>
+                            </td>
                         </tr>
                         {/* row 2 */}
                         <tr>
@@ -32,7 +35,9 @@ const TicketList = () => {
                                     Open
                                 </div>
                             </td>
-                            <td>view</td>
+                            <td>
+                                <Link to="view-ticket">View</Link>
+                            </td>
                         </tr>
                         {/* row 3 */}
                         <tr>
@@ -42,7 +47,9 @@ const TicketList = () => {
                                     Open
                                 </div>
                             </td>
-                            <td>view</td>
+                            <td>
+                                <Link to="view-ticket">View</Link>
+                            </td>
                         </tr>
                         <tr>
                             <th>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit sit corrupti nulla</th>
@@ -51,7 +58,9 @@ const TicketList = () => {
                                     Open
                                 </div>
                             </td>
-                            <td>view</td>
+                            <td>
+                                <Link to="view-ticket">View</Link>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
