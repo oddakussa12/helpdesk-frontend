@@ -8,6 +8,11 @@ import UserHome from "./EndUser/Pages/UserHome";
 import CreateTicket from "./EndUser/Pages/CreateTicket";
 import ViewTicket from "./EndUser/Pages/ViewTicket";
 
+// support role routes
+import SupportLayout from "./Support/Layouts/SupportLayout";
+import SupportHome from "./Support/Pages/SupportHome";
+import SupportProfile from "./Support/Pages/SupportProfile";
+
 // public routes
 import WorldLayout from "./World/Layouts/WorldLayout";
 import WorldHome from "./World/Pages/WorldHome";
@@ -28,22 +33,21 @@ function App() {
     <div className="App">
       <Routes>
         <Route element={<PersistLogin />}>
-          {/*  merchant/consumers routes */}
-          <Route>
-            <Route path="/home" element={<WorldLayout />}>
-              <Route path="" element={<UserHome />} />
-              <Route path="create-ticket" element={<CreateTicket />} />
-              <Route path="view-ticket" element={<ViewTicket />} />
-
-              {/* <Route path="profile" element={<Profile />} />
-              <Route path="faqs" element={<Profile />} />
-              <Route path="payment" element={<PaymentTab />}>
-                <Route index element={<ChoosePayment />} />
-                <Route path="choose-payment" element={<ChoosePayment />}/>
-                <Route path="payment-confirmation" element={<PaymentConfirmation />}/>
-              </Route> */}
-            </Route>
+          {/*  end user routes */}
+          <Route path="/home" element={<WorldLayout />}>
+            <Route path="" element={<UserHome />} />
+            <Route path="create-ticket" element={<CreateTicket />} />
+            <Route path="view-ticket" element={<ViewTicket />} />
           </Route>
+        
+          {/* support role routes */}
+          <Route path='/support' element={<SupportLayout />}>
+            <Route path="" element={<SupportHome />} />
+            <Route path="profile" element={<SupportProfile />} />
+          </Route>
+
+          {/* admin routes */}
+
         </Route>
 
         {/* common public routes */}
