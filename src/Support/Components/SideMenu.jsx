@@ -1,17 +1,28 @@
 import { Link } from "react-router-dom"
+import { UserCircleIcon, ArrowLeftOnRectangleIcon, HomeIcon } from '@heroicons/react/24/solid'
 
 const SideMenu = () => {
     return (
         <>
-            <li>
-                <div className="avatar">
-                    <div className="w-16 rounded-full ring ring-warning ring-offset-base-100 ring-offset-2">
-                        <img src="/pp.jpg" />
-                    </div>
-                </div>
+            <li className="hover-bordered"><Link to="" style={{ fontSize: '28px' }}>Help Desk</Link></li>
+            <li className="hover-bordered">
+                <Link to='' >
+                    <HomeIcon className="h-6 w-6" />
+                    Home
+                </Link>
             </li>
-            <li><Link to='profile' >Profile</Link></li>
-            <li><a>Tickets</a></li>
+            <li className="hover-bordered">
+                <Link to='profile' >
+                    <UserCircleIcon className="h-6 w-6" />
+                    Profile
+                </Link>
+            </li>
+            <li className="hover-bordered">
+                <Link to='signout' >
+                    <ArrowLeftOnRectangleIcon className="h-6 w-6" />
+                    Signout
+                </Link>
+            </li>
         </>
     )
 }
