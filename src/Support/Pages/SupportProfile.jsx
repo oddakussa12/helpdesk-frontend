@@ -8,8 +8,8 @@ const SupportProfile = () => {
           <div className="overflow-x-auto">
             <div className="flex gap-8">
               <div className="basis-3/4">
-                <div className="card  bg-base-200 shadow-sm" style={{minHeight:'450px'}}>
-                  <div className="card-body">
+                <div className="card bg-base-200 text-dark-content" style={{minHeight:'450px'}} >
+                  <div className="card-body items-center text-center">
                     <div className="avatar flex flex-col justify-center items-center">
                       <div className="w-24 rounded-full ring ring-warning ring-offset-base-100 ring-offset-2">
                         <img src="/pp.jpg" />
