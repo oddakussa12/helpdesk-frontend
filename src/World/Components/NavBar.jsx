@@ -70,6 +70,12 @@ const NavBar = () => {
                 <div className="navbar-end lg:flex">
                     <ul className="menu menu-horizontal px-1">
                         <li>
+                            <Link className="text-warning" to="/admin" >Admin</Link>
+                        </li>
+                        <li>
+                            <Link className="text-warning" to="/support" >Support</Link>
+                        </li>
+                        <li>
                             <Link className="text-warning" to="/login" >Login</Link>
                         </li>
                         <li>
