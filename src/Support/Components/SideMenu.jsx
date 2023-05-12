@@ -24,7 +24,7 @@ const SideMenu = () => {
                 </Link>
             </li>
             <li className="hover-bordered">
-                <Link to='profile' >
+                <Link to='faqs' >
                     <QuestionMarkCircleIcon className="h-6 w-6" />
                     FAQs
                 </Link>
