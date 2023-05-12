@@ -29,7 +29,7 @@ const SideMenu = () => {
                     FAQs
                 </Link>
             </li>
-            <li className="hover-bordered text-warning">
+            <li className="hover-bordered">
                 <Link to='/' >
                     <ArrowLeftOnRectangleIcon className="h-6 w-6" />
                     Signout
