@@ -17,30 +17,30 @@ const SupportProfile = () => {
                     <small>Support - Level one</small>
                   </div>
                   <form className="mt-2">
-                    <div className="grid grid-cols-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
                       <div className="form-control">
                         <label className="label">
                           <span className="label-text">First name</span>
                         </label>
-                        <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-sm" />
+                        <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
                       </div>
                       <div className="form-control">
                         <label className="label">
                           <span className="label-text">Last name</span>
                         </label>
-                        <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-sm" />
+                        <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
                       </div>
                       <div className="form-control">
                         <label className="label">
                           <span className="label-text">Phone number</span>
                         </label>
-                        <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-sm" />
+                        <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
                       </div>
                       <div className="form-control">
                         <label className="label">
                           <span className="label-text">Email</span>
                         </label>
-                        <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-sm" />
+                        <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
                       </div>
                     </div>
 
@@ -56,26 +56,26 @@ const SupportProfile = () => {
                 </div>
               </div>
               <div className="card bg-base-200 col-span-1">
-                <div className="card-body text-center items-center">
+                <div className="card-body items-center">
                   <b>Update your password</b>
                   <form className="mt-2">
                     <div className="form-control">
                       <label className="label">
                         <span className="label-text">Old password</span>
                       </label>
-                      <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-xs" />
+                      <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
                     </div>
                     <div className="form-control">
                       <label className="label">
                         <span className="label-text">New password</span>
                       </label>
-                      <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-xs" />
+                      <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
                     </div>
                     <div className="form-control">
                       <label className="label">
                         <span className="label-text">Confirm password</span>
                       </label>
-                      <input type="text" placeholder="Type here" className="input input-bordered input-warning w-full max-w-xs" />
+                      <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
                     </div>
                     <div className="flex justify-center mt-10">
                       <button className="btn btn-warning"
