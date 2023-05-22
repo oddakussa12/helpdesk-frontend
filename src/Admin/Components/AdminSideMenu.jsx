@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
-import { UserCircleIcon, ArrowLeftOnRectangleIcon, HomeIcon, TicketIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
+import React from 'react'
 
-const SideMenu = () => {
+const AdminSideMenu = () => {
     return (
         <>
             <li className="hover-bordered"><Link to="" style={{ fontSize: '28px' }}>Help Desk</Link></li>
@@ -39,4 +38,4 @@ const SideMenu = () => {
     )
 }
 
-export default SideMenu
+export default AdminSideMenu
