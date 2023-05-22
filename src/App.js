@@ -15,6 +15,10 @@ import SupportProfile from "./Support/Pages/SupportProfile";
 import SupportFaq from "./Support/Pages/SupportFaq";
 import SupportViewTicket from "./Support/Pages/ViewTicket";
 
+// 
+import AdminLayout from "./Admin/Layouts/AdminLayout";
+import AdminHome from "./Admin/Pages/AdminHome";
+
 // public routes
 import WorldLayout from "./World/Layouts/WorldLayout";
 import WorldHome from "./World/Pages/WorldHome";
@@ -51,7 +55,12 @@ function App() {
           </Route>
 
           {/* admin routes */}
-          
+          <Route path='/admin' element={<AdminLayout />}>
+            <Route path="" element={<AdminHome />} />
+            <Route path="profile" element={<SupportProfile />} />
+            <Route path="faqs" element={<SupportFaq />}/>
+            <Route path="view-ticket" element={<SupportViewTicket />} />
+          </Route>
 
         </Route>
 

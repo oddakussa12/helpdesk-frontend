@@ -1,4 +1,5 @@
-import React from 'react'
+import { Link } from "react-router-dom";
+import { UserCircleIcon, ArrowLeftOnRectangleIcon, HomeIcon, TicketIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
 
 const AdminSideMenu = () => {
     return (
