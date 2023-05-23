@@ -46,7 +46,7 @@ const Register = () => {
             style={{ display: 'flex', alignItems: 'center', margin: 'auto' }}>
             <figure><img src="/login-image.png" alt="Album" /></figure>
             <div className="card-body">
-                <h2 className="card-title">Signup</h2>
+                <h2 className="card-title">Create a new account</h2>
                 <div
                     ref={errRef}
                     className={errMsg ? "alert alert-error shadow-lg" : "offscreen"}>
@@ -59,7 +59,7 @@ const Register = () => {
                     </div>
                 </div>
                 <form onSubmit={handleSubmit(handleSignup)}>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Full name</span>
                         </label>
@@ -67,7 +67,7 @@ const Register = () => {
                             type="text"
                             placeholder="Full name"
                             autoFocus
-                            className="input input-bordered w-full max-w-xs"
+                            className="input input-bordered"
                             {...register("name", {
                                 required: {
                                     value: true,
@@ -87,14 +87,14 @@ const Register = () => {
                             <small className="text-error">{errors.name?.message}</small>
                         )}
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
                         <input
                             type="text"
                             placeholder="Email"
-                            className="input input-bordered w-full max-w-xs"
+                            className="input input-bordered"
                             {...register("email", {
                                 required: {
                                     value: true,
@@ -110,14 +110,14 @@ const Register = () => {
                             <small className="text-error">{errors.email?.message}</small>
                         )}
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Phone number</span>
                         </label>
                         <input
                             type="tel"
                             placeholder="Phone number"
-                            className="input input-bordered w-full max-w-xs"
+                            className="input input-bordered"
                             {...register("phone", {
                                 required: {
                                     value: true,
@@ -141,14 +141,14 @@ const Register = () => {
                             <small className="text-error">{errors.phone?.message}</small>
                         )}
                     </div>
-                    <div className="form-control w-full max-w-xs">
+                    <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
                         <input
                             type="password"
                             placeholder="Type password"
-                            className="input input-bordered w-full max-w-xs"
+                            className="input input-bordered"
                             {...register("password", {
                                 required: {
                                     value: true,

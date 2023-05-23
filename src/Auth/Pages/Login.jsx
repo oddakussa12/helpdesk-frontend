@@ -78,7 +78,7 @@ const Login = () => {
           </div>
         </div>
         <form onSubmit={handleLogin}>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Phone number</span>
             </label>
@@ -89,9 +89,9 @@ const Login = () => {
               onChange={(e) => setPhoneNumber(e.target.value)}
               value={phoneNumber}
               required
-              className="input input-bordered w-full max-w-xs" />
+              className="input input-bordered" />
           </div>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
@@ -101,7 +101,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               required
-              className="input input-bordered w-full max-w-xs" />
+              className="input input-bordered" />
           </div>
           <div className="card-actions justify-center">
             <button className="btn btn-warning mt-10"
