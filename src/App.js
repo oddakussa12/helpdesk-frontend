@@ -28,7 +28,7 @@ import WorldLayout from "./World/Layouts/WorldLayout";
 import WorldHome from "./World/Pages/WorldHome";
 import PageNotFound from "./common/PageNotFound";
 import Unauthorized from "./common/Unauthorized";
-import Login from "./World/Components/Login";
+import Login from "./Auth/Pages/Login";
 import Register from "./World/Components/Register";
 import Faq from "./World/Pages/Faq";
 
