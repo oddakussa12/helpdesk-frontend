@@ -29,14 +29,9 @@ import WorldHome from "./World/Pages/WorldHome";
 import PageNotFound from "./common/PageNotFound";
 import Unauthorized from "./common/Unauthorized";
 import Login from "./Auth/Pages/Login";
-import Register from "./World/Components/Register";
+import Register from "./Auth/Pages/Register";
 import Faq from "./World/Pages/Faq";
 
-const ROLES = {
-  USER: 2000,
-  SUPPORT: 2000,
-  ADMIN: 2000,
-};
 
 function App() {
   return (
