@@ -100,38 +100,44 @@ const Setting = () => {
                                                 <tr className="hover">
                                                     <td>Admin</td>
                                                     <td>March, 22, 2023</td>
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
-                                                        </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
-                                                        </button>
-                                                    </div>
+                                                    <td>
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                            </button>
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr className="hover">
                                                     <td>Support</td>
                                                     <td>March, 22, 2023</td>
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
-                                                        </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
-                                                        </button>
-                                                    </div>
+                                                    <td>
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                            </button>
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr className="hover">
                                                     <td>User</td>
                                                     <td>March, 22, 2023</td>
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
-                                                        </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
-                                                        </button>
-                                                    </div>
+                                                    <td>
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                            </button>
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -163,38 +169,44 @@ const Setting = () => {
                                                 <tr className="hover">
                                                     <td>Level one</td>
                                                     <td>March, 22, 2023</td>
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
-                                                        </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
-                                                        </button>
-                                                    </div>
+                                                    <td>
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                            </button>
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr className="hover">
                                                     <td>Level two</td>
                                                     <td>March, 22, 2023</td>
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
-                                                        </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
-                                                        </button>
-                                                    </div>
+                                                    <td>
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                            </button>
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr className="hover">
                                                     <td>Level three</td>
                                                     <td>March, 22, 2023</td>
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
-                                                        </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
-                                                        </button>
-                                                    </div>
+                                                    <td>
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                            </button>
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -231,14 +243,16 @@ const Setting = () => {
                                                         <div className="badge badge-info gap-2">Admin</div>
                                                     </td>
                                                     <td>March, 22, 2023</td>
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
-                                                        </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
-                                                        </button>
-                                                    </div>
+                                                    <td>
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                            </button>
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr className="hover">
                                                     <td>Admin</td>
@@ -247,14 +261,16 @@ const Setting = () => {
                                                         <div className="badge badge-info gap-2">Admin</div>
                                                     </td>
                                                     <td>March, 22, 2023</td>
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
-                                                        </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
-                                                        </button>
-                                                    </div>
+                                                    <td>
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                            </button>
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr className="hover">
                                                     <td>Admin</td>
@@ -263,14 +279,16 @@ const Setting = () => {
                                                         <div className="badge badge-info gap-2">Admin</div>
                                                     </td>
                                                     <td>March, 22, 2023</td>
-                                                    <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
-                                                        </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
-                                                        </button>
-                                                    </div>
+                                                    <td>
+                                                        <div className="btn-group">
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                            </button>
+                                                            <button className="btn btn-sm">
+                                                                <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                            </button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
