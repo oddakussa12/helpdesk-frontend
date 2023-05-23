@@ -18,7 +18,7 @@ const AdminSideMenu = () => {
                 </Link>
             </li>
             <li className="hover-bordered">
-                <Link to='' >
+                <Link to='tickets' >
                     <TicketIcon className="h-6 w-6" />
                     Tickets
                 </Link>
@@ -30,15 +30,15 @@ const AdminSideMenu = () => {
                 </Link>
             </li>
             <li className="hover-bordered">
-                <Link to='profile' >
-                    <UserCircleIcon className="h-6 w-6" />
-                    Profile
-                </Link>
-            </li>
-            <li className="hover-bordered">
                 <Link to='faqs' >
                     <QuestionMarkCircleIcon className="h-6 w-6" />
                     FAQs
+                </Link>
+            </li>
+            <li className="hover-bordered">
+                <Link to='profile' >
+                    <UserCircleIcon className="h-6 w-6" />
+                    Profile
                 </Link>
             </li>
             <li className="hover-bordered">

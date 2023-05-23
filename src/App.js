@@ -21,6 +21,7 @@ import AdminHome from "./Admin/Pages/AdminHome";
 import Setting from "./Admin/Pages/Setting";
 import AdminProfile from "./Admin/Pages/AdminProfile";
 import User from "./Admin/Pages/User";
+import Ticket from "./Admin/Pages/Ticket";
 
 // public routes
 import WorldLayout from "./World/Layouts/WorldLayout";
@@ -65,6 +66,7 @@ function App() {
             <Route path="faqs" element={<SupportFaq />}/>
             <Route path="view-ticket" element={<SupportViewTicket />} />
             <Route path="users" element={<User />} />
+            <Route path="tickets" element={<Ticket />} />
           </Route>
 
         </Route>
