@@ -14,7 +14,7 @@ const SupportNav = () => {
                 <div className="dropdown dropdown-end">
                     <span tabIndex={0} className="inline-flex items-baseline">
                         <img src="/pp.jpg" alt=""
-                            class="self-center w-12 h-12 rounded-full mx-1 ring ring-warning ring-offset-base-100 ring-offset-" />
+                            className="self-center w-12 h-12 rounded-full mx-1 ring ring-warning ring-offset-base-100 ring-offset-" />
                         <span className="mt-3">Odda Kussa</span>
                     </span>
 

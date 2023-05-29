@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/solid";
+import AddUser from "./Modals/AddUser";
 
 const User = () => {
     return (
