@@ -3,17 +3,26 @@ import { Link } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import AddPriority from "./Modals/AddPriority";
+import EditPriority from "./Modals/EditPriority";
 import usePriorityService from "./Api/ticketPriority.service";
 
 const TicketPriority = () => {
 
     const [priorities, setPriorities] = useState({});
+    const [selectedItem, setSelectedItem] = useState({});
 
     const { getAllPriority, updatePriority, deletePriority } = usePriorityService();
 
     const [showModal, setShowModal] = useState(false);
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
+
+    const [showEditModal, setShowEditModal] = useState(false);
+    const handleShowEditModal = priority => {
+        setSelectedItem(priority);
+        setShowEditModal(true);
+    }
+    const handleCloseEditModal = () => setShowEditModal(false);
 
     const fetchPriority = async () => {
         try {
@@ -36,16 +45,23 @@ const TicketPriority = () => {
                             <h2 className="card-title">Ticket Priority</h2>
                         </div>
                         <div className="grid grid-cols-1 place-items-end">
-                            <label 
+                            <label
                                 className="btn btn-warning btn-sm"
                                 onClick={() => handleShowModal()}>Add</label>
                         </div>
                     </div>
                     <div className="overflow-x-auto">
                         <AddPriority
-                            showModal={showModal} 
+                            showModal={showModal}
                             handleCloseModal={handleCloseModal}
                             fetchPriority={fetchPriority}
+                        />
+                        <EditPriority
+                            showEditModal={showEditModal}
+                            handleCloseEditModal={handleCloseEditModal}
+                            fetchPriority={fetchPriority}
+                            updatePriority={updatePriority}
+                            selectedItem={selectedItem}
                         />
                         <table className="table w-full">
                             <thead>
@@ -64,8 +80,9 @@ const TicketPriority = () => {
                                                 <td>{priority.createdAt}</td>
                                                 <td>
                                                     <div className="btn-group">
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                                        <button className="btn btn-sm"
+                                                            onClick={() => handleShowEditModal(priority)}>
+                                                            <PencilIcon className="h-4 w-4 text-success" />
                                                         </button>
                                                         <button className="btn btn-sm">
                                                             <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>

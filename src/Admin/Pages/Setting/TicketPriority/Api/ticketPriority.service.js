@@ -14,7 +14,7 @@ const usePriorityService = () => {
   }
 
   function updatePriority(data) {
-    return axiosPrivate.put(`${url}/${data.id}`, data);
+    return axiosPrivate.patch(`${url}/${data.id}`, data);
   }
 
   function deletePriority(id) {
