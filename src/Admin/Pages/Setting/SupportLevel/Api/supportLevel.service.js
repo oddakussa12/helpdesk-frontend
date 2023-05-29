@@ -1,32 +1,32 @@
 import useAxiosPrivate from "../../../../../hooks/useAxiosPrivate";
 
-const url = '/admin/ticket-priority';
+const url = '/admin/support-level';
 
-const usePriorityService = () => {
+const useSupportLevelService = () => {
   const axiosPrivate = useAxiosPrivate();
 
-  function getAllPriority() {
+  function getAllLevels() {
     return axiosPrivate.get(url);
   }
 
-  function createPriority(data) {
+  function createLevel(data) {
     return axiosPrivate.post(url, data);
   }
 
-  function updatePriority(data) {
+  function updateLevel(data) {
     return axiosPrivate.patch(`${url}/${data.id}`, data);
   }
 
-  function deletePriority(id) {
+  function deleteLevel(id) {
     return axiosPrivate.delete(`${url}/${id}`);
   }
 
   return {
-    getAllPriority,
-    createPriority,
-    updatePriority,
-    deletePriority
+    getAllLevels,
+    createLevel,
+    updateLevel,
+    deleteLevel
   }
 }
 
-export default usePriorityService;
+export default useSupportLevelService;
