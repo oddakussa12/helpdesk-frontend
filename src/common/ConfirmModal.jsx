@@ -1,56 +1,39 @@
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { QuestionOctagon } from "react-bootstrap-icons";
 
 export default function ConfirmModal(props) {
   const {
     showConfirmModal,
     deleteAction,
     fetchAction,
-    handleConfirmModalClose,
+    handleCloseConfirmModal,
     selectedItem,
   } = props;
 
-  const delete_action = (id) => {
-    deleteAction(id)
-      .then((response) => {
-        fetchAction();
-        handleConfirmModalClose();
-      })
-      .catch((e) => {
-        console.log(e);
-        handleConfirmModalClose();
-      });
+  const deleteData = async (id) => {
+    try {
+      await deleteAction(id);
+      fetchAction();
+      handleCloseConfirmModal();
+
+    } catch (err) {
+      console.log(err);
+      handleCloseConfirmModal();
+    }
   };
 
   return (
-    <Modal show={showConfirmModal} onHide={handleConfirmModalClose} centered>
-      <Modal.Title className="text-danger mt-2 px-4">
-        <QuestionOctagon style={{marginTop:'-5px', marginRight:'20px'}} />
-        Are you sure?
-      </Modal.Title>
-      <Modal.Body className="px-4">
-        You are about to delete {selectedItem?.name} ?
-      </Modal.Body>
-      <div className="row">
-        <div className="col-sm-12 text-end px-4 py-4">
-          <Button
-            variant="secondary"
-            onClick={handleConfirmModalClose}
-            style={{ marginRight: "20px", height:'30px',padding:"0px", width:'70px', borderRadius:'2px' }}
-            className="btn-sm"
-          >
-            Close
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() => delete_action(selectedItem.id)}
-            style={{height:'30px',padding:"0px", width:'70px', borderRadius:'2px'}}
-          >
-            Delete
-          </Button>
+    <div>
+      <input type="checkbox" readOnly checked={showConfirmModal} className="modal-toggle" />
+      <div className="modal" id="my-modal-2">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-error">Are you sure?</h3>
+          <p className="py-4">The action is inreversible and may also delete associated data.</p>
+          <div className="modal-action">
+            {/* <a href="#" className="btn">Yay!</a> */}
+            <button className="btn btn-sm btn-light" onClick={() => handleCloseConfirmModal()}>Cancel</button>
+            <button className="btn btn-sm btn-error" onClick={() => deleteData(selectedItem._id)}>Delete</button>
+          </div>
         </div>
       </div>
-    </Modal>
+    </div>
   );
 }

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import AddPriority from "./Modals/AddPriority";
 import EditPriority from "./Modals/EditPriority";
+import ConfirmModal from "../../../../common/ConfirmModal";
 import usePriorityService from "./Api/ticketPriority.service";
 
 const TicketPriority = () => {
@@ -22,6 +22,14 @@ const TicketPriority = () => {
         setSelectedItem(priority);
         setShowEditModal(true);
     }
+
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const handleShowConfirmModal = (priority) => {
+        setSelectedItem(priority);
+        setShowConfirmModal(true);
+    }
+    const handleCloseConfirmModal = () => setShowConfirmModal(false);
+
     const handleCloseEditModal = () => setShowEditModal(false);
 
     const fetchPriority = async () => {
@@ -63,6 +71,12 @@ const TicketPriority = () => {
                             updatePriority={updatePriority}
                             selectedItem={selectedItem}
                         />
+                        <ConfirmModal
+                            showConfirmModal={showConfirmModal}
+                            handleCloseConfirmModal={handleCloseConfirmModal}
+                            selectedItem={selectedItem}
+                            deleteAction={deletePriority}
+                            fetchAction={fetchPriority} />
                         <table className="table w-full">
                             <thead>
                                 <tr>
@@ -84,8 +98,9 @@ const TicketPriority = () => {
                                                             onClick={() => handleShowEditModal(priority)}>
                                                             <PencilIcon className="h-4 w-4 text-success" />
                                                         </button>
-                                                        <button className="btn btn-sm">
-                                                            <Link to="view-ticket"><TrashIcon className="h-4 w-4 text-error" /></Link>
+                                                        <button className="btn btn-sm"
+                                                            onClick={() => handleShowConfirmModal(priority)}>
+                                                           <TrashIcon className="h-4 w-4 text-error" />
                                                         </button>
                                                     </div>
                                                 </td>
