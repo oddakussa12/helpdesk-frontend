@@ -28,7 +28,6 @@ export default function ConfirmModal(props) {
           <h3 className="font-bold text-lg text-error">Are you sure?</h3>
           <p className="py-4">The action is inreversible and may also delete associated data.</p>
           <div className="modal-action">
-            {/* <a href="#" className="btn">Yay!</a> */}
             <button className="btn btn-sm btn-light" onClick={() => handleCloseConfirmModal()}>Cancel</button>
             <button className="btn btn-sm btn-error" onClick={() => deleteData(selectedItem._id)}>Delete</button>
           </div>
