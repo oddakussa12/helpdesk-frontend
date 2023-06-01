@@ -20,7 +20,7 @@ import AdminLayout from "./Admin/Layouts/AdminLayout";
 import AdminHome from "./Admin/Pages/AdminHome";
 import Setting from "./Admin/Pages/Setting";
 import AdminProfile from "./Admin/Pages/AdminProfile";
-import User from "./Admin/Pages/User";
+import User from "./Admin/Pages/User/User";
 import Ticket from "./Admin/Pages/Ticket";
 
 // public routes

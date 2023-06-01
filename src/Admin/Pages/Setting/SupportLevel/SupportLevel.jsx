@@ -18,6 +18,7 @@ const SupportLevel = () => {
     const handleCloseModal = () => setShowModal(false);
 
     const [showEditModal, setShowEditModal] = useState(false);
+    const handleCloseEditModal = () => setShowEditModal(false);
     const handleShowEditModal = level => {
         setSelectedItem(level);
         setShowEditModal(true);
@@ -29,8 +30,6 @@ const SupportLevel = () => {
         setShowConfirmModal(true);
     }
     const handleCloseConfirmModal = () => setShowConfirmModal(false);
-
-    const handleCloseEditModal = () => setShowEditModal(false);
 
     const fetchLevel = async () => {
         try {
