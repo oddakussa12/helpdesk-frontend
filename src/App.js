@@ -22,6 +22,7 @@ import Setting from "./Admin/Pages/Setting";
 import AdminProfile from "./Admin/Pages/AdminProfile";
 import User from "./Admin/Pages/User/User";
 import Ticket from "./Admin/Pages/Ticket";
+import AdminFaq from "./Admin/Pages/Faq/AdminFaq";
 
 // public routes
 import WorldLayout from "./World/Layouts/WorldLayout";
@@ -58,7 +59,7 @@ function App() {
             <Route path="" element={<AdminHome />} />
             <Route path="settings" element={<Setting />} />
             <Route path="profile" element={<AdminProfile />} />
-            <Route path="faqs" element={<SupportFaq />}/>
+            <Route path="faqs" element={<AdminFaq />}/>
             <Route path="view-ticket" element={<SupportViewTicket />} />
             <Route path="users" element={<User />} />
             <Route path="tickets" element={<Ticket />} />
