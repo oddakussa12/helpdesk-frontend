@@ -23,6 +23,9 @@ import AdminProfile from "./Admin/Pages/AdminProfile";
 import User from "./Admin/Pages/User/User";
 import Ticket from "./Admin/Pages/Ticket";
 import AdminFaq from "./Admin/Pages/Faq/AdminFaq";
+import AddFaq from "./Admin/Pages/Faq/AddFaq";
+import EditFaq from "./Admin/Pages/Faq/EditFaq";
+import ViewFaq from "./Admin/Pages/Faq/ViewFaq";
 
 // public routes
 import WorldLayout from "./World/Layouts/WorldLayout";
@@ -60,6 +63,9 @@ function App() {
             <Route path="settings" element={<Setting />} />
             <Route path="profile" element={<AdminProfile />} />
             <Route path="faqs" element={<AdminFaq />}/>
+            <Route path="create-faq" element={<AddFaq />}/>
+            <Route path="edit-faq" element={<EditFaq />}/>
+            <Route path="view-faq" element={<ViewFaq />}/>
             <Route path="view-ticket" element={<SupportViewTicket />} />
             <Route path="users" element={<User />} />
             <Route path="tickets" element={<Ticket />} />
