@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import AddUser from "./Modals/AddUser";
+import EditUser from "./Modals/EditUser";
 import ConfirmModal from "../../../common/ConfirmModal";
 
 import useUserService from "./Api/user.service";
@@ -20,7 +20,7 @@ const User = () => {
 
   const [showEditModal, setShowEditModal] = useState(false);
   const handleCloseEditModal = () => setShowEditModal(false);
-  const handleShowEditModal = user => {
+  const handleShowEditModal = (user) => {
     setSelectedItem(user);
     setShowEditModal(true);
   }
@@ -69,6 +69,13 @@ const User = () => {
                   createUser={createUser}
                   fetchUsers={fetchUsers}
                 />
+                <EditUser
+                  showEditModal={showEditModal}
+                  handleCloseEditModal={handleCloseEditModal}
+                  fetchUsers={fetchUsers}
+                  updateUser={updateUser}
+                  selectedItem={selectedItem}
+                />
                 <ConfirmModal
                   showConfirmModal={showConfirmModal}
                   handleCloseConfirmModal={handleCloseConfirmModal}
@@ -95,8 +102,9 @@ const User = () => {
                             <td><div className="badge badge-primary gap-2">{user.role.name}</div></td>
                             <td>
                               <div className="btn-group">
-                                <button className="btn btn-sm">
-                                  <Link to="view-ticket"><PencilIcon className="h-4 w-4 text-success" /></Link>
+                                <button className="btn btn-sm"
+                                  onClick={() => handleShowEditModal(user)}>
+                                  <PencilIcon className="h-4 w-4 text-success" />
                                 </button>
                                 <button className="btn btn-sm"
                                   onClick={() => handleShowConfirmModal(user)}>

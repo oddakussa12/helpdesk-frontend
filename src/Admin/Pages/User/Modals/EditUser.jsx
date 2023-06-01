@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useUserService from "../Api/user.service";
 
-const AddUser = (props) => {
+const EditUser = (props) => {
 
-    const { showModal, handleCloseModal, createUser, fetchUsers } = props;
+    const { showEditModal, handleCloseEditModal, updateUser, fetchUsers, selectedItem } = props;
     const { fetchRoles, fetchLevels } = useUserService();
 
     const {
@@ -12,24 +12,31 @@ const AddUser = (props) => {
         handleSubmit,
         formState: { errors },
         watch
-    } = useForm();
+    } = useForm({defaultValues:{
+        name:selectedItem.name,
+        phone:selectedItem.phone,
+        email:selectedItem.email,
+        password:selectedItem.password,
+    }});
 
     const role = watch('role');
 
     const [roles, setRoles] = useState([]);
     const [levels, setLevels] = useState([]);
 
-    const storeUser = async (data) => {
+    const updateUserData = async (data) => {
         try {
-            await createUser(data);
+            const finalData = {...data, id:selectedItem._id}
+            await updateUser(finalData);
             fetchUsers();
-            handleCloseModal();
+            handleCloseEditModal();
         } catch (err) {
             console.log(err);
         }
     }
 
     const fetchAllRoles = async () => {
+        
         try {
             const response = await fetchRoles();
             setRoles(response.data);
@@ -54,14 +61,14 @@ const AddUser = (props) => {
 
     return (
         <div>
-            <input type="checkbox" readOnly checked={showModal} className="modal-toggle" />
+            <input type="checkbox" readOnly checked={showEditModal} className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
                     <label className="btn btn-sm btn-circle absolute right-2 top-2"
-                        onClick={() => handleCloseModal()}
+                        onClick={() => handleCloseEditModal()}
                     >✕</label>
-                    <h3 className="text-lg font-bold">Create support level</h3>
-                    <form className="mt-5" onSubmit={handleSubmit(storeUser)}>
+                    <h3 className="text-lg font-bold">Edit user</h3>
+                    <form className="mt-5" onSubmit={handleSubmit(updateUserData)}>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Full name</span>
@@ -69,6 +76,7 @@ const AddUser = (props) => {
                             <input type="text"
                                 placeholder="Type here"
                                 className="input input-bordered input-md w-full"
+                                defaultValue={selectedItem.name}
                                 {...register("name", {
                                     required: {
                                         value: true,
@@ -95,6 +103,7 @@ const AddUser = (props) => {
                             <input type="number"
                                 placeholder="Type here"
                                 className="input input-bordered input-md w-full"
+                                defaultValue={selectedItem.phone}
                                 {...register("phone", {
                                     required: {
                                         value: true,
@@ -121,6 +130,7 @@ const AddUser = (props) => {
                             <input type="email"
                                 placeholder="Type here"
                                 className="input input-bordered input-md w-full"
+                                defaultValue={selectedItem.email}
                                 {...register("email", {
                                     required: {
                                         value: true,
@@ -143,6 +153,7 @@ const AddUser = (props) => {
                             <input type="password"
                                 placeholder="Type here"
                                 className="input input-bordered input-md w-full"
+                                defaultValue={selectedItem.password}
                                 {...register("password", {
                                     required: {
                                         value: true,
@@ -217,4 +228,4 @@ const AddUser = (props) => {
     )
 }
 
-export default AddUser
+export default EditUser
