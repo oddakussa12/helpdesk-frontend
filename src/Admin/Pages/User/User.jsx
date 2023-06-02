@@ -88,6 +88,7 @@ const User = () => {
                     <tr>
                       <th>Name</th>
                       <th>Email</th>
+                      <th>Phone Number</th>
                       <th>Role</th>
                       <th>Action</th>
                     </tr>
@@ -99,6 +100,7 @@ const User = () => {
                           <tr className="hover" key={index}>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
+                            <td>{user.phone}</td>
                             <td><div className="badge badge-primary gap-2">{user.role.name}</div></td>
                             <td>
                               <div className="btn-group">

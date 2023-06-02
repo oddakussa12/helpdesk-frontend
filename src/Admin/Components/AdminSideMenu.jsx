@@ -6,12 +6,6 @@ const AdminSideMenu = () => {
         <>
             <li className="hover-bordered"><Link to="" style={{ fontSize: '28px' }}>Help Desk</Link></li>
             <li className="hover-bordered">
-                <Link to='' >
-                    <HomeIcon className="h-6 w-6" />
-                    Home
-                </Link>
-            </li>
-            <li className="hover-bordered">
                 <Link to='settings' >
                     <Cog6ToothIcon className="h-6 w-6" />
                     Settings

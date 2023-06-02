@@ -17,7 +17,6 @@ import SupportViewTicket from "./Support/Pages/ViewTicket";
 
 // admin routes
 import AdminLayout from "./Admin/Layouts/AdminLayout";
-import AdminHome from "./Admin/Pages/AdminHome";
 import Setting from "./Admin/Pages/Setting";
 import AdminProfile from "./Admin/Pages/AdminProfile";
 import User from "./Admin/Pages/User/User";
@@ -59,7 +58,7 @@ function App() {
 
           {/* admin routes */}
           <Route path='/admin' element={<AdminLayout />}>
-            <Route path="" element={<AdminHome />} />
+            <Route index element={<Setting />} />
             <Route path="settings" element={<Setting />} />
             <Route path="profile" element={<AdminProfile />} />
             <Route path="faqs" element={<AdminFaq />}/>
