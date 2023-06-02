@@ -25,12 +25,8 @@ const useAdminFaqService = () => {
     return axiosPrivate.delete(`${url}/${id}`);
   }
 
-  function approveFaq() {
-    return axiosPrivate.get('/admin/faqs');
-  }
-
-  function declineFaq() {
-    return axiosPrivate.get('/admin/faqs');
+  function changeStatus(id) {
+    return axiosPrivate.post(`${url}/change-status/${id}`);
   }
 
   return {
@@ -39,8 +35,7 @@ const useAdminFaqService = () => {
     createFaq,
     updateFaq,
     deleteFaq,
-    approveFaq,
-    declineFaq
+    changeStatus,
   }
 }
 

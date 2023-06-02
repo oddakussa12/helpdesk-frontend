@@ -7,13 +7,22 @@ const ViewFaq = () => {
   let navigate = useNavigate();
   const { faqId } = useParams();
 
-  const { showFaq } = useAdminFaqService();
+  const { showFaq, changeStatus } = useAdminFaqService();
   const [faq, setFaq] = useState({});
 
   const fetchFaq = async () => {
     try {
       const response = await showFaq(faqId);
       setFaq(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const updateStatus = async (id) => {
+    try {
+      await changeStatus(id);
+      fetchFaq();
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +48,7 @@ const ViewFaq = () => {
             </div>
           </div>
           <div className="overflow-x-auto">
-            {faq? (
+            {faq ? (
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
                 <div className="card bg-base-200 col-span-2" style={{ minHeight: '450px' }} >
                   <div className="card-body">
@@ -67,9 +76,15 @@ const ViewFaq = () => {
                       Status ({faq.approved ? "Approved" : "Pending"})
                     </small>
                     {faq.approved ? (
-                      <button className="btn btn-sm btn-error">Decline</button>
+                      <button className="btn btn-sm btn-error"
+                        onClick={() => updateStatus(faq._id)}
+                      >Decline
+                      </button>
                     ) : (
-                      <button className="btn btn-sm btn-success">Approve</button>
+                      <button className="btn btn-sm btn-success"
+                      onClick={() => updateStatus(faq._id)}
+                      >Approve
+                      </button>
                     )}
                   </div>
                 </div>
