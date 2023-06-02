@@ -9,6 +9,10 @@ const useAdminFaqService = () => {
     return axiosPrivate.get(url);
   }
 
+  function showFaq(id) {
+    return axiosPrivate.get(`${url}/${id}`);
+  }
+
   function createFaq(data) {
     return axiosPrivate.post(url, data);
   }
@@ -31,6 +35,7 @@ const useAdminFaqService = () => {
 
   return {
     getAllFaqs,
+    showFaq,
     createFaq,
     updateFaq,
     deleteFaq,

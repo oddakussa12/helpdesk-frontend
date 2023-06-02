@@ -65,7 +65,7 @@ function App() {
             <Route path="faqs" element={<AdminFaq />}/>
             <Route path="create-faq" element={<AddFaq />}/>
             <Route path="edit-faq" element={<EditFaq />}/>
-            <Route path="view-faq" element={<ViewFaq />}/>
+            <Route path="view-faq/:faqId" element={<ViewFaq />}/>
             <Route path="view-ticket" element={<SupportViewTicket />} />
             <Route path="users" element={<User />} />
             <Route path="tickets" element={<Ticket />} />

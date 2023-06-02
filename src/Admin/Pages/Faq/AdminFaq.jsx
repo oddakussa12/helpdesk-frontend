@@ -83,7 +83,7 @@ const AdminFaq = () => {
                                                     <Link to="/admin/edit-faq" className="btn btn-sm">
                                                         <PencilIcon className="h-4 w-4 text-warning" />
                                                     </Link>
-                                                    <Link to="/admin/view-faq" className="btn btn-sm">
+                                                    <Link to={`/admin/view-faq/${faq._id}`} className="btn btn-sm">
                                                         <EyeIcon className="h-4 w-4 text-success" />
                                                     </Link>
 
