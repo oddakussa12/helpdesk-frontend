@@ -80,7 +80,7 @@ const AdminFaq = () => {
                                                     )
                                                 }
                                                 <div className="btn-group ml-10">
-                                                    <Link to="/admin/edit-faq" className="btn btn-sm">
+                                                    <Link to={`/admin/edit-faq/${faq._id}`} className="btn btn-sm">
                                                         <PencilIcon className="h-4 w-4 text-warning" />
                                                     </Link>
                                                     <Link to={`/admin/view-faq/${faq._id}`} className="btn btn-sm">

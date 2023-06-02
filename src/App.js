@@ -64,7 +64,7 @@ function App() {
             <Route path="profile" element={<AdminProfile />} />
             <Route path="faqs" element={<AdminFaq />}/>
             <Route path="create-faq" element={<AddFaq />}/>
-            <Route path="edit-faq" element={<EditFaq />}/>
+            <Route path="edit-faq/:faqId" element={<EditFaq />}/>
             <Route path="view-faq/:faqId" element={<ViewFaq />}/>
             <Route path="view-ticket" element={<SupportViewTicket />} />
             <Route path="users" element={<User />} />
