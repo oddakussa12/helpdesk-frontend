@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import AddIssueCategory from "./Modals/AddIssueCategory";
+import EditIssueCategory from "./Modals/EditIssueCategory";
 import ConfirmModal from "../../../../common/ConfirmModal";
 import useIssueCategoryService from "./Api/issueCategory.service";
 
@@ -64,13 +64,13 @@ const IssueCategory = () => {
                         fetchCategories={fetchCategories}
                         createCategory={createCategory}
                     />
-                    {/* <EditRole
+                    <EditIssueCategory
                         showEditModal={showEditModal}
                         handleCloseEditModal={handleCloseEditModal}
-                        fetchRole={fetchRole}
-                        updateRole={updateRole}
+                        fetchCategories={fetchCategories}
+                        updateCategory={updateCategory}
                         selectedItem={selectedItem}
-                    /> */}
+                    />
                     <ConfirmModal
                         showConfirmModal={showConfirmModal}
                         handleCloseConfirmModal={handleCloseConfirmModal}
@@ -88,19 +88,21 @@ const IssueCategory = () => {
                         </thead>
                         <tbody>
                             {categories?.length ? (
-                                categories.map((category) => (
-                                    <tr className="hover">
+                                categories.map((category, index) => (
+                                    <tr className="hover" key={index}>
                                         <td>{category.name}</td>
                                         <td>{category.createdAt}</td>
                                         <td>
                                             <div className="btn-group">
                                                 <button className="btn btn-sm">
-                                                    <PencilIcon className="h-4 w-4 text-success" />
+                                                    <PencilIcon
+                                                        onClick={() => handleShowEditModal(category)}
+                                                        className="h-4 w-4 text-success" />
                                                 </button>
                                                 <button className="btn btn-sm">
                                                     <TrashIcon
-                                                    onClick={() => handleShowConfirmModal(category)}
-                                                     className="h-4 w-4 text-error" />
+                                                        onClick={() => handleShowConfirmModal(category)}
+                                                        className="h-4 w-4 text-error" />
                                                 </button>
                                             </div>
                                         </td>
