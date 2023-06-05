@@ -6,7 +6,7 @@ const useRefreshToken = () => {
 
     const refresh = async () => {
         // update your access token
-        const response = await httpCommon.post('/company/refresh');
+        const response = await httpCommon.post('/auth/refresh-token');
         const roles = [1000, 2000, 3000];
         const access_token = response?.data?.data?.access_token;
         const user = response?.data?.data?.user;

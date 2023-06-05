@@ -35,7 +35,6 @@ import Login from "./Auth/Pages/Login";
 import Register from "./Auth/Pages/Register";
 import Faq from "./World/Pages/Faq";
 
-
 function App() {
   return (
     <div className="App">
@@ -47,29 +46,32 @@ function App() {
             <Route path="create-ticket" element={<CreateTicket />} />
             <Route path="view-ticket" element={<ViewTicket />} />
           </Route>
-        
+
           {/* support role routes */}
-          <Route path='/support' element={<SupportLayout />}>
-            <Route path="" element={<SupportHome />} />
-            <Route path="profile" element={<SupportProfile />} />
-            <Route path="faqs" element={<SupportFaq />}/>
-            <Route path="view-ticket" element={<SupportViewTicket />} />
+          <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+            <Route path="/support" element={<SupportLayout />}>
+              <Route path="" element={<SupportHome />} />
+              <Route path="profile" element={<SupportProfile />} />
+              <Route path="faqs" element={<SupportFaq />} />
+              <Route path="view-ticket" element={<SupportViewTicket />} />
+            </Route>
           </Route>
 
           {/* admin routes */}
-          <Route path='/admin' element={<AdminLayout />}>
-            <Route index element={<Setting />} />
-            <Route path="settings" element={<Setting />} />
-            <Route path="profile" element={<AdminProfile />} />
-            <Route path="faqs" element={<AdminFaq />}/>
-            <Route path="create-faq" element={<AddFaq />}/>
-            <Route path="edit-faq/:faqId" element={<EditFaq />}/>
-            <Route path="view-faq/:faqId" element={<ViewFaq />}/>
-            <Route path="view-ticket" element={<SupportViewTicket />} />
-            <Route path="users" element={<User />} />
-            <Route path="tickets" element={<Ticket />} />
+          <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Setting />} />
+              <Route path="settings" element={<Setting />} />
+              <Route path="profile" element={<AdminProfile />} />
+              <Route path="faqs" element={<AdminFaq />} />
+              <Route path="create-faq" element={<AddFaq />} />
+              <Route path="edit-faq/:faqId" element={<EditFaq />} />
+              <Route path="view-faq/:faqId" element={<ViewFaq />} />
+              <Route path="view-ticket" element={<SupportViewTicket />} />
+              <Route path="users" element={<User />} />
+              <Route path="tickets" element={<Ticket />} />
+            </Route>
           </Route>
-
         </Route>
 
         {/* common public routes */}
