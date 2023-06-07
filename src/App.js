@@ -4,7 +4,7 @@ import PersistLogin from "./Auth/components/PersistLogin";
 import RequireAuth from "./middleware/RequireAuth";
 
 // end user routes
-import UserHome from "./EndUser/Pages/UserHome";
+import UserHome from "./EndUser/Pages/Home/UserHome";
 import CreateTicket from "./EndUser/Pages/CreateTicket";
 import ViewTicket from "./EndUser/Pages/ViewTicket";
 

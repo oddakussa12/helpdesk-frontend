@@ -1,7 +1,29 @@
-import { Link } from "react-router-dom"
-import TicketList from "./TicketList"
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import TicketList from "../TicketList";
+import useUserTicketService from "./Api/userTicket.service";
 
 const UserHome = () => {
+
+  const {getAllTickets, showTicket, createTicket, updateTicket, deleteTicket,
+     changeTicketStatus,} = useUserTicketService();
+
+  const [tickets, setTickets] = useState([]);
+
+  const fetchMyTickets = async () => {
+    try{
+      const response = await getAllTickets();
+      console.log(response.data);
+      setTickets(response.data);
+    }catch(err){
+
+    }
+  }
+
+  useEffect(() => {
+    fetchMyTickets();
+  }, [])
+
   return (
     <div className="mt-10">
       <div className="hero min-h-screen bg-base-100">
