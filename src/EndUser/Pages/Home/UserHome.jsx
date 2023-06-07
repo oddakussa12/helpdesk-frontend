@@ -5,7 +5,7 @@ import { EyeIcon } from "@heroicons/react/24/solid";
 
 const UserHome = () => {
 
-  const { getAllTickets, createTicket, updateTicket, deleteTicket,
+  const { getAllTickets, updateTicket, deleteTicket,
     changeTicketStatus, } = useUserTicketService();
 
   const [tickets, setTickets] = useState([]);
@@ -28,8 +28,18 @@ const UserHome = () => {
       {
         tickets?.length ? (
           <div style={{ marginTop: '60px' }}>
-            <h5 className='text-2xl'>Your tickets</h5>
-            <div className="overflow-x-auto mt-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="grid-cols-1">
+                <h5 className='text-2xl'>Your tickets</h5>
+              </div>
+              <div className="grid grid-cols-1 place-items-end">
+                <Link
+                  className="btn btn-warning btn-sm"
+                  to="create-ticket">Create Ticket
+                </Link>
+              </div>
+            </div>
+            <div className="overflow-x-auto mt-10">
               <table className="table table-zebra w-full">
                 <thead>
                   <tr>
@@ -71,7 +81,7 @@ const UserHome = () => {
             </div>
           </div>
         ) : (
-          <div className="hero min-h-screen bg-base-300">
+          <div className="hero min-h-screen bg-base-100">
             <div className="hero-content text-center">
               <div className="max-w-md">
                 <h1 className="text-5xl font-bold">Welcome, Odda</h1>
