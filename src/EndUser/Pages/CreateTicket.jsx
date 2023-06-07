@@ -15,7 +15,6 @@ const CreateTicket = () => {
 
     const storeTicket = async (data) => {
         try {
-            console.log(data);
             await createTicket(data);
             navigate(-1);
         } catch (err) {
