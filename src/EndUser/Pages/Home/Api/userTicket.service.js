@@ -9,8 +9,8 @@ const useUserTicketService = () => {
     return axiosPrivate.get(`${url}/created_by_me`);
   }
 
-  function showTicket(id) {
-    return axiosPrivate.get(`${url}/${id}`);
+  function showTicket(ticketId) {
+    return axiosPrivate.get(`${url}/show/${ticketId}`);
   }
 
   function createTicket(data) {

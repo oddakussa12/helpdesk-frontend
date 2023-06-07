@@ -44,7 +44,7 @@ function App() {
           <Route path="/home" element={<WorldLayout />}>
             <Route path="" element={<UserHome />} />
             <Route path="create-ticket" element={<CreateTicket />} />
-            <Route path="view-ticket" element={<ViewTicket />} />
+            <Route path="view-ticket/:ticketId" element={<ViewTicket />} />
           </Route>
 
           {/* support role routes */}
