@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useUserTicketService from "./Api/userTicket.service";
-import { EyeIcon } from "@heroicons/react/24/solid";
+import { EyeIcon, TrashIcon } from "@heroicons/react/24/solid";
+import ConfirmModal from "../../../common/ConfirmModal";
 
 const UserHome = () => {
 
@@ -9,6 +10,14 @@ const UserHome = () => {
     changeTicketStatus, } = useUserTicketService();
 
   const [tickets, setTickets] = useState([]);
+  const [selectedItem, setSelectedItem] = useState([]);
+
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const handleShowConfirmModal = (ticket) => {
+    setSelectedItem(ticket);
+    setShowConfirmModal(true);
+  }
+  const handleCloseConfirmModal = () => setShowConfirmModal(false);
 
   const fetchMyTickets = async () => {
     try {
@@ -25,6 +34,13 @@ const UserHome = () => {
 
   return (
     <div className="mt-10">
+      <ConfirmModal 
+        showConfirmModal={showConfirmModal}
+        deleteAction={deleteTicket}
+        fetchAction={fetchMyTickets}
+        handleCloseConfirmModal={handleCloseConfirmModal}
+        selectedItem={selectedItem}
+      />
       {
         tickets?.length ? (
           <div style={{ marginTop: '60px' }}>
@@ -67,12 +83,15 @@ const UserHome = () => {
                         </div>
                       </td>
                       <td>
-                        {/* <Link to="view-ticket">View</Link> */}
-                        <Link className="btn btn-sm text-success"
+                        <Link className="btn btn-sm text-white"
                           to={`view-ticket/${ticket._id}`}>
                           <EyeIcon className="h-5 w-5" />
                           View
                         </Link>
+                        <button className="btn btn-sm btn-error text-white ml-4"
+                          onClick={() => handleShowConfirmModal(ticket)}>
+                          <TrashIcon className="h-5 w-5" />  Delete
+                        </button>
                       </td>
                     </tr>
                   ))}

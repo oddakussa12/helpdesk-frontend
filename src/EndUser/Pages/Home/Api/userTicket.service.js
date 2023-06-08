@@ -14,7 +14,6 @@ const useUserTicketService = () => {
   }
 
   function createTicket(data) {
-    console.log("in the service");
     return axiosPrivate.post(url, data);
   }
 
