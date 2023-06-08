@@ -20,7 +20,7 @@ import AdminLayout from "./Admin/Layouts/AdminLayout";
 import Setting from "./Admin/Pages/Setting";
 import AdminProfile from "./Admin/Pages/AdminProfile";
 import User from "./Admin/Pages/User/User";
-import Ticket from "./Admin/Pages/Ticket";
+import Ticket from "./Admin/Pages/Ticket/Ticket";
 import AdminFaq from "./Admin/Pages/Faq/AdminFaq";
 import AddFaq from "./Admin/Pages/Faq/AddFaq";
 import EditFaq from "./Admin/Pages/Faq/EditFaq";
