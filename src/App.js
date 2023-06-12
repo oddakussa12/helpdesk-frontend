@@ -48,7 +48,7 @@ function App() {
           </Route>
 
           {/* support role routes */}
-          <Route element={<RequireAuth allowedRoles={["Admin"]} />}>
+          <Route element={<RequireAuth allowedRoles={["Support"]} />}>
             <Route path="/support" element={<SupportLayout />}>
               <Route path="" element={<SupportHome />} />
               <Route path="profile" element={<SupportProfile />} />
