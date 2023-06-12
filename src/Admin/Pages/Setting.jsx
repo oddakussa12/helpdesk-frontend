@@ -2,6 +2,7 @@ import TicketPriority from "./Setting/TicketPriority/TicketPriority";
 import Role from "./Setting/Role/Role";
 import SupportLevel from "./Setting/SupportLevel/SupportLevel";
 import IssueCategory from "./Setting/IssueCategory/IssueCategory";
+import TicketStatus from "./Setting/TicketStatus/TicketStatus";
 
 const Setting = () => {
     return (
@@ -17,6 +18,9 @@ const Setting = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
                             <SupportLevel />
                             <IssueCategory />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
+                            <TicketStatus />
                         </div>
                     </div>
                 </div>
