@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import useUserService from "../../User/Api/user.service";
 import useAdminTicketService from "../Api/ticket.service";
 
-const AssignTicket = (props) => {
+const AssigneeTicket = (props) => {
 
     const { showAssignModal, handleCloseAssignModal, fetchTickets, selectedItem } = props;
     const { assignTicket } = useAdminTicketService();
@@ -48,7 +48,7 @@ const AssignTicket = (props) => {
                     <label className="btn btn-sm btn-circle absolute right-2 top-2"
                         onClick={() => handleCloseAssignModal()}
                     >✕</label>
-                    <h3 className="text-lg font-bold">Assign Support Person</h3>
+                    <h3 className="text-lg font-bold">Assignee Support Person</h3>
                     <form className="mt-5" onSubmit={handleSubmit(assignTicketToUser)}>
                         
                        
@@ -77,9 +77,13 @@ const AssignTicket = (props) => {
                                 <small className="text-error">{errors.user_id?.message}</small>
                             )}
                         </div>
-                        <div className="text-center mt-10">
-                            <button className="btn btn-warning" type="submit">
-                                Assign
+                        <div className="text-end mt-10">
+                            <button className="btn"
+                                onClick={handleCloseAssignModal}>
+                                Cancel
+                            </button>
+                            <button className="btn btn-warning ml-4" type="submit">
+                                Assignee
                             </button>
                         </div>
                     </form>
@@ -89,4 +93,4 @@ const AssignTicket = (props) => {
     )
 }
 
-export default AssignTicket
+export default AssigneeTicket

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAdminTicketService from "./Api/ticket.service";
-import AssignTicket from "./Modals/AssignTicket";
+import AssignTicket from "./Modals/AssigneeTicket";
 
 const Ticket = () => {
     const { getAllTickets,
@@ -53,6 +53,8 @@ const Ticket = () => {
                                         <tr>
                                             <th>Ticket</th>
                                             <th>Assignee</th>
+                                            <th>Status</th>
+                                            <th>Priority</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -73,7 +75,13 @@ const Ticket = () => {
                                                             }
 
                                                         </td>
-                                                        <td>March, 27, 2023</td>
+                                                        <td>
+                                                            <div className="badge badge-info gap-2">{ticket?.status?.name}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div className="badge badge-error gap-2">{ticket?.priority?.name}</div>
+                                                        </td>
+                                                        <td>{ticket?.createdAt}</td>
                                                         <td>
                                                             <div className="btn-group">
                                                                 <button className="btn btn-sm"
