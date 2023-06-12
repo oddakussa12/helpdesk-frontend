@@ -17,8 +17,8 @@ const useAdminTicketService = () => {
     return axiosPrivate.delete(`${url}/${id}`);
   }
 
-  function assignTicket(id) {
-    return axiosPrivate.post(`${url}/assign/${id}`);
+  function assignTicket(ticket_id, data) {
+    return axiosPrivate.post(`${url}/assign/${ticket_id}`, data);
   }
 
   function changePriority(id) {

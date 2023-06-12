@@ -75,8 +75,8 @@ const User = () => {
     <div className="px-3 mt-10">
       <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
         <div className="card-body">
-          <div class="grid grid-cols-5 gap-4">
-            <div class="col-span-1">
+          <div className="grid grid-cols-5 gap-4">
+            <div className="col-span-1">
               <h2 className="card-title">User Management</h2>
             </div>
             <div className="col-span-1">
@@ -91,13 +91,13 @@ const User = () => {
                 }
               </select>
             </div>
-            <div class="grid col-span-2 place-items-end">
+            <div className="grid col-span-2 place-items-end">
               <div className="join">
                 <input className="input input-bordered join-item" placeholder="Email or Name" />
                 <button className="btn join-item">Search</button>
               </div>
             </div>
-            <div class="grid col-span-1 place-items-end">
+            <div className="grid col-span-1 place-items-end">
               <label
                 className="btn btn-warning btn-sm"
                 onClick={() => handleShowModal()}>Create User

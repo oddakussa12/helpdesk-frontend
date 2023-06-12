@@ -1,15 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAdminTicketService from "./Api/ticket.service";
+import AssignTicket from "./Modals/AssignTicket";
 
 const Ticket = () => {
     const { getAllTickets,
         showticket,
         deleteticket,
-        assignTicket,
         changePriority } = useAdminTicketService();
 
     const [tickets, setTickets] = useState([]);
+    const [selectedItem, setSelectedItem] = useState({});
+
+    const [showAssignModal, setShowAssignModal] = useState(false);
+    const handleShowAssignModal = (ticket) => {
+        setSelectedItem(ticket);
+        setShowAssignModal(true);
+    }
+    const handleCloseAssignModal = () => setShowAssignModal(false);
 
     const fetchTickets = async () => {
         try {
@@ -27,6 +35,13 @@ const Ticket = () => {
 
     return (
         <div className="px-3 mt-10">
+            <AssignTicket
+                showAssignModal={showAssignModal}
+                handleCloseAssignModal={handleCloseAssignModal}
+                fetchTickets={fetchTickets}
+                selectedItem={selectedItem}
+
+            />
             <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
                 <div className="card-body">
                     <h2 className="card-title">Ticket Management</h2>
@@ -37,7 +52,7 @@ const Ticket = () => {
                                     <thead>
                                         <tr>
                                             <th>Ticket</th>
-                                            <th>Status</th>
+                                            <th>Assignee</th>
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
@@ -48,12 +63,22 @@ const Ticket = () => {
                                                 tickets.map((ticket, index) => (
                                                     <tr className="hover" key={index}>
                                                         <td>{ticket?.subject}</td>
-                                                        <td><div className="badge badge-primary gap-2">Unassigned</div></td>
+                                                        <td>
+                                                            {
+                                                                ticket?.assignee ? (
+                                                                    <div className="badge badge-success gap-2">{ticket?.assignee?.name}</div>
+                                                                ) : (
+                                                                    <div className="badge badge-primary gap-2">Unassigned</div>
+                                                                )
+                                                            }
+
+                                                        </td>
                                                         <td>March, 27, 2023</td>
                                                         <td>
                                                             <div className="btn-group">
-                                                                <button className="btn btn-sm">
-                                                                    <Link to="view-ticket">Assign</Link>
+                                                                <button className="btn btn-sm"
+                                                                    onClick={() => handleShowAssignModal(ticket)}>
+                                                                    Assign
                                                                 </button>
                                                                 <button className="btn btn-sm">
                                                                     <Link to="view-ticket">View</Link>
@@ -75,7 +100,7 @@ const Ticket = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
