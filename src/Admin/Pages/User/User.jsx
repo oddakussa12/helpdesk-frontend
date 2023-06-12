@@ -9,7 +9,7 @@ import useUserService from "./Api/user.service";
 
 const User = () => {
 
-  const { getAllUsers, createUser, updateUser, deleteUser } = useUserService();
+  const { getAllUsers, createUser, updateUser, deleteUser, fetchUsersByRole } = useUserService();
 
   const [users, setUsers] = useState({});
   const [selectedItem, setSelectedItem] = useState({});
@@ -32,6 +32,21 @@ const User = () => {
   }
   const handleCloseConfirmModal = () => setShowConfirmModal(false);
 
+  const getUsersByRole = async (roleName) => {
+    try{
+      const response = await fetchUsersByRole(roleName);
+      setUsers(response.data);
+    }catch(err){
+      console.log(err);
+    }
+  }
+
+  const handleRoleChange = (e) => {
+    e.preventDefault();
+    getUsersByRole(e.target.value);
+  }
+
+
   const fetchUsers = async () => {
     try {
       const response = await getAllUsers();
@@ -49,11 +64,26 @@ const User = () => {
     <div className="px-3 mt-10">
       <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
         <div className="card-body">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="grid-cols-1">
+          <div class="grid grid-cols-5 gap-4">
+            <div class="col-span-1">
               <h2 className="card-title">User Management</h2>
             </div>
-            <div className="grid grid-cols-1 place-items-end">
+            <div className="col-span-1">
+              <select className="select select-bordered w-full max-w-xs"
+                onChange={handleRoleChange}>
+                <option disabled selected>Filter by role</option>
+                <option value="User" >User</option>
+                <option value="Support" >Support</option>
+                <option value="Admin" >Admin</option>
+              </select>
+            </div>
+            <div class="grid col-span-2 place-items-end">
+              <div className="join">
+                <input className="input input-bordered join-item" placeholder="Email or Name" />
+                <button className="btn join-item">Search</button>
+              </div>
+            </div>
+            <div class="grid col-span-1 place-items-end">
               <label
                 className="btn btn-warning btn-sm"
                 onClick={() => handleShowModal()}>Create User
@@ -101,7 +131,7 @@ const User = () => {
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>{user.phone}</td>
-                            <td><div className="badge badge-primary gap-2">{user.role.name}</div></td>
+                            <td><div className="badge badge-primary gap-2">{user?.role?.name}</div></td>
                             <td>
                               <div className="btn-group">
                                 <button className="btn btn-sm"

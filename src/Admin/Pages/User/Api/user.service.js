@@ -29,13 +29,18 @@ const useUserService = () => {
     return axiosPrivate.get('/admin/support-level');
   }
 
+  function fetchUsersByRole(roleName) {
+    return axiosPrivate.get(`${url}/role/${roleName}`);
+  }
+
   return {
     getAllUsers,
     createUser,
     updateUser,
     deleteUser,
     fetchRoles,
-    fetchLevels
+    fetchLevels,
+    fetchUsersByRole
   }
 }
 
