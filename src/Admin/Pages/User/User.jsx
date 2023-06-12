@@ -9,9 +9,10 @@ import useUserService from "./Api/user.service";
 
 const User = () => {
 
-  const { getAllUsers, createUser, updateUser, deleteUser, fetchUsersByRole } = useUserService();
+  const { getAllUsers, createUser, updateUser, deleteUser, fetchUsersByRole, fetchRoles } = useUserService();
 
   const [users, setUsers] = useState({});
+  const [roles, setRoles] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
 
   const [showModal, setShowModal] = useState(false);
@@ -32,11 +33,20 @@ const User = () => {
   }
   const handleCloseConfirmModal = () => setShowConfirmModal(false);
 
+  const fetchAllRoles = async () => {
+    try {
+      const response = await fetchRoles();
+      setRoles(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const getUsersByRole = async (roleName) => {
-    try{
+    try {
       const response = await fetchUsersByRole(roleName);
       setUsers(response.data);
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
@@ -58,6 +68,7 @@ const User = () => {
 
   useEffect(() => {
     fetchUsers();
+    fetchAllRoles();
   }, []);
 
   return (
@@ -70,11 +81,14 @@ const User = () => {
             </div>
             <div className="col-span-1">
               <select className="select select-bordered w-full max-w-xs"
-                onChange={handleRoleChange}>
-                <option disabled selected>Filter by role</option>
-                <option value="User" >User</option>
-                <option value="Support" >Support</option>
-                <option value="Admin" >Admin</option>
+                onChange={handleRoleChange}
+                defaultValue="">
+                <option value="" disabled>Filter by role</option>
+                {
+                  roles.map((role, index) => (
+                    <option value={role.name} key={index} >{role.name}</option>
+                  ))
+                }
               </select>
             </div>
             <div class="grid col-span-2 place-items-end">
