@@ -153,7 +153,7 @@ const Ticket = () => {
                                                                     Assign
                                                                 </button>
                                                                 <button className="btn btn-sm">
-                                                                    <Link to="view-ticket">View</Link>
+                                                                    <Link to={`/admin/view-ticket/${ticket._id}`}>View</Link>
                                                                 </button>
                                                             </div>
                                                         </td>

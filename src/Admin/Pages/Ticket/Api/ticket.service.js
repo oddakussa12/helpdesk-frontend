@@ -9,8 +9,8 @@ const useAdminTicketService = () => {
     return axiosPrivate.get(url);
   }
 
-  function showticket(id) {
-    return axiosPrivate.get(`${url}/${id}`);
+  function showTicket(id) {
+    return axiosPrivate.get(`${url}/show/${id}`);
   }
 
   function deleteticket(id) {
@@ -28,7 +28,7 @@ const useAdminTicketService = () => {
 
   return {
     getAllTickets,
-    showticket,
+    showTicket,
     deleteticket,
     assignTicket,
     changePriority

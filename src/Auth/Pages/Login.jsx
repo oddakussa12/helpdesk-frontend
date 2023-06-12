@@ -41,7 +41,6 @@ const Login = () => {
 
       const access_token = response?.data?.access_token;
       const user = response?.data;
-      console.log(response.data.roles)
       const roles = [response?.data?.role];
 
       setAuth({ access_token, user, roles });

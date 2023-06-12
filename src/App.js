@@ -21,6 +21,7 @@ import Setting from "./Admin/Pages/Setting";
 import AdminProfile from "./Admin/Pages/AdminProfile";
 import User from "./Admin/Pages/User/User";
 import Ticket from "./Admin/Pages/Ticket/Ticket";
+import ShowTicket from "./Admin/Pages/Ticket/ShowTicket";
 import AdminFaq from "./Admin/Pages/Faq/AdminFaq";
 import AddFaq from "./Admin/Pages/Faq/AddFaq";
 import EditFaq from "./Admin/Pages/Faq/EditFaq";
@@ -70,6 +71,7 @@ function App() {
               <Route path="view-ticket" element={<SupportViewTicket />} />
               <Route path="users" element={<User />} />
               <Route path="tickets" element={<Ticket />} />
+              <Route path="view-ticket/:ticketId" element={<ShowTicket />} />
             </Route>
           </Route>
         </Route>
