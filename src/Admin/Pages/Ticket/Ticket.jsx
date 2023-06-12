@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useAdminTicketService from "./Api/ticket.service";
+import useTicketStatusService from "../Setting/TicketStatus/Api/ticketStatus.service";
+import usePriorityService from "../Setting/TicketPriority/Api/ticketPriority.service";
 import AssignTicket from "./Modals/AssigneeTicket";
 
 const Ticket = () => {
@@ -8,9 +10,13 @@ const Ticket = () => {
         showticket,
         deleteticket,
         changePriority } = useAdminTicketService();
+    const { getAllTicketStatus } = useTicketStatusService();
+    const { getAllPriority } = usePriorityService();
 
     const [tickets, setTickets] = useState([]);
     const [selectedItem, setSelectedItem] = useState({});
+    const [statuses, setStatuses] = useState([]);
+    const [priorities, setPriorities] = useState([]);
 
     const [showAssignModal, setShowAssignModal] = useState(false);
     const handleShowAssignModal = (ticket) => {
@@ -28,8 +34,38 @@ const Ticket = () => {
         }
     }
 
+    const getTicketStatuses = async () => {
+        try {
+            const response = await getAllTicketStatus();
+            setStatuses(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const getTicketPriorities = async () => {
+        try {
+            const response = await getAllPriority();
+            setPriorities(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const handleStatusChange = (e) => {
+        e.preventDefault();
+        // getUsersByRole(e.target.value);
+    }
+
+    const handlePriorityChange = (e) => {
+        e.preventDefault();
+        // getUsersByRole(e.target.value);
+    }
+
     useEffect(() => {
         fetchTickets();
+        getTicketStatuses();
+        getTicketPriorities();
     }, []);
 
 
@@ -44,7 +80,35 @@ const Ticket = () => {
             />
             <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
                 <div className="card-body">
-                    <h2 className="card-title">Ticket Management</h2>
+                    <div className="grid grid-cols-3 gap-4">
+                        <div className="col-span-1">
+                            <h2 className="card-title">Ticket Management</h2>
+                        </div>
+                        <div className="grid col-span-1 place-items-end">
+                            <select className="select select-bordered w-full max-w-xs"
+                                onChange={handlePriorityChange}
+                                defaultValue="">
+                                <option value="" disabled>Filter by Priority</option>
+                                {
+                                    priorities.map((priority, index) => (
+                                        <option value={priority.name} key={index} >{priority.name}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                        <div className="grid col-span-1 place-items-end">
+                            <select className="select select-bordered w-full max-w-xs"
+                                onChange={handleStatusChange}
+                                defaultValue="">
+                                <option value="" disabled>Filter by Status</option>
+                                {
+                                    statuses.map((status, index) => (
+                                        <option value={status.name} key={index} >{status.name}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                    </div>
                     <div className="overflow-x-auto">
                         <div className="card bg-base-100 col-span-2" style={{ minHeight: '450px' }} >
                             <div className="card-body">
