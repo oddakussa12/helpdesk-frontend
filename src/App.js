@@ -10,7 +10,7 @@ import ViewTicket from "./EndUser/Pages/ViewTicket";
 
 // support role routes
 import SupportLayout from "./Support/Layouts/SupportLayout";
-import SupportHome from "./Support/Pages/SupportHome";
+import SupportHome from "./Support/Pages/Home/SupportHome";
 import SupportProfile from "./Support/Pages/SupportProfile";
 import SupportFaq from "./Support/Pages/SupportFaq";
 import SupportViewTicket from "./Support/Pages/ViewTicket";
