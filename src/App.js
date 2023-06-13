@@ -54,7 +54,7 @@ function App() {
               <Route path="" element={<SupportHome />} />
               <Route path="profile" element={<SupportProfile />} />
               <Route path="faqs" element={<SupportFaq />} />
-              <Route path="view-ticket" element={<SupportViewTicket />} />
+              <Route path="view-ticket/:ticketId" element={<SupportViewTicket />} />
             </Route>
           </Route>
 
@@ -68,7 +68,6 @@ function App() {
               <Route path="create-faq" element={<AddFaq />} />
               <Route path="edit-faq/:faqId" element={<EditFaq />} />
               <Route path="view-faq/:faqId" element={<ViewFaq />} />
-              <Route path="view-ticket" element={<SupportViewTicket />} />
               <Route path="users" element={<User />} />
               <Route path="tickets" element={<Ticket />} />
               <Route path="view-ticket/:ticketId" element={<ShowTicket />} />

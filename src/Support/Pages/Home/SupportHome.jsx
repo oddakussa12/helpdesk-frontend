@@ -59,7 +59,11 @@ const SupportHome = () => {
                         </td>
                         <td>{ticket?.createdAt}</td>
                         <td>
-                          <Link to="view-ticket">View</Link>
+                          <div className="btn-group">
+                            <button className="btn btn-sm">
+                              <Link to={`/support/view-ticket/${ticket._id}`}>View</Link>
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))
