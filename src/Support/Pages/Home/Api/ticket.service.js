@@ -13,6 +13,10 @@ const useSupportTicketService = () => {
     return axiosPrivate.get(`${url}/show/${id}`);
   }
 
+  function reply(id, data) {
+    return axiosPrivate.post(`${url}/reply/${id}`, data);
+  }
+
   function changeStatus(id) {
     return axiosPrivate.post(`${url}/change-status/${id}`);
   }
@@ -21,6 +25,7 @@ const useSupportTicketService = () => {
   return {
     getAllTickets,
     showTicket,
+    reply,
     changeStatus
   }
 }

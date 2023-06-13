@@ -50,10 +50,6 @@ const AssigneeTicket = (props) => {
                     >✕</label>
                     <h3 className="text-lg font-bold">Assignee Support Person</h3>
                     <form className="mt-5" onSubmit={handleSubmit(assignTicketToUser)}>
-                        
-                       
-                        
-                        
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Support Person</span>

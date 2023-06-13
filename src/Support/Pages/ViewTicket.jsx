@@ -1,13 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import useSupportTicketService from "./Home/Api/ticket.service";
 import useSupportBaseDataService from "../Api/baseData.service";
 
 const ViewTicket = () => {
     let navigate = useNavigate();
     const { ticketId } = useParams();
-    const { showTicket } = useSupportTicketService();
+    const { showTicket, reply } = useSupportTicketService();
     const { getAllTicketStatuses } = useSupportBaseDataService();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
 
     const [ticket, setTicket] = useState({});
     const [ticketStatuses, setTicketStatuses] = useState([]);
@@ -24,8 +31,16 @@ const ViewTicket = () => {
     const getTicketStatuses = async () => {
         try {
             const response = await getAllTicketStatuses();
-            console.log("sta", response.data);
             setTicketStatuses(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const replyToTicket = async (data) => {
+        try {
+            await reply(ticketId, data);
+            fetchTicket();
         } catch (err) {
             console.log(err);
         }
@@ -74,7 +89,6 @@ const ViewTicket = () => {
                     {
                         ticket ? (
                             <div className="overflow-x-auto mt-5">
-                                {/* cards */}
                                 <div>
                                     <div className="chat chat-start">
                                         <div className="chat-image avatar">
@@ -93,25 +107,61 @@ const ViewTicket = () => {
                                         </div>
 
                                     </div>
-                                    <div className="chat chat-end">
-                                        <div className="chat-image avatar">
-                                            <div className="w-10 rounded-full">
-                                                <img src="/default-avatar.png" />
+                                    {
+                                        ticket?.response ? (
+                                            <div className="chat chat-end">
+                                                <div className="chat-image avatar">
+                                                    <div className="w-10 rounded-full">
+                                                        <img src="/default-avatar.png" />
+                                                    </div>
+                                                </div>
+                                                <div className="chat-header">
+                                                    Anakin
+                                                    <time className="text-xs opacity-50">12:46</time>
+                                                </div>
+                                                <div className="chat-bubble">
+                                                    {ticket?.response}
+                                                </div>
+                                                <div className="chat-footer">
+                                                    <button className="btn btn-error btn-sm mt-2">Edit</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="chat-header">
-                                            Anakin
-                                            <time className="text-xs opacity-50">12:46</time>
-                                        </div>
-                                        <div className="chat-bubble">
-                                            That's never been done in the history of the Jedi. It's insulting!
-                                            It was said that you would, destroy the Sith, not join them.
-                                            It was said that you would, destroy the Sith, not join them.
-                                        </div>
-                                        <div className="chat-footer opacity-50">
-                                            Seen at 12:46
-                                        </div>
-                                    </div>
+                                        ) : (
+                                            <form onSubmit={handleSubmit(replyToTicket)}>
+                                                <div className="chat chat-end">
+                                                    <div className="chat-image avatar">
+                                                        <div className="w-10 rounded-full">
+                                                            <img src="/default-avatar.png" />
+                                                        </div>
+                                                    </div>
+                                                    <div className="chat-header">
+                                                        Anakin
+                                                        <time className="text-xs opacity-50">12:46</time>
+                                                    </div>
+                                                    <div className="chat-bubble">
+                                                        <div className="form-control w-full">
+                                                            <textarea className="textarea textarea-lg textarea-bordered"
+                                                                placeholder="Replay"
+                                                                style={{minWidth:'600px', color:'black'}}
+                                                                {...register("response", {
+                                                                    required: {
+                                                                        value: true,
+                                                                        message: "Your response is required.",
+                                                                    }
+                                                                })}>
+                                                            </textarea>
+                                                            {errors.response && (
+                                                                <small className="text-error">{errors.response?.message}</small>
+                                                            )}
+                                                        </div>
+                                                    </div>
+                                                    <div className="chat-footer">
+                                                        <button type="submit" className="btn btn-warning btn-sm mt-2">Reply</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        )
+                                    }
                                 </div>
                             </div>
                         ) : (

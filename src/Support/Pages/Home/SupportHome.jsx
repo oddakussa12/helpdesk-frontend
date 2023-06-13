@@ -33,6 +33,7 @@ const SupportHome = () => {
               <thead>
                 <tr>
                   <th>Subject</th>
+                  <th>Replied?</th>
                   <th>User name</th>
                   <th>Priority</th>
                   <th>Status</th>
@@ -46,6 +47,18 @@ const SupportHome = () => {
                     tickets.map((ticket, index) => (
                       <tr className="hover" key={index}>
                         <td>{ticket?.subject}</td>
+                        <td>{
+                          ticket?.response ? (
+                            <div className="badge badge-success gap-2">
+                              YES
+                            </div>
+                          ) : (
+                            <div className="badge badge-error gap-2">
+                              NO
+                            </div>
+                          )
+                        }
+                        </td>
                         <td>{ticket?.created_by?.name}</td>
                         <td>
                           <div className="badge badge-success gap-2">
