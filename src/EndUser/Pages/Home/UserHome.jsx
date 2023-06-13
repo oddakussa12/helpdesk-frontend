@@ -34,7 +34,7 @@ const UserHome = () => {
 
   return (
     <div className="mt-10">
-      <ConfirmModal 
+      <ConfirmModal
         showConfirmModal={showConfirmModal}
         deleteAction={deleteTicket}
         fetchAction={fetchMyTickets}
@@ -60,6 +60,7 @@ const UserHome = () => {
                 <thead>
                   <tr>
                     <th>Issue</th>
+                    <th>Replied ?</th>
                     <th>Status</th>
                     <th>Priority</th>
                     <th>Action</th>
@@ -71,6 +72,18 @@ const UserHome = () => {
                       <td>
                         <b>{ticket.subject}</b> <br />
                         {ticket.description}
+                      </td>
+                      <td>
+                        {ticket?.response ? (
+                        <div className="badge badge-success gap-2">
+                          YES
+                        </div>
+                        ) : (
+                        <div className="badge badge-error gap-2">
+                          NO
+                        </div>
+                        )
+                        }
                       </td>
                       <td>
                         <div className="badge badge-primary gap-2">

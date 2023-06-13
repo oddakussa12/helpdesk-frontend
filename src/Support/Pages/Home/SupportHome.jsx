@@ -33,7 +33,7 @@ const SupportHome = () => {
               <thead>
                 <tr>
                   <th>Subject</th>
-                  <th>Replied?</th>
+                  <th>Replied ?</th>
                   <th>User name</th>
                   <th>Priority</th>
                   <th>Status</th>
@@ -83,7 +83,7 @@ const SupportHome = () => {
 
                   ) : (
                     <tr className="text-center text-success">
-                      <td colSpan={6}>You have not assigned to any ticket yet.</td>
+                      <td colSpan={7}>You have not assigned to any ticket yet.</td>
                     </tr>
                   )
                 }
