@@ -13,7 +13,6 @@ const ViewTicket = () => {
     const fetchTicket = async () => {
         try {
             const response = await showTicket(ticketId);
-            console.log(response.data);
             setTicket(response.data);
         } catch (err) {
             console.log(err);
@@ -56,25 +55,27 @@ const ViewTicket = () => {
                         Delivered
                     </div>
                 </div>
-                <div className="chat chat-end">
-                    <div className="chat-image avatar">
-                        <div className="w-10 rounded-full">
-                            <img src="/default-avatar.png" />
+                {
+                    ticket?.response ? (
+                        <div className="chat chat-end">
+                            <div className="chat-image avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src="/default-avatar.png" />
+                                </div>
+                            </div>
+                            <div className="chat-header">
+                                {ticket?.assignee?.name}
+                            </div>
+                            <div className="chat-bubble">
+                                {ticket?.response}
+                            </div>
                         </div>
-                    </div>
-                    <div className="chat-header">
-                        Anakin
-                        <time className="text-xs opacity-50">12:46</time>
-                    </div>
-                    <div className="chat-bubble">
-                        That's never been done in the history of the Jedi. It's insulting!
-                        It was said that you would, destroy the Sith, not join them.
-                        It was said that you would, destroy the Sith, not join them.
-                    </div>
-                    <div className="chat-footer opacity-50">
-                        Seen at 12:46
-                    </div>
-                </div>
+                    ) : (
+                        <div className="text-center text-error">
+                            <p>Not replied yet.</p>
+                        </div>
+                    )
+                }
             </div>
         </div>
     )

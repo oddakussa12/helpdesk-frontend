@@ -7,6 +7,7 @@ import RequireAuth from "./middleware/RequireAuth";
 import UserHome from "./EndUser/Pages/Home/UserHome";
 import CreateTicket from "./EndUser/Pages/CreateTicket";
 import ViewTicket from "./EndUser/Pages/ViewTicket";
+import UserLayout from "./EndUser/Layouts/UserLayout";
 
 // support role routes
 import SupportLayout from "./Support/Layouts/SupportLayout";
@@ -42,7 +43,7 @@ function App() {
       <Routes>
         <Route element={<PersistLogin />}>
           {/*  end user routes */}
-          <Route path="/home" element={<WorldLayout />}>
+          <Route path="/home" element={<UserLayout />}>
             <Route path="" element={<UserHome />} />
             <Route path="create-ticket" element={<CreateTicket />} />
             <Route path="view-ticket/:ticketId" element={<ViewTicket />} />

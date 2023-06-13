@@ -75,13 +75,13 @@ const UserHome = () => {
                       </td>
                       <td>
                         {ticket?.response ? (
-                        <div className="badge badge-success gap-2">
-                          YES
-                        </div>
+                          <div className="badge badge-success gap-2">
+                            YES
+                          </div>
                         ) : (
-                        <div className="badge badge-error gap-2">
-                          NO
-                        </div>
+                          <div className="badge badge-error gap-2">
+                            NO
+                          </div>
                         )
                         }
                       </td>
@@ -96,15 +96,15 @@ const UserHome = () => {
                         </div>
                       </td>
                       <td>
-                        <Link className="btn btn-sm text-white"
-                          to={`view-ticket/${ticket._id}`}>
-                          <EyeIcon className="h-5 w-5" />
-                          View
-                        </Link>
-                        <button className="btn btn-sm btn-error text-white ml-4"
-                          onClick={() => handleShowConfirmModal(ticket)}>
-                          <TrashIcon className="h-5 w-5" />  Delete
-                        </button>
+                        <div className="btn-group">
+                          <Link className="btn btn-sm btn-info" to={`view-ticket/${ticket._id}`}>
+                            <EyeIcon className="h-5 w-5" /> View
+                          </Link>
+                          <button className="btn btn-sm btn-error"
+                            onClick={() => handleShowConfirmModal(ticket)}>
+                            <TrashIcon className="h-5 w-5" />  Delete
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}

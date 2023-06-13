@@ -68,14 +68,14 @@ const NavBar = () => {
                     </Link>
                 </div>
                 <div className="navbar-end lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    {/* <ul className="menu menu-horizontal px-1">
                         <li>
                             <Link className="text-warning" to="/login" >Login</Link>
                         </li>
                         <li>
                             <Link className="text-warning" to="/register" >Register</Link>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
                 <div className="flex-none gap-2">
                     <div className="dropdown dropdown-end">
