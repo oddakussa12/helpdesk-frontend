@@ -49,7 +49,13 @@ const ShowTicket = () => {
                             <h2 className="card-title pb-5">View Ticket</h2>
                             <small>
                                 <b>Assignee: </b>
-                                <div className="badge badge-success gap-2">{ticket?.assignee?.name}</div>
+                                {
+                                    ticket?.assignee ? (
+                                        <div className="badge badge-success gap-2">{ticket?.assignee?.name}</div>
+                                    ) : (
+                                        <div className="badge badge-error gap-2">Not assigned</div>
+                                    )
+                                }
                                 <b className="ml-5">Status: </b>
                                 <div className="badge badge-success gap-2">{ticket?.status?.name}</div>
                             </small>
@@ -95,25 +101,31 @@ const ShowTicket = () => {
                                         </div>
 
                                     </div>
-                                    <div className="chat chat-end">
-                                        <div className="chat-image avatar">
-                                            <div className="w-10 rounded-full">
-                                                <img src="/default-avatar.png" />
+                                    {
+                                        ticket?.response ? (
+                                            <div className="chat chat-end">
+                                                <div className="chat-image avatar">
+                                                    <div className="w-10 rounded-full">
+                                                        <img src="/default-avatar.png" />
+                                                    </div>
+                                                </div>
+                                                <div className="chat-header">
+                                                    Anakin
+                                                    <time className="text-xs opacity-50">12:46</time>
+                                                </div>
+                                                <div className="chat-bubble">
+                                                    {ticket?.response}
+                                                </div>
+                                                <div className="chat-footer">
+                                                    <button className="btn btn-error btn-sm mt-2">Edit</button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="chat-header">
-                                            Anakin
-                                            <time className="text-xs opacity-50">12:46</time>
-                                        </div>
-                                        <div className="chat-bubble">
-                                            That's never been done in the history of the Jedi. It's insulting!
-                                            It was said that you would, destroy the Sith, not join them.
-                                            It was said that you would, destroy the Sith, not join them.
-                                        </div>
-                                        <div className="chat-footer opacity-50">
-                                            Seen at 12:46
-                                        </div>
-                                    </div>
+                                        ) : (
+                                            <div className="text-center">
+                                                <p className="text-error">Not replied yet.</p>
+                                            </div>
+                                        )
+                                    }
                                 </div>
                             </div>
                         ) : (

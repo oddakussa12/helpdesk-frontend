@@ -13,8 +13,11 @@ import UserLayout from "./EndUser/Layouts/UserLayout";
 import SupportLayout from "./Support/Layouts/SupportLayout";
 import SupportHome from "./Support/Pages/Home/SupportHome";
 import SupportProfile from "./Support/Pages/SupportProfile";
-import SupportFaq from "./Support/Pages/SupportFaq";
 import SupportViewTicket from "./Support/Pages/ViewTicket";
+import SupportFaq from "./Support/Pages/Faq/SupportFaq";
+import SupportAddFaq from "./Support/Pages/Faq/SupportAddFaq";
+import SupportEditFaq from "./Support/Pages/Faq/SupportEditFaq";
+import SupportViewFaq from "./Support/Pages/Faq/SupportViewFaq";
 
 // admin routes
 import AdminLayout from "./Admin/Layouts/AdminLayout";
@@ -55,6 +58,9 @@ function App() {
               <Route path="" element={<SupportHome />} />
               <Route path="profile" element={<SupportProfile />} />
               <Route path="faqs" element={<SupportFaq />} />
+              <Route path="create-faq" element={<SupportAddFaq />} />
+              <Route path="edit-faq/:faqId" element={<SupportEditFaq />} />
+              <Route path="view-faq/:faqId" element={<SupportViewFaq />} />
               <Route path="view-ticket/:ticketId" element={<SupportViewTicket />} />
             </Route>
           </Route>
