@@ -38,7 +38,7 @@ import PageNotFound from "./common/PageNotFound";
 import Unauthorized from "./common/Unauthorized";
 import Login from "./Auth/Pages/Login";
 import Register from "./Auth/Pages/Register";
-import Faq from "./World/Pages/Faq";
+import Faq from "./World/Pages/Faq/Faq";
 
 function App() {
   return (
