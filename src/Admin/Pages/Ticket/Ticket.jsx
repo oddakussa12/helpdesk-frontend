@@ -17,6 +17,7 @@ const Ticket = () => {
     const [selectedItem, setSelectedItem] = useState({});
     const [statuses, setStatuses] = useState([]);
     const [priorities, setPriorities] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [showAssignModal, setShowAssignModal] = useState(false);
     const handleShowAssignModal = (ticket) => {
@@ -27,9 +28,12 @@ const Ticket = () => {
 
     const fetchTickets = async () => {
         try {
+            setIsLoading(true);
             const response = await getAllTickets();
             setTickets(response?.data);
+            setIsLoading(false);
         } catch (err) {
+            setIsLoading(false);
             console.log(err);
         }
     }
@@ -160,8 +164,15 @@ const Ticket = () => {
                                                     </tr>
                                                 ))
                                             ) : (
+
                                                 <tr className="text-center">
-                                                    <td colSpan={4} >No records found.</td>
+                                                    {!isLoading ? (
+                                                        <td colSpan={6} >No records found.</td>
+                                                    ) : (
+                                                        <td colSpan={6} ><span className="loading loading-spinner"></span></td>
+
+                                                    )
+                                                    }
                                                 </tr>
                                             )
                                         }

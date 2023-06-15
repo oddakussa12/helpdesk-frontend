@@ -14,6 +14,7 @@ const User = () => {
   const [users, setUsers] = useState({});
   const [roles, setRoles] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
   const handleShowModal = () => setShowModal(true);
@@ -44,9 +45,12 @@ const User = () => {
 
   const getUsersByRole = async (roleName) => {
     try {
+      setIsLoading(true);
       const response = await fetchUsersByRole(roleName);
       setUsers(response.data);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   }
@@ -59,9 +63,12 @@ const User = () => {
 
   const fetchUsers = async () => {
     try {
+      setIsLoading(true);
       const response = await getAllUsers();
       setUsers(response.data);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   }
@@ -162,7 +169,12 @@ const User = () => {
                         ))
                       ) : (
                         <tr className="text-center">
-                          <td colSpan={4}>No data</td>
+                          {!isLoading ? (
+                            <td colSpan={5} >No records found.</td>
+                          ) : (
+                            <td colSpan={5} ><span className="loading loading-spinner"></span></td>
+                          )
+                          }
                         </tr>
                       )
                     }

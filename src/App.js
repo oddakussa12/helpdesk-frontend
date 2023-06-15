@@ -39,6 +39,7 @@ import Unauthorized from "./common/Unauthorized";
 import Login from "./Auth/Pages/Login";
 import Register from "./Auth/Pages/Register";
 import Faq from "./World/Pages/Faq/Faq";
+import Test from "./World/Pages/Test";
 
 function App() {
   return (
@@ -91,6 +92,7 @@ function App() {
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/tutorial" element={<Test />} />
       </Routes>
     </div>
   );

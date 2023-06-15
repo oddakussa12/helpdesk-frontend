@@ -16,6 +16,7 @@ const AdminFaq = () => {
 
     const [faqs, setFaqs] = useState({});
     const [selectedItem, setSelectedItem] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const handleShowConfirmModal = (faq) => {
@@ -26,9 +27,12 @@ const AdminFaq = () => {
 
     const fetchFaqs = async () => {
         try {
+            setIsLoading(true);
             const response = await getAllFaqs();
             setFaqs(response.data);
+            setIsLoading(false);
         } catch (err) {
+            setIsLoading(false);
             console.log(err);
         }
     }
@@ -102,7 +106,12 @@ const AdminFaq = () => {
 
                         ) : (
                             <div className="text-center">
-                                <p className="text-error">No record found.</p>
+                                {!isLoading ? (
+                                    <p>No records found.</p>
+                                ) : (
+                                    <span className="loading loading-spinner"></span>
+                                )
+                                }
                             </div>
                         )}
                     </div>
