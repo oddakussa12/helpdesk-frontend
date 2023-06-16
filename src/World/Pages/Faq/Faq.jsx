@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useWorldFaqService from "./Api/faq.service";
+import parse from "html-react-parser";
 
 const Faq = () => {
     const { getAllFaqs } = useWorldFaqService();
@@ -31,7 +32,7 @@ const Faq = () => {
                                     {faq.question}
                                 </div>
                                 <div className="collapse-content">
-                                    <p>{faq.answer}</p>
+                                    <p>{parse(faq?.answer?.toString())}</p>
                                 </div>
                             </div>
                         </div>

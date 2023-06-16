@@ -9,13 +9,16 @@ const SupportHome = () => {
     changeStatus } = useSupportTicketService();
 
   const [tickets, setTickets] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchTickets = async () => {
     try {
       const response = await getAllTickets();
       setTickets(response.data);
+      setIsLoading(false);
     } catch (err) {
       console.log(err);
+      setIsLoading(false);
     }
   }
 
@@ -83,7 +86,14 @@ const SupportHome = () => {
 
                   ) : (
                     <tr className="text-center text-success">
-                      <td colSpan={7}>You have not assigned to any ticket yet.</td>
+                      <td colSpan={7}>
+                        {!isLoading ? (
+                          <p>You have not assigned to any ticket yet.</p>
+                        ) : (
+                          <span className="loading loading-spinner"></span>
+                        )
+                        }
+                      </td>
                     </tr>
                   )
                 }

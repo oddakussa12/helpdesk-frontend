@@ -17,6 +17,7 @@ const SupportFaq = () => {
 
   const [faqs, setFaqs] = useState({});
   const [selectedItem, setSelectedItem] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const handleShowConfirmModal = (faq) => {
@@ -29,7 +30,9 @@ const SupportFaq = () => {
     try {
       const response = await getAllFaqs();
       setFaqs(response.data);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   }
@@ -103,7 +106,12 @@ const SupportFaq = () => {
 
             ) : (
               <div className="text-center">
-                <p className="text-error">No record found.</p>
+                {!isLoading ? (
+                  <p>No records found.</p>
+                ) : (
+                  <span className="loading loading-spinner"></span>
+                )
+                }
               </div>
             )}
           </div>
