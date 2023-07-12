@@ -1,9 +1,29 @@
+import { useEffect, useState } from "react";
+import useSupportDashboardService from "./Api/dashboard.service";
 import SideMenu from "../Components/SideMenu";
 import SupportNav from "../Components/SupportNav";
 import { Outlet } from "react-router-dom";
-import { TicketIcon, CheckBadgeIcon, RocketLaunchIcon, DocumentDuplicateIcon } from "@heroicons/react/24/solid"
+import { TicketIcon, CheckBadgeIcon, RocketLaunchIcon, DocumentDuplicateIcon } from "@heroicons/react/24/solid";
 
 const SupportLayout = () => {
+    const {getDashboardData} = useSupportDashboardService();
+
+    const [dashboardData, setDashboardData] = useState({});
+
+    const fetchDashboardData = async () => {
+        try{
+            const response = await getDashboardData();
+            console.log("dash data ", response.data);
+            setDashboardData(response.data)
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+    useEffect(() => {
+        fetchDashboardData();
+    }, [])
+
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -24,7 +44,7 @@ const SupportLayout = () => {
                                                 <div className="basis-3/4">
                                                     <h2 className="card-title"></h2>
                                                     <p>TICKETS</p>
-                                                    <p className="text-4xl">43</p>
+                                                    <p className="text-4xl">{dashboardData.closedTicketCount}</p>
                                                     <p>Total closed tickets</p>
                                                 </div>
                                                 <div className="basis-1/4">
@@ -49,7 +69,7 @@ const SupportLayout = () => {
                                                 <div className="basis-3/4">
                                                     <h2 className="card-title"></h2>
                                                     <p>TICKETS</p>
-                                                    <p className="text-4xl">43</p>
+                                                    <p className="text-4xl">{dashboardData.openTicketCount}</p>
                                                     <p>Total Open tickets</p>
                                                 </div>
                                                 <div className="basis-1/4">
@@ -74,7 +94,7 @@ const SupportLayout = () => {
                                                 <div className="basis-3/4">
                                                     <h2 className="card-title"></h2>
                                                     <p>TICKETS</p>
-                                                    <p className="text-4xl">43</p>
+                                                    <p className="text-4xl">{dashboardData.pendingTicketCount}</p>
                                                     <p>Total tickets in progress</p>
                                                 </div>
                                                 <div className="basis-1/4">
@@ -99,7 +119,7 @@ const SupportLayout = () => {
                                                 <div className="basis-3/4">
                                                     <h2 className="card-title"></h2>
                                                     <p>TICKETS</p>
-                                                    <p className="text-4xl">43</p>
+                                                    <p className="text-4xl">{dashboardData.totalTicketsAssignedToUser}</p>
                                                     <p>Total assigned tickets</p>
                                                 </div>
                                                 <div className="basis-1/4">
