@@ -88,7 +88,7 @@ const SupportHome = () => {
                     <tr className="text-center text-success">
                       <td colSpan={7}>
                         {!isLoading ? (
-                          <p>You have not assigned to any ticket yet.</p>
+                          <p>You are not assigned to any ticket yet.</p>
                         ) : (
                           <span className="loading loading-spinner"></span>
                         )

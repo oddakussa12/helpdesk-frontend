@@ -1,15 +1,16 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import useSupportTicketService from "./Home/Api/ticket.service";
 import useSupportBaseDataService from "../Api/baseData.service";
 import useAuth from "../../hooks/useAuth";
+import ToastNotification from "../../common/ToastNotification";
 
 const ViewTicket = () => {
     const {auth} = useAuth();
     let navigate = useNavigate();
     const { ticketId } = useParams();
-    const { showTicket, reply } = useSupportTicketService();
+    const { showTicket, reply, updateStatus } = useSupportTicketService();
     const { getAllTicketStatuses } = useSupportBaseDataService();
 
     const {
@@ -17,6 +18,13 @@ const ViewTicket = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    const [showToast, setShowToast] = useState(false);
+    const toggleShowToast = useCallback(() => setShowToast(prevState => !prevState), []);
+    const [toastProps, setToastProps] = useState(() => ({
+        message: "",
+        variant: "success",
+    }));
 
     const [ticket, setTicket] = useState({});
     const [ticketStatuses, setTicketStatuses] = useState([]);
@@ -54,9 +62,27 @@ const ViewTicket = () => {
         }
     }
 
-    const handleStatusChange = (e) => {
+    const handleStatusChange = async (e) => {
         e.preventDefault();
-        // getUsersByRole(e.target.value);
+        try{
+            const data = {
+                "status_id": e?.target?.value
+            }
+            await updateStatus(ticketId, data);
+            fetchTicket();
+            setToastProps({
+                ...toastProps,
+                message: "Ticket status changed successfully.",
+                variant: "info"
+            });
+            toggleShowToast();
+            setTimeout(() => {
+                toggleShowToast();
+            }, 3000);
+                
+        }catch (err) {
+            console.log(err);
+        }
     }
 
     useEffect(() => {
@@ -65,6 +91,12 @@ const ViewTicket = () => {
     }, [])
     return (
         <div className="px-3 mt-10">
+            <ToastNotification
+                showToast={showToast}
+                toggleShowToast={toggleShowToast}
+                variant={toastProps.variant}
+                message={toastProps.message}
+            />
             {
                 !isLoading ? (
                     <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
@@ -146,7 +178,7 @@ const ViewTicket = () => {
                                                                 <div className="form-control w-full">
                                                                     <textarea className="textarea textarea-lg textarea-bordered"
                                                                         placeholder="Replay"
-                                                                        style={{ minWidth: '600px', color: 'black' }}
+                                                                        style={{ minWidth: '300px', color: 'black' }}
                                                                         {...register("response", {
                                                                             required: {
                                                                                 value: true,

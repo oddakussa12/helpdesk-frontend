@@ -17,8 +17,8 @@ const useSupportTicketService = () => {
     return axiosPrivate.post(`${url}/reply/${id}`, data);
   }
 
-  function changeStatus(id) {
-    return axiosPrivate.post(`${url}/change-status/${id}`);
+  function updateStatus(id, data) {
+    return axiosPrivate.patch(`${url}/update_status/${id}`, data);
   }
 
 
@@ -26,7 +26,7 @@ const useSupportTicketService = () => {
     getAllTickets,
     showTicket,
     reply,
-    changeStatus
+    updateStatus
   }
 }
 
