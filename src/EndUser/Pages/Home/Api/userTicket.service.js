@@ -29,6 +29,10 @@ const useUserTicketService = () => {
     return axiosPrivate.post(`${url}/change-status/${id}`);
   }
 
+  function getTicketCAtegories() {
+    return axiosPrivate.get('/user/base-data/issue_categories');
+  }
+
   return {
     getAllTickets,
     showTicket,
@@ -36,6 +40,7 @@ const useUserTicketService = () => {
     updateTicket,
     deleteTicket,
     changeTicketStatus,
+    getTicketCAtegories
   }
 }
 

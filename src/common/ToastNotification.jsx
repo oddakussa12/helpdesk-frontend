@@ -6,7 +6,7 @@ const ToastNotification = (props) => {
 
   return (
     <div className="toast toast-top toast-center" style={style} >
-      <div className={"alert alert-" + variant}>
+      <div className={"alert alert-"+variant}>
         <span>{message}</span>
       </div>
     </div>

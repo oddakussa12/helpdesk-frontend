@@ -73,7 +73,7 @@ const ViewTicket = () => {
             setToastProps({
                 ...toastProps,
                 message: "Ticket status changed successfully.",
-                variant: "info"
+                variant: "success"
             });
             toggleShowToast();
             setTimeout(() => {

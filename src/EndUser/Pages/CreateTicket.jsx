@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useUserTicketService from "./Home/Api/userTicket.service";
@@ -5,13 +6,25 @@ import useUserTicketService from "./Home/Api/userTicket.service";
 const CreateTicket = () => {
     let navigate = useNavigate();
 
-    const { createTicket } = useUserTicketService();
+    const { createTicket, getTicketCAtegories } = useUserTicketService();
 
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    const [ticketCategory, setTicketCategory] = useState([]);
+
+    const fetchTicketCategory = async () => {
+        try {
+            const response = await getTicketCAtegories();
+            console.log(response.data);
+            setTicketCategory(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const storeTicket = async (data) => {
         try {
@@ -21,6 +34,10 @@ const CreateTicket = () => {
             console.log(err);
         }
     }
+
+    useEffect(() => {
+        fetchTicketCategory();
+    }, []);
 
     return (
         <div>
@@ -91,6 +108,39 @@ const CreateTicket = () => {
                     )}
                 </div>
 
+                {ticketCategory?.length ?
+                    <div>
+                        <div className="flex flex-row flex-wrap">
+                            {ticketCategory.map((category, index) => (
+                                <div className="basis-1/2 md:basis-1/4 lg:basis-1/4" key={index}>
+                                    <div className="px-3 py-2">
+                                        <div className="card bg-base-100 shadow-xl">
+                                            <div className="card-body">
+                                                <div className="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                                                    <input id={`bordered-radio-${category?._id}`} type="radio" value={category?._id} name="bordered-radio"
+                                                        className="radio radio-warning"
+                                                        {...register("category", {
+                                                            required: {
+                                                                value: true,
+                                                                message: "Please select issue category",
+                                                            },
+                                                        })} />
+                                                    <label htmlFor={`bordered-radio-${category?._id}`} className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{category?.name}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        {errors.subject && (
+                            <small className="text-error mt-1">{errors.subject?.message}</small>
+                        )}
+                    </div>
+
+                    : (
+                        <p>Loading</p>
+                    )}
                 <div className="text-center mt-10" >
                     <button className="btn btn-warning"
                         type="submit"
