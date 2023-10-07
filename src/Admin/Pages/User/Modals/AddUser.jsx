@@ -5,7 +5,7 @@ import useUserService from "../Api/user.service";
 const AddUser = (props) => {
 
     const { showModal, handleCloseModal, createUser, fetchUsers } = props;
-    const { fetchRoles, fetchLevels } = useUserService();
+    const { fetchRoles, fetchLevels, getAllIssueCategories } = useUserService();
 
     const {
         register,
@@ -18,6 +18,7 @@ const AddUser = (props) => {
 
     const [roles, setRoles] = useState([]);
     const [levels, setLevels] = useState([]);
+    const [issueCategories, setIssueCategories] = useState([]);
 
     const storeUser = async (data) => {
         try {
@@ -47,9 +48,19 @@ const AddUser = (props) => {
         }
     }
 
+    const fetchAllIssueCategory = async () => {
+        try {
+            const response = await getAllIssueCategories();
+            setIssueCategories(response.data?.categories);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     useEffect(() => {
         fetchAllRoles();
         fetchAllLevels();
+        fetchAllIssueCategory();
     }, []);
 
     return (
@@ -179,28 +190,53 @@ const AddUser = (props) => {
                         </div>
                         {
                             role === "6474de39841027567ca95e38" && (
-                                <div className="form-control w-full">
-                                    <label className="label">
-                                        <span className="label-text">Level</span>
-                                    </label>
-                                    <select className="select select-bordered w-full"
-                                        {...register("level", {
-                                            required: {
-                                                value: true,
-                                                message: "Please select support level",
+                                <div>
+                                    <div className="form-control w-full">
+                                        <label className="label">
+                                            <span className="label-text">Level</span>
+                                        </label>
+                                        <select className="select select-bordered w-full"
+                                            {...register("level", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Please select support level",
+                                                }
+                                            })}
+                                            defaultValue="">
+                                            <option value="" disabled>Select support level</option>
+                                            {
+                                                levels.map((level, index) => (
+                                                    <option value={level._id} key={index}>{level.name}</option>
+                                                ))
                                             }
-                                        })}
-                                        defaultValue="">
-                                        <option value="" disabled>Select support level</option>
-                                        {
-                                            levels.map((level, index) => (
-                                                <option value={level._id} key={index}>{level.name}</option>
-                                            ))
-                                        }
-                                    </select>
-                                    {errors.level && (
-                                        <small className="text-error">{errors.level?.message}</small>
-                                    )}
+                                        </select>
+                                        {errors.level && (
+                                            <small className="text-error">{errors.level?.message}</small>
+                                        )}
+                                    </div>
+                                    <div className="form-control w-full">
+                                        <label className="label">
+                                            <span className="label-text">Issue category</span>
+                                        </label>
+                                        <select className="select select-bordered w-full"
+                                            {...register("issueCategory", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Please select issue category",
+                                                }
+                                            })}
+                                            defaultValue="">
+                                            <option value="" disabled>Select issue category</option>
+                                            {
+                                                issueCategories.map((category, index) => (
+                                                    <option value={category._id} key={index}>{category.name}</option>
+                                                ))
+                                            }
+                                        </select>
+                                        {errors.issueCategory && (
+                                            <small className="text-error">{errors.level?.message}</small>
+                                        )}
+                                    </div>
                                 </div>
                             )
                         }

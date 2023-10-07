@@ -11,6 +11,7 @@ const UserHome = () => {
 
   const [tickets, setTickets] = useState([]);
   const [selectedItem, setSelectedItem] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const handleShowConfirmModal = (ticket) => {
@@ -21,9 +22,12 @@ const UserHome = () => {
 
   const fetchMyTickets = async () => {
     try {
+      setIsLoading(true);
       const response = await getAllTickets();
       setTickets(response.data);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
     }
   }
@@ -113,18 +117,24 @@ const UserHome = () => {
             </div>
           </div>
         ) : (
-          <div className="hero bg-base-100" style={{height:"500px"}}>
-            <div className="hero-content text-center">
-              <div className="max-w-md">
-                <h1 className="text-5xl font-bold">Welcome, Odda</h1>
-                <p className="py-6">It seems you have't created any tickets yet.</p>
-                <Link to="create-ticket" className="btn btn-warning"
-                  style={{ borderRadius: '2px' }}
-                >Create your first ticket
-                </Link>
+          isLoading ? (
+              <div className="text-center">
+                <span className="loading loading-dots loading-lg"></span>
+              </div>
+          ) :(
+            <div className="hero bg-base-100" style={{height:"500px"}}>
+              <div className="hero-content text-center">
+                <div className="max-w-md">
+                  <h1 className="text-5xl font-bold">Welcome, Odda</h1>
+                  <p className="py-6">It seems you have't created any tickets yet.</p>
+                  <Link to="create-ticket" className="btn btn-warning"
+                    style={{ borderRadius: '2px' }}
+                  >Create your first ticket
+                  </Link>
+                </div >
               </div >
             </div >
-          </div >
+          )
         )
       }
     </div >

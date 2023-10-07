@@ -33,6 +33,10 @@ const useUserService = () => {
     return axiosPrivate.get(`${url}/role/${roleName}`);
   }
 
+  function getAllIssueCategories() {
+    return axiosPrivate.get('/admin/issue-category');
+  }
+
   return {
     getAllUsers,
     createUser,
@@ -40,7 +44,8 @@ const useUserService = () => {
     deleteUser,
     fetchRoles,
     fetchLevels,
-    fetchUsersByRole
+    fetchUsersByRole,
+    getAllIssueCategories
   }
 }
 

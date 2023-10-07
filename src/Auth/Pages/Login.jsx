@@ -17,6 +17,7 @@ const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -30,6 +31,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
+      setIsLoading(true);
       const response = await httpCommon.post(
         LOGIN_URL,
         JSON.stringify({ phone_number: phoneNumber, password }),
@@ -55,6 +57,7 @@ const Login = () => {
         navigate("/home");
       }
     } catch (err) {
+      setIsLoading(false);
       setErrMsg("Error! Invalid credentials.");
       errRef.current.focus();
     }
@@ -106,7 +109,7 @@ const Login = () => {
           <div className="card-actions justify-center">
             <button className="btn btn-warning mt-10"
               style={{ width: '100px', borderRadius: '2px' }}>
-              Login
+              {isLoading ?  <span className="loading loading-spinner"></span> : "Login"}
             </button>
           </div>
         </form>

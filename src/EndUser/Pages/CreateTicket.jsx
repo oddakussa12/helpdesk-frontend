@@ -15,22 +15,29 @@ const CreateTicket = () => {
     } = useForm();
 
     const [ticketCategory, setTicketCategory] = useState([]);
+    const [isBtnLoading, setIsBtnLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchTicketCategory = async () => {
         try {
+            setIsLoading(true);
             const response = await getTicketCAtegories();
-            console.log(response.data);
             setTicketCategory(response.data);
+            setIsLoading(false);
         } catch (err) {
+            setIsLoading(false);
             console.log(err);
         }
     }
 
     const storeTicket = async (data) => {
         try {
+            setIsBtnLoading(true);
             await createTicket(data);
+            setIsBtnLoading(false);
             navigate(-1);
         } catch (err) {
+            setIsBtnLoading(false);
             console.log(err);
         }
     }
@@ -116,8 +123,8 @@ const CreateTicket = () => {
                                     <div className="px-3 py-2">
                                         <div className="card bg-base-100 shadow-xl">
                                             <div className="card-body">
-                                                <div className="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
-                                                    <input id={`bordered-radio-${category?._id}`} type="radio" value={category?._id} name="bordered-radio"
+                                                <div className="flex items-center pl-4 border border-gray-100 rounded dark:border-gray-700">
+                                                    <input id={`bordered-radio-${category?._id}`} type="radio" value={category?._id}
                                                         className="radio radio-warning"
                                                         {...register("category", {
                                                             required: {
@@ -133,19 +140,21 @@ const CreateTicket = () => {
                                 </div>
                             ))}
                         </div>
-                        {errors.subject && (
-                            <small className="text-error mt-1">{errors.subject?.message}</small>
+                        {errors.category && (
+                            <small className="text-error mt-1">{errors.category?.message}</small>
                         )}
                     </div>
 
                     : (
-                        <p>Loading</p>
+                        <div className="text-center">
+                            <span className="loading loading-dots loading-lg"></span>
+                        </div>
                     )}
                 <div className="text-center mt-10" >
                     <button className="btn btn-warning"
                         type="submit"
-                        style={{ width: '200px', borderRadius: '2px' }}
-                    >Submit
+                        style={{ width: '200px', borderRadius: '2px' }}>
+                        {isBtnLoading ? <span className="loading loading-spinner"></span> : "Create"}
                     </button>
                 </div>
             </form>

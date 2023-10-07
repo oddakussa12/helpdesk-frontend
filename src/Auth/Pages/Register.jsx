@@ -18,8 +18,11 @@ const Register = () => {
     const errRef = useRef();
     const [errMsg, setErrMsg] = useState("");
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleSignup = async (data) => {
         try {
+            setIsLoading(true);
             const response = await httpCommon.post(
                 SIGNUP_URL,
                 data,
@@ -36,6 +39,7 @@ const Register = () => {
             setAuth({ access_token, user, roles });
             navigate("/home");
         } catch (err) {
+            setIsLoading(false);
             setErrMsg("Error! Registration failed.");
             errRef.current.focus();
         }
@@ -171,7 +175,7 @@ const Register = () => {
                     <div className="card-actions justify-center">
                         <button className="btn btn-warning mt-10" type="submit"
                             style={{ width: '100px', borderRadius: '2px' }}>
-                            Signup
+                            {isLoading ? <span className="loading loading-spinner"></span> : "Signup"}
                         </button>
                     </div>
                 </form>

@@ -13,7 +13,6 @@ const SupportLayout = () => {
     const fetchDashboardData = async () => {
         try{
             const response = await getDashboardData();
-            console.log("dash data ", response.data);
             setDashboardData(response.data)
         }catch(err){
             console.log(err);
