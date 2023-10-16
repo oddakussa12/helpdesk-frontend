@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
-import { UserCircleIcon, ArrowLeftOnRectangleIcon, TicketIcon, QuestionMarkCircleIcon, Cog6ToothIcon, UsersIcon } from '@heroicons/react/24/solid';
+import { UserCircleIcon, ArrowLeftOnRectangleIcon, TicketIcon, QuestionMarkCircleIcon, Cog6ToothIcon, UsersIcon, ChartBarIcon } from '@heroicons/react/24/solid';
 
 const AdminSideMenu = () => {
     return (
         <>
             <li className="hover-bordered"><Link to="" style={{ fontSize: '28px' }}>Help Desk</Link></li>
+            <li className="hover-bordered">
+                <Link to='dashboard' >
+                    <ChartBarIcon className="h-6 w-6" />
+                    Dashboard
+                </Link>
+            </li>
             <li className="hover-bordered">
                 <Link to='settings' >
                     <Cog6ToothIcon className="h-6 w-6" />

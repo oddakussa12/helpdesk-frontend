@@ -21,7 +21,7 @@ const SupportLayout = () => {
 
     useEffect(() => {
         fetchDashboardData();
-    }, [])
+    }, []);
 
     return (
         <div>

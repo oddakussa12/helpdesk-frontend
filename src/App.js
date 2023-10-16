@@ -30,6 +30,7 @@ import AdminFaq from "./Admin/Pages/Faq/AdminFaq";
 import AddFaq from "./Admin/Pages/Faq/AddFaq";
 import EditFaq from "./Admin/Pages/Faq/EditFaq";
 import ViewFaq from "./Admin/Pages/Faq/ViewFaq";
+import Dashboard from "./Admin/Pages/Dashboard/Dashboard";
 
 // public routes
 import WorldLayout from "./World/Layouts/WorldLayout";
@@ -79,6 +80,7 @@ function App() {
               <Route path="users" element={<User />} />
               <Route path="tickets" element={<Ticket />} />
               <Route path="view-ticket/:ticketId" element={<ShowTicket />} />
+              <Route path="dashboard" element={<Dashboard />} />
             </Route>
           </Route>
         </Route>
