@@ -13,9 +13,14 @@ const useAdminDashboardService = () => {
     return axiosPrivate.get(`${url}/ticket_count`);
   }
 
+  function getTicketPerformance() {
+    return axiosPrivate.get(`${url}/support_performance`);
+  }
+
   return {
     getUserRoleCount,
-    getTicketCount
+    getTicketCount,
+    getTicketPerformance
   }
 }
 

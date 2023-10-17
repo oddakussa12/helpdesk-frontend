@@ -6,10 +6,12 @@ import {
 import useAdminDashboardService from './Api/dashboard.service';
 
 const Dashboard = () => {
-    const { getUserRoleCount, getTicketCount } = useAdminDashboardService();
+    const { getUserRoleCount, getTicketCount, getTicketPerformance } = useAdminDashboardService();
 
     const [userCount, setUserCount] = useState({});
     const [ticketCount, setTicketCount] = useState({});
+    const [supportPerformance, setSupportPerformance] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchUserData = async () => {
         try {
@@ -29,9 +31,22 @@ const Dashboard = () => {
         }
     }
 
+    const fetchSupportPerformance = async () => {
+        try {
+            setIsLoading(true);
+            const response = await getTicketPerformance();
+            setSupportPerformance(response.data)
+            setIsLoading(false);
+        } catch (err) {
+            setIsLoading(false);
+            console.log(err);
+        }
+    }
+
     useEffect(() => {
         fetchUserData();
         fetchTicketData();
+        fetchSupportPerformance();
     }, []);
 
     return (
@@ -245,30 +260,6 @@ const Dashboard = () => {
                             <div className="col-span-1">
                                 <h2 className="card-title">Performance</h2>
                             </div>
-                            {/* <div className="grid col-span-1 place-items-end">
-                            <select className="select select-bordered w-full max-w-xs"
-                                onChange={handlePriorityChange}
-                                defaultValue="">
-                                <option value="" disabled>Filter by Priority</option>
-                                {
-                                    priorities.map((priority, index) => (
-                                        <option value={priority.name} key={index} >{priority.name}</option>
-                                    ))
-                                }
-                            </select>
-                        </div>
-                        <div className="grid col-span-1 place-items-end">
-                            <select className="select select-bordered w-full max-w-xs"
-                                onChange={handleStatusChange}
-                                defaultValue="">
-                                <option value="" disabled>Filter by Status</option>
-                                {
-                                    statuses.map((status, index) => (
-                                        <option value={status.name} key={index} >{status.name}</option>
-                                    ))
-                                }
-                            </select>
-                        </div> */}
                         </div>
                         <div className="overflow-x-auto">
                             <div className="card bg-base-100" style={{ minHeight: '200px' }} >
@@ -281,11 +272,33 @@ const Dashboard = () => {
                                                 <th>Total closed tickets</th>
                                                 <th>Total pending tickets</th>
                                                 <th>Total open tickets</th>
-                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {
+                                                supportPerformance?.length ? (
+                                                    supportPerformance.map((performance, index) => (
+                                                        <tr className="hover" key={index}>
+                                                            <td>{performance?.supportPersonName}</td>
+                                                            <td><div className="badge badge-warning gap-2">{performance?.totalCount}</div></td>
+                                                            <td><div className="badge badge-success gap-2">{performance?.closedCount}</div></td>
+                                                            <td><div className="badge badge-info gap-2">{performance?.pendingCount}</div></td>
+                                                            <td><div className="badge badge-error gap-2">{performance?.openCount}</div></td>
+                                                        </tr>
+                                                    ))
+                                                ) : (
 
+                                                    <tr className="text-center">
+                                                        {!isLoading ? (
+                                                            <td colSpan={5} >No records found.</td>
+                                                        ) : (
+                                                            <td colSpan={5} ><span className="loading loading-spinner"></span></td>
+
+                                                        )
+                                                        }
+                                                    </tr>
+                                                )
+                                            }
                                         </tbody>
                                     </table>
                                 </div>
