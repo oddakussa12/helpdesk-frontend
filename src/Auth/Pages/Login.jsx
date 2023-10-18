@@ -50,7 +50,7 @@ const Login = () => {
       setPassword("");
 
       if (response?.data.role === "Admin") {
-        navigate("/admin");
+        navigate("/admin/dashboard");
       } else if (response?.data.role === "Support") {
         navigate("/support");
       } else {
