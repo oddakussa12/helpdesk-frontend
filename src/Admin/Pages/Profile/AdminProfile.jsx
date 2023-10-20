@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import useProfileService from "./Api/profile.service";
 import { useForm } from "react-hook-form";
+import ToastNotification from "../../../common/ToastNotification";
+import UpdatePassword from "./UpdatePassword";
 
 const AdminProfile = () => {
 
@@ -22,6 +24,13 @@ const AdminProfile = () => {
     }
   });
 
+  const [showToast, setShowToast] = useState(false);
+  const toggleShowToast = useCallback(() => setShowToast(prevState => !prevState), []);
+  const [toastProps, setToastProps] = useState(() => ({
+    message: "",
+    variant: "success",
+  }));
+
   const getProfile = async () => {
     try {
       const response = await fetchProfile();
@@ -39,7 +48,26 @@ const AdminProfile = () => {
       await updateProfile(data);
       getProfile();
       setIsBtnLoading(false);
+
+      setToastProps({
+        ...toastProps,
+        message: "Profile updated successfully.",
+        variant: "success"
+      });
+      toggleShowToast();
+      setTimeout(() => {
+        toggleShowToast();
+      }, 3000);
     } catch (err) {
+      setToastProps({
+        ...toastProps,
+        message: "Error updating profile.",
+        variant: "error"
+      });
+      toggleShowToast();
+      setTimeout(() => {
+        toggleShowToast();
+      }, 3000);
       setIsBtnLoading(false);
       console.log(err);
     }
@@ -51,7 +79,12 @@ const AdminProfile = () => {
 
   return (
     <div className="px-3 mt-10">
-
+      <ToastNotification
+        showToast={showToast}
+        toggleShowToast={toggleShowToast}
+        variant={toastProps.variant}
+        message={toastProps.message}
+      />
       <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
         <div className="card-body">
           <h2 className="card-title">Account Management</h2>
@@ -145,7 +178,7 @@ const AdminProfile = () => {
                         <button className="btn btn-warning"
                           type="submit"
                           style={{ width: '150px', borderRadius: '2px' }}>
-                          {isBtnLoading ? <span className="loading loading-spinner"></span> : "Submit"}
+                          {isBtnLoading ? <span className="loading loading-spinner"></span> : "Update"}
                         </button>
                       </div>
                     </form>
@@ -156,35 +189,12 @@ const AdminProfile = () => {
                   </div>
                 }
               </div>
+
+              {/* update password */}
               <div className="card bg-base-200 col-span-1">
                 <div className="card-body items-center">
                   <b>Update your password</b>
-                  <form className="mt-2">
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text">Old password</span>
-                      </label>
-                      <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
-                    </div>
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text">New password</span>
-                      </label>
-                      <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
-                    </div>
-                    <div className="form-control">
-                      <label className="label">
-                        <span className="label-text">Confirm password</span>
-                      </label>
-                      <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-sm" />
-                    </div>
-                    <div className="flex justify-center mt-10">
-                      <button className="btn btn-warning"
-                        style={{ width: '150px', borderRadius: '2px' }}>
-                        Submit
-                      </button>
-                    </div>
-                  </form>
+                  <UpdatePassword />
                 </div>
               </div>
             </div>

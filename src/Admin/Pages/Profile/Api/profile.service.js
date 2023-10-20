@@ -13,9 +13,14 @@ const useProfileService = () => {
     return axiosPrivate.patch(`${url}`, data);
   }
 
+  function updatePassword(data) {
+    return axiosPrivate.post(`${url}/update-password`, data);
+  }
+
   return {
     fetchProfile,
-    updateProfile
+    updateProfile,
+    updatePassword
   }
 }
 
