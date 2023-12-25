@@ -4,7 +4,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { useGetUserRoleCountQuery, useGetTicketCountQuery, useGetSupportPerformanceQuery } from './Api/dashboard.service';
 
-const Dashboard = () => {    
+const Dashboard = () => {
     const { data: userCountByRole, error, isLoading } = useGetUserRoleCountQuery();
     const { data: ticketCountByStatus } = useGetTicketCountQuery();
     const { data: supportPerformance } = useGetSupportPerformanceQuery();
@@ -255,6 +255,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -31,6 +31,7 @@ import AddFaq from "./Admin/Pages/Faq/AddFaq";
 import EditFaq from "./Admin/Pages/Faq/EditFaq";
 import ViewFaq from "./Admin/Pages/Faq/ViewFaq";
 import Dashboard from "./Admin/Pages/Dashboard/Dashboard";
+import Visualization from "./Admin/Pages/Visualization/Visualization";
 
 // public routes
 import WorldLayout from "./World/Layouts/WorldLayout";
@@ -40,7 +41,6 @@ import Unauthorized from "./common/Unauthorized";
 import Login from "./Auth/Pages/Login/Login";
 import Register from "./Auth/Pages/Register/Register";
 import Faq from "./World/Pages/Faq/Faq";
-import Test from "./World/Pages/Test";
 
 function App() {
   return (
@@ -81,6 +81,7 @@ function App() {
               <Route path="tickets" element={<Ticket />} />
               <Route path="view-ticket/:ticketId" element={<ShowTicket />} />
               <Route path="dashboard" element={<Dashboard />} />
+              <Route path="charts" element={<Visualization />} />
             </Route>
           </Route>
         </Route>
@@ -94,7 +95,6 @@ function App() {
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/tutorial" element={<Test />} />
       </Routes>
     </div>
   );

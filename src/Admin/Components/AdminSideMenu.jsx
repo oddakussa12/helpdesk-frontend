@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { UserCircleIcon, ArrowLeftOnRectangleIcon, TicketIcon, QuestionMarkCircleIcon, Cog6ToothIcon, UsersIcon, ChartBarIcon } from '@heroicons/react/24/solid';
+import { UserCircleIcon, ArrowLeftOnRectangleIcon, TicketIcon, QuestionMarkCircleIcon, Cog6ToothIcon, UsersIcon, ChartBarIcon, ChartPieIcon } from '@heroicons/react/24/solid';
 
 const AdminSideMenu = () => {
     return (
@@ -9,6 +9,12 @@ const AdminSideMenu = () => {
                 <Link to='dashboard' >
                     <ChartBarIcon className="h-6 w-6" />
                     Dashboard
+                </Link>
+            </li>
+            <li className="hover-bordered">
+                <Link to='charts' >
+                    <ChartPieIcon className="h-6 w-6" />
+                    Visualization
                 </Link>
             </li>
             <li className="hover-bordered">
