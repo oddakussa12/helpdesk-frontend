@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import httpCommon from "../../axios";
+import useAuth from "../../../hooks/useAuth";
+import httpCommon from "../../../axios";
 
 const SIGNUP_URL = "/auth/signup";
 

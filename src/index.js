@@ -4,17 +4,26 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import { Provider } from "react-redux";
+import { store } from "./Store/store";
 
 import { AuthProvider } from "./context/AuthProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <Routes>
-          <Route path="/*" element={<App />} />
-        </Routes>
+        <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <Routes>
+            <Route path="/*" element={<App />} />
+          </Routes>
+          </Provider>
+        </QueryClientProvider>
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>

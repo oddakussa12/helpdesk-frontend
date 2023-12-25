@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import useUserService from "../../User/Api/user.service";
-import useAdminTicketService from "../Api/ticket.service";
+import { useAssignTicketMutation } from "../Api/tickt.service";
 
 const AssigneeTicket = (props) => {
 
-    const { showAssignModal, handleCloseAssignModal, fetchTickets, selectedItem } = props;
-    const { assignTicket } = useAdminTicketService();
+    const { showAssignModal, handleCloseAssignModal, selectedItem } = props;
+    const [assignTicket] = useAssignTicketMutation();
     const { fetchUsersByRole } = useUserService();
 
     const {
@@ -18,13 +18,9 @@ const AssigneeTicket = (props) => {
     const [users, setUsers] = useState([]);
 
     const assignTicketToUser = async (data) => {
-        try {
-            await assignTicket(selectedItem._id, data);
-            fetchTickets();
-            handleCloseAssignModal();
-        } catch (err) {
-            console.log(err);
-        }
+        const finalData = {...data, id: selectedItem._id};
+       await assignTicket(finalData);
+        handleCloseAssignModal();
     }
 
     const getUsersByRole = async () => {

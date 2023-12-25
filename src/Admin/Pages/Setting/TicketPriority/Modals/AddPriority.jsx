@@ -1,10 +1,9 @@
 import { useForm } from "react-hook-form";
-import usePriorityService from "../Api/ticketPriority.service";
+import { useCreateTicketPriorityMutation } from "../Api/ticketPriority.service";
 
 const AddPriority = (props) => {
-
-    const {createPriority} = usePriorityService();
-    const {showModal, handleCloseModal, fetchPriority} = props;
+    const [createPriority] = useCreateTicketPriorityMutation();
+    const { showModal, handleCloseModal } = props;
 
     const {
         register,
@@ -13,22 +12,17 @@ const AddPriority = (props) => {
     } = useForm();
 
     const createTicketPriority = async (data) => {
-        try{
-            await createPriority(data);
-            fetchPriority();
-            handleCloseModal();
-        }catch(err){
-            console.log(err);
-        }
+        createPriority(data);
+        handleCloseModal();
     }
 
     return (
         <div>
-            <input type="checkbox" readOnly checked={showModal}  className="modal-toggle" />
+            <input type="checkbox" readOnly checked={showModal} className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
                     <label className="btn btn-sm btn-circle absolute right-2 top-2"
-                        onClick={()=>handleCloseModal()}
+                        onClick={() => handleCloseModal()}
                     >✕</label>
                     <h3 className="text-lg font-bold">Create ticket priority</h3>
                     <form className="mt-5" onSubmit={handleSubmit(createTicketPriority)}>

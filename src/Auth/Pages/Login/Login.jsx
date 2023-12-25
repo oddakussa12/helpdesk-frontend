@@ -1,12 +1,18 @@
 import { useRef, useState, useEffect } from "react";
-import useAuth from "../../hooks/useAuth";
-import httpCommon from "../../axios";
+import useAuth from "../../../hooks/useAuth";
+import httpCommon from "../../../axios";
 
 import { useNavigate, useLocation } from "react-router-dom";
+
+import { useSelector, useDispatch } from 'react-redux';
+import { setAuthUser } from "../../../Store/authSlice";
 
 const LOGIN_URL = "/auth/login";
 
 const Login = () => {
+  const auth = useSelector((state) => state.authReducer.auth);
+  const dispatch = useDispatch();
+
   const { setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,7 +20,7 @@ const Login = () => {
   const userRef = useRef();
   const errRef = useRef();
 
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +31,7 @@ const Login = () => {
 
   useEffect(() => {
     setErrMsg("");
-  }, [phoneNumber, password]);
+  }, [email, password]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -34,19 +40,21 @@ const Login = () => {
       setIsLoading(true);
       const response = await httpCommon.post(
         LOGIN_URL,
-        JSON.stringify({ phone_number: phoneNumber, password }),
+        JSON.stringify({ email, password }),
         {
           withCredentials: true,
           "Access-Control-Allow-Origin": "*",
         }
       );
+      dispatch(setAuthUser(response?.data));
+      // dispatch(setAuthUser({ name: "Odda", email:"oddakussa@outlook.com" }));
 
       const access_token = response?.data?.access_token;
       const user = response?.data;
       const roles = [response?.data?.role];
 
       setAuth({ access_token, user, roles });
-      setPhoneNumber("");
+      setEmail("");
       setPassword("");
 
       if (response?.data.role === "Admin") {
@@ -66,6 +74,7 @@ const Login = () => {
   return (
     <div className="card lg:card-side bg-base-200 shadow-xl"
       style={{ display: 'flex', alignItems: 'center', margin: 'auto' }}>
+      <div>{auth.name}</div>
       <figure><img src="/login-image.png" alt="Album" /></figure>
       <div className="card-body">
         <h2 className="card-title">Login to your account</h2>
@@ -83,14 +92,14 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <div className="form-control w-full">
             <label className="label">
-              <span className="label-text">Phone number</span>
+              <span className="label-text">Email</span>
             </label>
             <input
               type="text"
-              placeholder="Phone number"
+              placeholder="Email"
               ref={userRef}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              value={phoneNumber}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               required
               className="input input-bordered" />
           </div>
@@ -109,7 +118,7 @@ const Login = () => {
           <div className="card-actions justify-center">
             <button className="btn btn-warning mt-10"
               style={{ width: '100px', borderRadius: '2px' }}>
-              {isLoading ?  <span className="loading loading-spinner"></span> : "Login"}
+              {isLoading ? <span className="loading loading-spinner"></span> : "Login"}
             </button>
           </div>
         </form>

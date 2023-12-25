@@ -1,27 +1,20 @@
-import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
-const url = '/admin/dashboard';
+export const dashboardApi = createApi({
+    reducerPath: 'dashboardApi',
+    baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/admin/dashboard/` }),
+    endpoints: (builder) => ({
+        getUserRoleCount: builder.query({
+            query: () => 'user_count',
+        }),
+        getTicketCount: builder.query({
+            query: () => 'ticket_count',
+        }),
+        getSupportPerformance: builder.query({
+            query: () => 'support_performance',
+        })
+    }),
+})
 
-const useAdminDashboardService = () => {
-  const axiosPrivate = useAxiosPrivate();
-
-  function getUserRoleCount() {
-    return axiosPrivate.get(`${url}/user_count`);
-  }
-
-  function getTicketCount() {
-    return axiosPrivate.get(`${url}/ticket_count`);
-  }
-
-  function getTicketPerformance() {
-    return axiosPrivate.get(`${url}/support_performance`);
-  }
-
-  return {
-    getUserRoleCount,
-    getTicketCount,
-    getTicketPerformance
-  }
-}
-
-export default useAdminDashboardService;
+export const { useGetUserRoleCountQuery, useGetTicketCountQuery, useGetSupportPerformanceQuery } = dashboardApi

@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import useTicketStatusService from "../Api/ticketStatus.service";
+// import useTicketStatusService from "../Api/ticketStatus.service";
+import { useCreateTicketStatusMutation } from "../Api/ticketStatus.service";
 
 const AddTicketStatus = (props) => {
-
-    const {createTicketStatus} = useTicketStatusService();
-    const {showModal, handleCloseModal, fetchTicketStatus} = props;
+    const [addTicketStatus] = useCreateTicketStatusMutation();
+    const { showModal, handleCloseModal } = props;
 
     const {
         register,
@@ -13,22 +13,17 @@ const AddTicketStatus = (props) => {
     } = useForm();
 
     const createStatus = async (data) => {
-        try{
-            await createTicketStatus(data);
-            fetchTicketStatus();
-            handleCloseModal();
-        }catch(err){
-            console.log(err);
-        }
+        addTicketStatus(data);
+        handleCloseModal();
     }
 
     return (
         <div>
-            <input type="checkbox" readOnly checked={showModal}  className="modal-toggle" />
+            <input type="checkbox" readOnly checked={showModal} className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
                     <label className="btn btn-sm btn-circle absolute right-2 top-2"
-                        onClick={()=>handleCloseModal()}
+                        onClick={() => handleCloseModal()}
                     >✕</label>
                     <h3 className="text-lg font-bold">Create ticket status</h3>
                     <form className="mt-5" onSubmit={handleSubmit(createStatus)}>

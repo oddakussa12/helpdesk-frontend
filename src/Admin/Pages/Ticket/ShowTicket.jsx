@@ -1,45 +1,18 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import useAdminTicketService from "./Api/ticket.service";
-import usePriorityService from "../Setting/TicketPriority/Api/ticketPriority.service";
+import { useShowTicketQuery } from "./Api/tickt.service";
+import { useGetAllPriorityQuery } from "../Setting/TicketPriority/Api/ticketPriority.service";
 
 const ShowTicket = () => {
     let navigate = useNavigate();
     const { ticketId } = useParams();
-    const { showTicket } = useAdminTicketService();
-    const { getAllPriority } = usePriorityService();
-    const [priorities, setPriorities] = useState([]);
 
-    const [ticket, setTicket] = useState({});
-
-    const fetchTicket = async () => {
-        try {
-            const response = await showTicket(ticketId);
-            console.log(response.data);
-            setTicket(response.data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    const getTicketPriorities = async () => {
-        try {
-            const response = await getAllPriority();
-            setPriorities(response.data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    const { data: ticket, error, isLoading } = useShowTicketQuery(ticketId);
+    const { data: priorities } = useGetAllPriorityQuery();
 
     const handlePriorityChange = (e) => {
         e.preventDefault();
-        // getUsersByRole(e.target.value);
     }
 
-    useEffect(() => {
-        fetchTicket();
-        getTicketPriorities();
-    }, [])
     return (
         <div className="px-3 mt-10">
             <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
@@ -49,12 +22,11 @@ const ShowTicket = () => {
                             <h2 className="card-title pb-5">View Ticket</h2>
                             <small>
                                 <b>Assignee: </b>
-                                {
-                                    ticket?.assignee ? (
-                                        <div className="badge badge-success gap-2">{ticket?.assignee?.name}</div>
-                                    ) : (
-                                        <div className="badge badge-error gap-2">Not assigned</div>
-                                    )
+                                {ticket?.assignee ? (
+                                    <div className="badge badge-success gap-2">{ticket?.assignee?.name}</div>
+                                ) : (
+                                    <div className="badge badge-error gap-2">Not assigned</div>
+                                )
                                 }
                                 <b className="ml-5">Status: </b>
                                 <div className="badge badge-success gap-2">{ticket?.status?.name}</div>
@@ -65,10 +37,10 @@ const ShowTicket = () => {
                                 onChange={handlePriorityChange}
                                 defaultValue={ticket?.priority?.name}>
                                 <option value={ticket?.priority?.id} >{ticket?.priority?.name}</option>
-                                {
+                                {priorities ?
                                     priorities.map((priority, index) => (
                                         <option value={priority.name} key={index} >{priority.name}</option>
-                                    ))
+                                    )) : ''
                                 }
                             </select>
                         </div>
@@ -79,10 +51,9 @@ const ShowTicket = () => {
                             </label>
                         </div>
                     </div>
-                    {
+                    {isLoading ? <div className="text-center mt-5"><span className="loading loading-ring loading-lg"></span></div> :
                         ticket ? (
                             <div className="overflow-x-auto mt-5">
-                                {/* cards */}
                                 <div>
                                     <div className="chat chat-start">
                                         <div className="chat-image avatar">
@@ -132,7 +103,6 @@ const ShowTicket = () => {
                             <p>No data</p>
                         )
                     }
-
                 </div>
             </div>
         </div>

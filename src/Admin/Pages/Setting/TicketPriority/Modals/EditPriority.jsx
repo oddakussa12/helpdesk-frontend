@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
 
 const EditPriority = (props) => {
-
-    const {showEditModal, handleCloseEditModal, fetchPriority, updatePriority, selectedItem} = props;
+    const { showEditModal, handleCloseEditModal, updatePriority, selectedItem } = props;
 
     const {
         register,
@@ -11,23 +10,18 @@ const EditPriority = (props) => {
     } = useForm();
 
     const updateTicketPriority = async (data) => {
-        try{
-            const finalData = {...data, id:selectedItem._id};
-            await updatePriority(finalData);
-            fetchPriority();
-            handleCloseEditModal();
-        }catch(err){
-            console.log(err);
-        }
+        const finalData = { ...data, id: selectedItem._id };
+        updatePriority(finalData);
+        handleCloseEditModal();
     }
 
     return (
         <div>
-            <input type="checkbox" readOnly checked={showEditModal}  className="modal-toggle" />
+            <input type="checkbox" readOnly checked={showEditModal} className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box relative">
                     <label className="btn btn-sm btn-circle absolute right-2 top-2"
-                        onClick={()=>handleCloseEditModal()}
+                        onClick={() => handleCloseEditModal()}
                     >✕</label>
                     <h3 className="text-lg font-bold">Update ticket priority</h3>
                     <form className="mt-5" onSubmit={handleSubmit(updateTicketPriority)}>

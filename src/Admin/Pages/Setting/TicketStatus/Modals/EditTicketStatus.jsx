@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 
 const EditTicketStatus = (props) => {
 
-    const {showEditModal, handleCloseEditModal, fetchTicketStatus, updateTicketStatus, selectedItem} = props;
+    const {showEditModal, handleCloseEditModal, updateTicketStatus, selectedItem} = props;
 
     const {
         register,
@@ -11,14 +11,9 @@ const EditTicketStatus = (props) => {
     } = useForm();
 
     const updateStatus = async (data) => {
-        try{
-            const finalData = {...data, id:selectedItem._id};
-            await updateTicketStatus(finalData);
-            fetchTicketStatus();
-            handleCloseEditModal();
-        }catch(err){
-            console.log(err);
-        }
+        const finalData = {...data, id:selectedItem._id};
+        updateTicketStatus(finalData);
+        handleCloseEditModal();
     }
 
     return (

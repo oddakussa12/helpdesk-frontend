@@ -37,8 +37,8 @@ import WorldLayout from "./World/Layouts/WorldLayout";
 import WorldHome from "./World/Pages/WorldHome";
 import PageNotFound from "./common/PageNotFound";
 import Unauthorized from "./common/Unauthorized";
-import Login from "./Auth/Pages/Login";
-import Register from "./Auth/Pages/Register";
+import Login from "./Auth/Pages/Login/Login";
+import Register from "./Auth/Pages/Register/Register";
 import Faq from "./World/Pages/Faq/Faq";
 import Test from "./World/Pages/Test";
 

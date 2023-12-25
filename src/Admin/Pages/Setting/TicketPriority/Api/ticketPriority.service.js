@@ -1,32 +1,46 @@
-import useAxiosPrivate from "../../../../../hooks/useAxiosPrivate";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
-const url = '/admin/ticket-priority';
+export const ticketPriorityApi = createApi({
+    reducerPath: 'ticketPriorityApi',
+    baseQuery: fetchBaseQuery({
+        baseUrl: `${BASE_URL}/admin/ticket-priority/`
+    }),
+    tagTypes: ['TicketPriority'],
+    endpoints: (builder) => ({
+        getAllPriority: builder.query({
+            query: () => '',
+            providesTags: ['TicketPriority']
+        }),
+        createTicketPriority: builder.mutation({
+            query: (ticketStatus) => ({
+                url: '',
+                method: 'POST',
+                body: ticketStatus,
+            }),
+            invalidatesTags: ['TicketPriority']
+        }),
+        updateTicketPriority: builder.mutation({
+            query: (ticketStatus) => ({
+                url: `/${ticketStatus.id}`,
+                method: 'PATCH',
+                body: ticketStatus,
+            }),
+            invalidatesTags: ['TicketPriority']
+        }),
+        deleteTicketPriority: builder.mutation({
+            query: (id) => ({
+                url: `/${id}`,
+                method: 'DELETE',
+                body: id,
+            }),
+            invalidatesTags: ['TicketPriority']
+        }),
+    }),
+})
 
-const usePriorityService = () => {
-  const axiosPrivate = useAxiosPrivate();
-
-  function getAllPriority() {
-    return axiosPrivate.get(url);
-  }
-
-  function createPriority(data) {
-    return axiosPrivate.post(url, data);
-  }
-
-  function updatePriority(data) {
-    return axiosPrivate.patch(`${url}/${data.id}`, data);
-  }
-
-  function deletePriority(id) {
-    return axiosPrivate.delete(`${url}/${id}`);
-  }
-
-  return {
-    getAllPriority,
-    createPriority,
-    updatePriority,
-    deletePriority
-  }
-}
-
-export default usePriorityService;
+export const {
+    useGetAllPriorityQuery,
+    useCreateTicketPriorityMutation,
+    useUpdateTicketPriorityMutation,
+    useDeleteTicketPriorityMutation } = ticketPriorityApi

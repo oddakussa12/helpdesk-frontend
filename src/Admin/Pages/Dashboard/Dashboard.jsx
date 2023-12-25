@@ -1,53 +1,13 @@
-import { useState, useEffect } from 'react';
 import {
     TicketIcon, CheckBadgeIcon, RocketLaunchIcon, DocumentDuplicateIcon,
     LockClosedIcon, ChatBubbleLeftRightIcon, UserCircleIcon, UserGroupIcon
 } from "@heroicons/react/24/solid";
-import useAdminDashboardService from './Api/dashboard.service';
+import { useGetUserRoleCountQuery, useGetTicketCountQuery, useGetSupportPerformanceQuery } from './Api/dashboard.service';
 
-const Dashboard = () => {
-    const { getUserRoleCount, getTicketCount, getTicketPerformance } = useAdminDashboardService();
-
-    const [userCount, setUserCount] = useState({});
-    const [ticketCount, setTicketCount] = useState({});
-    const [supportPerformance, setSupportPerformance] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const fetchUserData = async () => {
-        try {
-            const response = await getUserRoleCount();
-            setUserCount(response.data)
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    const fetchTicketData = async () => {
-        try {
-            const response = await getTicketCount();
-            setTicketCount(response.data)
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    const fetchSupportPerformance = async () => {
-        try {
-            setIsLoading(true);
-            const response = await getTicketPerformance();
-            setSupportPerformance(response.data)
-            setIsLoading(false);
-        } catch (err) {
-            setIsLoading(false);
-            console.log(err);
-        }
-    }
-
-    useEffect(() => {
-        fetchUserData();
-        fetchTicketData();
-        fetchSupportPerformance();
-    }, []);
+const Dashboard = () => {    
+    const { data: userCountByRole, error, isLoading } = useGetUserRoleCountQuery();
+    const { data: ticketCountByStatus } = useGetTicketCountQuery();
+    const { data: supportPerformance } = useGetSupportPerformanceQuery();
 
     return (
         <div>
@@ -58,8 +18,7 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="flex flex-nowrap">
                                     <div className="basis-3/4">
-                                        <h2 className="card-title"></h2>
-                                        <p className="text-4xl">{ticketCount?.Closed ? ticketCount?.Closed : 0}</p>
+                                        <p className="text-4xl">{ticketCountByStatus?.Closed ? ticketCountByStatus?.Closed : 0}</p>
                                         <p>Total closed tickets</p>
                                     </div>
                                     <div className="basis-1/4">
@@ -82,8 +41,7 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="flex flex-nowrap">
                                     <div className="basis-3/4">
-                                        <h2 className="card-title"></h2>
-                                        <p className="text-4xl">{ticketCount?.Open ? ticketCount?.Open : 0}</p>
+                                        <p className="text-4xl">{ticketCountByStatus?.Open ? ticketCountByStatus?.Open : 0}</p>
                                         <p>Total Open tickets</p>
                                     </div>
                                     <div className="basis-1/4">
@@ -106,8 +64,7 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="flex flex-nowrap">
                                     <div className="basis-3/4">
-                                        <h2 className="card-title"></h2>
-                                        <p className="text-4xl">{ticketCount?.Pending ? ticketCount?.Pending : 0}</p>
+                                        <p className="text-4xl">{ticketCountByStatus?.Pending ? ticketCountByStatus?.Pending : 0}</p>
                                         <p>Total tickets in progress</p>
                                     </div>
                                     <div className="basis-1/4">
@@ -130,11 +87,10 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="flex flex-nowrap">
                                     <div className="basis-3/4">
-                                        <h2 className="card-title"></h2>
                                         <p className="text-4xl">
-                                            {(ticketCount?.Closed ? ticketCount?.Closed : 0) +
-                                                (ticketCount?.Open ? ticketCount?.Open : 0) +
-                                                (ticketCount?.Pending ? ticketCount?.Pending : 0)}</p>
+                                            {(ticketCountByStatus?.Closed ? ticketCountByStatus?.Closed : 0) +
+                                                (ticketCountByStatus?.Open ? ticketCountByStatus?.Open : 0) +
+                                                (ticketCountByStatus?.Pending ? ticketCountByStatus?.Pending : 0)}</p>
                                         <p>Total tickets</p>
                                     </div>
                                     <div className="basis-1/4">
@@ -158,8 +114,7 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="flex flex-nowrap">
                                     <div className="basis-3/4">
-                                        <h2 className="card-title"></h2>
-                                        <p className="text-4xl">{userCount?.admin ? userCount?.admin : 0}</p>
+                                        <p className="text-4xl">{userCountByRole?.admin ? userCountByRole?.admin : 0}</p>
                                         <p>Total Admin Users</p>
                                     </div>
                                     <div className="basis-1/4">
@@ -182,8 +137,7 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="flex flex-nowrap">
                                     <div className="basis-3/4">
-                                        <h2 className="card-title"></h2>
-                                        <p className="text-4xl">{userCount?.support ? userCount?.support : 0}</p>
+                                        <p className="text-4xl">{userCountByRole?.support ? userCountByRole?.support : 0}</p>
                                         <p>Total Support Users</p>
                                     </div>
                                     <div className="basis-1/4">
@@ -206,8 +160,7 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="flex flex-nowrap">
                                     <div className="basis-3/4">
-                                        <h2 className="card-title"></h2>
-                                        <p className="text-4xl">{userCount?.user ? userCount?.user : 0}</p>
+                                        <p className="text-4xl">{userCountByRole?.user ? userCountByRole?.user : 0}</p>
                                         <p>Total Users</p>
                                     </div>
                                     <div className="basis-1/4">
@@ -230,11 +183,10 @@ const Dashboard = () => {
                             <div className="card-body">
                                 <div className="flex flex-nowrap">
                                     <div className="basis-3/4">
-                                        <h2 className="card-title"></h2>
                                         <p className="text-4xl">{
-                                            (userCount?.admin ? userCount?.admin : 0) +
-                                            (userCount?.support ? userCount?.support : 0) +
-                                            (userCount?.user ? userCount?.user : 0)}</p>
+                                            (userCountByRole?.admin ? userCountByRole?.admin : 0) +
+                                            (userCountByRole?.support ? userCountByRole?.support : 0) +
+                                            (userCountByRole?.user ? userCountByRole?.user : 0)}</p>
                                         <p>Total User Accounts</p>
                                     </div>
                                     <div className="basis-1/4">
@@ -287,13 +239,11 @@ const Dashboard = () => {
                                                         </tr>
                                                     ))
                                                 ) : (
-
                                                     <tr className="text-center">
                                                         {!isLoading ? (
                                                             <td colSpan={5} >No records found.</td>
                                                         ) : (
                                                             <td colSpan={5} ><span className="loading loading-spinner"></span></td>
-
                                                         )
                                                         }
                                                     </tr>

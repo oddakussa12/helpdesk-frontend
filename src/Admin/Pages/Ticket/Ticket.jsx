@@ -1,23 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import useAdminTicketService from "./Api/ticket.service";
-import useTicketStatusService from "../Setting/TicketStatus/Api/ticketStatus.service";
-import usePriorityService from "../Setting/TicketPriority/Api/ticketPriority.service";
 import AssignTicket from "./Modals/AssigneeTicket";
+import { useGetAllTicketsQuery } from "./Api/tickt.service";
+import { useGetAllPriorityQuery } from "../Setting/TicketPriority/Api/ticketPriority.service";
+import { useGetAllTicketStatusQuery } from "../Setting/TicketStatus/Api/ticketStatus.service";
 
 const Ticket = () => {
-    const { getAllTickets,
-        showticket,
-        deleteticket,
-        changePriority } = useAdminTicketService();
-    const { getAllTicketStatus } = useTicketStatusService();
-    const { getAllPriority } = usePriorityService();
+    const { data: tickets, error, isLoading, refetch: refetchTickets } = useGetAllTicketsQuery();
+    const { data: priorities } = useGetAllPriorityQuery();
+    const { data: statuses } = useGetAllTicketStatusQuery();
 
-    const [tickets, setTickets] = useState([]);
     const [selectedItem, setSelectedItem] = useState({});
-    const [statuses, setStatuses] = useState([]);
-    const [priorities, setPriorities] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
 
     const [showAssignModal, setShowAssignModal] = useState(false);
     const handleShowAssignModal = (ticket) => {
@@ -25,36 +18,6 @@ const Ticket = () => {
         setShowAssignModal(true);
     }
     const handleCloseAssignModal = () => setShowAssignModal(false);
-
-    const fetchTickets = async () => {
-        try {
-            setIsLoading(true);
-            const response = await getAllTickets();
-            setTickets(response?.data);
-            setIsLoading(false);
-        } catch (err) {
-            setIsLoading(false);
-            console.log(err);
-        }
-    }
-
-    const getTicketStatuses = async () => {
-        try {
-            const response = await getAllTicketStatus();
-            setStatuses(response.data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-
-    const getTicketPriorities = async () => {
-        try {
-            const response = await getAllPriority();
-            setPriorities(response.data);
-        } catch (err) {
-            console.log(err);
-        }
-    }
 
     const handleStatusChange = (e) => {
         e.preventDefault();
@@ -66,19 +29,12 @@ const Ticket = () => {
         // getUsersByRole(e.target.value);
     }
 
-    useEffect(() => {
-        fetchTickets();
-        getTicketStatuses();
-        getTicketPriorities();
-    }, []);
-
-
     return (
         <div className="px-3 mt-10">
             <AssignTicket
                 showAssignModal={showAssignModal}
                 handleCloseAssignModal={handleCloseAssignModal}
-                fetchTickets={fetchTickets}
+                refetchTickets={refetchTickets}
                 selectedItem={selectedItem}
 
             />
@@ -93,10 +49,11 @@ const Ticket = () => {
                                 onChange={handlePriorityChange}
                                 defaultValue="">
                                 <option value="" disabled>Filter by Priority</option>
-                                {
+                                {priorities ?
                                     priorities.map((priority, index) => (
                                         <option value={priority.name} key={index} >{priority.name}</option>
                                     ))
+                                    : ''
                                 }
                             </select>
                         </div>
@@ -105,10 +62,11 @@ const Ticket = () => {
                                 onChange={handleStatusChange}
                                 defaultValue="">
                                 <option value="" disabled>Filter by Status</option>
-                                {
+                                {statuses ?
                                     statuses.map((status, index) => (
                                         <option value={status.name} key={index} >{status.name}</option>
                                     ))
+                                    : ''
                                 }
                             </select>
                         </div>
@@ -164,7 +122,6 @@ const Ticket = () => {
                                                     </tr>
                                                 ))
                                             ) : (
-
                                                 <tr className="text-center">
                                                     {!isLoading ? (
                                                         <td colSpan={6} >No records found.</td>
