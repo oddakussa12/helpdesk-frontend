@@ -29,7 +29,7 @@ const AddFaq = () => {
 
   return (
     <div className="px-3 mt-10">
-      <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
+      <div className="card bg-base-100" style={{ minHeight: '600px', borderRadius: '5px' }}>
         <div className="card-body">
           <div className="overflow-x-auto">
             <div className="card bg-base-100 col-span-2" style={{ maxWidth: '1000px', margin: '0 auto' }}>

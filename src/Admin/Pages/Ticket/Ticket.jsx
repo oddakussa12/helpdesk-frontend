@@ -30,7 +30,7 @@ const Ticket = () => {
     }
 
     return (
-        <div className="px-3 mt-10">
+        <div className="mt-4">
             <AssignTicket
                 showAssignModal={showAssignModal}
                 handleCloseAssignModal={handleCloseAssignModal}
@@ -38,7 +38,7 @@ const Ticket = () => {
                 selectedItem={selectedItem}
 
             />
-            <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
+            <div className="card bg-base-100" style={{ minHeight: '600px', borderRadius: '5px' }}>
                 <div className="card-body">
                     <div className="grid grid-cols-3 gap-4">
                         <div className="col-span-1">

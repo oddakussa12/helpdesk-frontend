@@ -4,51 +4,51 @@ import { UserCircleIcon, ArrowLeftOnRectangleIcon, TicketIcon, QuestionMarkCircl
 const AdminSideMenu = () => {
     return (
         <>
-            <li className="hover-bordered"><Link to="" style={{ fontSize: '28px' }}>Help Desk</Link></li>
-            <li className="hover-bordered">
-                <Link to='dashboard' >
+            <li className="hover-bordered"><Link to="" style={{ fontSize: '32px' }}>Help Desk</Link></li>
+            <li className="hover-bordered mt-5">
+                <Link to='dashboard' className="py-3">
                     <ChartBarIcon className="h-6 w-6" />
                     Dashboard
                 </Link>
             </li>
-            <li className="hover-bordered">
-                <Link to='charts' >
+            <li className="hover-bordered mt-2">
+                <Link to='charts' className="py-3">
                     <ChartPieIcon className="h-6 w-6" />
                     Visualization
                 </Link>
             </li>
-            <li className="hover-bordered">
-                <Link to='settings' >
+            <li className="hover-bordered mt-2">
+                <Link to='settings' className="py-3" >
                     <Cog6ToothIcon className="h-6 w-6" />
                     Settings
                 </Link>
             </li>
-            <li className="hover-bordered">
-                <Link to='tickets' >
+            <li className="hover-bordered mt-2">
+                <Link to='tickets' className="py-3" >
                     <TicketIcon className="h-6 w-6" />
                     Tickets
                 </Link>
             </li>
-            <li className="hover-bordered">
-                <Link to='users' >
+            <li className="hover-bordered mt-2">
+                <Link to='users' className="py-3">
                     <UsersIcon className="h-6 w-6" />
                     Users
                 </Link>
             </li>
-            <li className="hover-bordered">
-                <Link to='faqs' >
+            <li className="hover-bordered mt-2">
+                <Link to='faqs' className="py-3">
                     <QuestionMarkCircleIcon className="h-6 w-6" />
                     FAQs
                 </Link>
             </li>
-            <li className="hover-bordered">
-                <Link to='profile' >
+            <li className="hover-bordered mt-2">
+                <Link to='profile' className="py-3">
                     <UserCircleIcon className="h-6 w-6" />
                     Profile
                 </Link>
             </li>
-            <li className="hover-bordered">
-                <Link to='/' >
+            <li className="hover-bordered mt-2">
+                <Link to='/' className="py-3">
                     <ArrowLeftOnRectangleIcon className="h-6 w-6" />
                     Signout
                 </Link>

@@ -21,7 +21,7 @@ import SupportViewFaq from "./Support/Pages/Faq/SupportViewFaq";
 
 // admin routes
 import AdminLayout from "./Admin/Layouts/AdminLayout";
-import Setting from "./Admin/Pages/Setting";
+import Setting from "./Admin/Pages/Setting/Setting";
 import AdminProfile from "./Admin/Pages/Profile/AdminProfile";
 import User from "./Admin/Pages/User/User";
 import Ticket from "./Admin/Pages/Ticket/Ticket";

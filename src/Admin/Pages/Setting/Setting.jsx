@@ -1,13 +1,13 @@
-import TicketPriority from "./Setting/TicketPriority/TicketPriority";
-import Role from "./Setting/Role/Role";
-import SupportLevel from "./Setting/SupportLevel/SupportLevel";
-import IssueCategory from "./Setting/IssueCategory/IssueCategory";
-import TicketStatus from "./Setting/TicketStatus/TicketStatus";
+import TicketPriority from "./TicketPriority/TicketPriority";
+import Role from "./Role/Role";
+import SupportLevel from "./SupportLevel/SupportLevel";
+import IssueCategory from "./IssueCategory/IssueCategory";
+import TicketStatus from "./TicketStatus/TicketStatus";
 
 const Setting = () => {
     return (
-        <div className="px-3 mt-10">
-            <div className="card bg-base-200 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
+        <div className="mt-4">
+            <div className="card bg-base-200" style={{ minHeight: '600px', borderRadius: '5px' }}>
                 <div className="card-body">
                     <h2 className="card-title">Settings</h2>
                     <div className="overflow-x-auto">

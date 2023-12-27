@@ -205,57 +205,46 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <div className="px-3 mt-5">
-                <div className="card bg-base-100 shadow-md " style={{ borderRadius: '5px' }}>
+            <div className="mt-2">
+                <div className="card bg-base-100" style={{ borderRadius: '5px' }}>
                     <div className="card-body">
-                        <div className="grid grid-cols-3 gap-4">
-                            <div className="col-span-1">
-                                <h2 className="card-title">Performance</h2>
-                            </div>
-                        </div>
-                        <div className="overflow-x-auto">
-                            <div className="card bg-base-100" style={{ minHeight: '200px' }} >
-                                <div className="card-body">
-                                    <table className="table w-full">
-                                        <thead>
-                                            <tr>
-                                                <th>Support name</th>
-                                                <th>Total assigned tickets</th>
-                                                <th>Total closed tickets</th>
-                                                <th>Total pending tickets</th>
-                                                <th>Total open tickets</th>
+                        <h2 className="card-title">Performance</h2>
+                        <table className="table w-full">
+                            <thead>
+                                <tr>
+                                    <th>Support name</th>
+                                    <th>Total assigned tickets</th>
+                                    <th>Total closed tickets</th>
+                                    <th>Total pending tickets</th>
+                                    <th>Total open tickets</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    supportPerformance?.length ? (
+                                        supportPerformance.map((performance, index) => (
+                                            <tr className="hover" key={index}>
+                                                <td>{performance?.supportPersonName}</td>
+                                                <td><div className="badge badge-warning gap-2">{performance?.totalCount}</div></td>
+                                                <td><div className="badge badge-success gap-2">{performance?.closedCount}</div></td>
+                                                <td><div className="badge badge-info gap-2">{performance?.pendingCount}</div></td>
+                                                <td><div className="badge badge-error gap-2">{performance?.openCount}</div></td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                supportPerformance?.length ? (
-                                                    supportPerformance.map((performance, index) => (
-                                                        <tr className="hover" key={index}>
-                                                            <td>{performance?.supportPersonName}</td>
-                                                            <td><div className="badge badge-warning gap-2">{performance?.totalCount}</div></td>
-                                                            <td><div className="badge badge-success gap-2">{performance?.closedCount}</div></td>
-                                                            <td><div className="badge badge-info gap-2">{performance?.pendingCount}</div></td>
-                                                            <td><div className="badge badge-error gap-2">{performance?.openCount}</div></td>
-                                                        </tr>
-                                                    ))
-                                                ) : (
-                                                    <tr className="text-center">
-                                                        {!isLoading ? (
-                                                            <td colSpan={5} >No records found.</td>
-                                                        ) : (
-                                                            <td colSpan={5} ><span className="loading loading-spinner"></span></td>
-                                                        )
-                                                        }
-                                                    </tr>
-                                                )
+                                        ))
+                                    ) : (
+                                        <tr className="text-center">
+                                            {!isLoading ? (
+                                                <td colSpan={5} >No records found.</td>
+                                            ) : (
+                                                <td colSpan={5} ><span className="loading loading-spinner"></span></td>
+                                            )
                                             }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
             </div>
         </div>

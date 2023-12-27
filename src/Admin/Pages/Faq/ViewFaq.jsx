@@ -45,7 +45,7 @@ const ViewFaq = () => {
       {
         !isLoading ? (
           <div className="px-3 mt-10">
-            <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
+            <div className="card bg-base-100" style={{ minHeight: '600px', borderRadius: '5px' }}>
               <div className="card-body">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="grid-cols-1">

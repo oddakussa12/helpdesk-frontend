@@ -1,7 +1,7 @@
 
 const AdminNav = () => {
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100" style={{borderRadius:"10px", marginBottom:"7px"}}>
             <div className="flex-1">
                 <div className="lg:hidden">
                     <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost drawer-button">
@@ -10,7 +10,6 @@ const AdminNav = () => {
                 </div>
             </div>
             <div className="flex-none">
-
                 <div className="dropdown dropdown-end">
                     <span tabIndex={0} className="inline-flex items-baseline">
                         <img src="/pp.jpg" alt=""

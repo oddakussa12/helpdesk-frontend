@@ -78,14 +78,14 @@ const AdminProfile = () => {
   }, []);
 
   return (
-    <div className="px-3 mt-10">
+    <div className="mt-4">
       <ToastNotification
         showToast={showToast}
         toggleShowToast={toggleShowToast}
         variant={toastProps.variant}
         message={toastProps.message}
       />
-      <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
+      <div className="card bg-base-100" style={{ minHeight: '600px', borderRadius: '5px' }}>
         <div className="card-body">
           <h2 className="card-title">Account Management</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">

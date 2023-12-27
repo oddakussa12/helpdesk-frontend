@@ -79,8 +79,8 @@ const User = () => {
   }, []);
 
   return (
-    <div className="px-3 mt-10">
-      <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
+    <div className="mt-4">
+      <div className="card bg-base-100" style={{ minHeight: '600px', borderRadius: '5px' }}>
         <div className="card-body">
           <div className="grid grid-cols-5 gap-4">
             <div className="col-span-1">

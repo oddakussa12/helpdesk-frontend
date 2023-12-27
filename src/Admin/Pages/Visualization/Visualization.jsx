@@ -6,9 +6,10 @@ import { useGetSupportPerformanceQuery } from "../Dashboard/Api/dashboard.servic
 const Visualization = () => {
     const { data: supportPerformance } = useGetSupportPerformanceQuery();
     return (
-        <div className="card py-2 mt-5 bg-base-200">
-            <div className="px-3">
-                <div className="card bg-base-100 shadow-sm">
+        <>
+        {/* <div className="card py-2 mt-4 bg-base-100"> */}
+            <div className="mt-4">
+                <div className="card bg-base-200 shadow-sm">
                     <div className="card-body">
                         <h2 className="card-title">Support Person Performance</h2>
                         <SupportPerformance data={supportPerformance} />
@@ -18,8 +19,8 @@ const Visualization = () => {
                     </div>
                 </div>
             </div>
-            <div className="px-3 mt-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
-                <div className="card bg-base-100 col-span-2" >
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+                <div className="card bg-base-200 col-span-2" >
                     <div className="card-body">
                         <h2 className="card-title">Total Users Created</h2>
                         <UserChart />
@@ -28,7 +29,7 @@ const Visualization = () => {
                         </div>
                     </div>
                 </div>
-                <div className="card bg-base-100 col-span-1" >
+                <div className="card bg-base-200 col-span-1" >
                     <div className="card-body">
                         <h2 className="card-title">Total Tickets Created In Each Month</h2>
                         <TicketChart />
@@ -38,7 +39,8 @@ const Visualization = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        {/* </div>  */}
+        </>
     )
 }
 
