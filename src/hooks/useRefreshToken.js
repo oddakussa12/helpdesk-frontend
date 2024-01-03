@@ -1,18 +1,16 @@
-import httpCommon from '../axios'
-import useAuth from './useAuth'
+import httpCommon from '../axios';
+import useAuth from './useAuth';
 
 const useRefreshToken = () => {
-    const {setAuth} = useAuth();
+    const { setAuth} = useAuth();
+    const user = JSON.parse(localStorage.getItem('user'));
+    const roles = JSON.parse(localStorage.getItem('roles'));
 
     const refresh = async () => {
-        // update your access token
         const response = await httpCommon.post('/auth/refresh-token');
-        const roles = [1000, 2000, 3000];
-        const access_token = response?.data?.data?.access_token;
-        const user = response?.data?.data?.user;
-        const is_admin = response?.data?.data?.user?.is_admin;
+        const access_token = response?.data?.access_token;
         // set the global auth context
-        setAuth({ access_token, user, roles, is_admin });
+        setAuth({ access_token, user, roles });
 
         return access_token;
     }

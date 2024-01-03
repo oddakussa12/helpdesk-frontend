@@ -4,11 +4,11 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 
 export default axios.create({
     baseURL: BASE_URL,
-    headers:{
+    headers: {
         "Content-type": "application/json",
         "Accept": "application/json",
     },
-    withCredentials:true
+    withCredentials: true
 });
 
 // we use axiosPrivate to add interceptors when our access token expires we send our refresh token
@@ -16,21 +16,21 @@ export default axios.create({
 
 export const axiosPrivate = axios.create({
     baseURL: BASE_URL,
-    headers:{
+    headers: {
         "Content-type": "application/json",
         "Accept": "application/json",
     },
-    withCredentials:true
+    withCredentials: true
 })
 
 // axios for content type multipart/form-data
 
 export const axiosPrivateImage = axios.create({
     baseURL: BASE_URL,
-    headers:{
+    headers: {
         "Content-type": "multipart/form-data",
         "Accept": "application/json",
     },
-    withCredentials:true
+    withCredentials: true
 })
 

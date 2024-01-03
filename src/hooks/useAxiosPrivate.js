@@ -11,7 +11,7 @@ const useAxiosPrivate = () => {
 
         const requestIntercept = axiosPrivate.interceptors.request.use(
             config => {
-                if(!config.headers['Authorization']){
+                if (!config.headers['Authorization']) {
                     config.headers['Authorization'] = `Bearer ${auth?.access_token}`;
                 }
 
@@ -25,7 +25,7 @@ const useAxiosPrivate = () => {
                 const prevRequest = error?.config;
                 // 403 is forbidden code when our access token expires for a request
                 // we only want to retry once to prevent endless loop, that is why we use && !prevRequest?.sent
-                if(error?.response?.status === 401 || error?.response?.status === 403 && !prevRequest?.sent){
+                if (error?.response?.status === 401 || error?.response?.status === 403 && !prevRequest?.sent) {
                     prevRequest.sent = true;
                     const newAccessToken = await refresh();
                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
@@ -35,7 +35,7 @@ const useAxiosPrivate = () => {
                 return Promise.reject(error);
             }
         );
-        
+
         // clean up function
         return () => {
             axiosPrivate.interceptors.request.eject(requestIntercept);

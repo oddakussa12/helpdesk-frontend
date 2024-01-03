@@ -47,11 +47,13 @@ const Login = () => {
         }
       );
       dispatch(setAuthUser(response?.data));
-      // dispatch(setAuthUser({ name: "Odda", email:"oddakussa@outlook.com" }));
 
       const access_token = response?.data?.access_token;
       const user = response?.data;
       const roles = [response?.data?.role];
+
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('roles', JSON.stringify(roles));
 
       setAuth({ access_token, user, roles });
       setEmail("");

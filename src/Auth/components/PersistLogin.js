@@ -10,29 +10,35 @@ const PersistLogin = () => {
 
     useEffect(() => {
         const verifyRefreshToken = async () => {
-            try{
+            try {
                 await refresh();
             }
-            catch(err) {
+            catch (err) {
                 console.error(err);
             }
-            finally{
+            finally {
                 setIsLoading(false);
             }
         }
         !auth?.access_token ? verifyRefreshToken() : setIsLoading(false);
-    },[])
+    }, [])
 
     useEffect(() => {
     }, [isLoading])
 
     return (
-       <>
-        {isLoading
-            ? <h1>Loading...</h1>
-            : <Outlet />
-        }
-       </>
+        <>
+            {isLoading ?
+                <div className="hero min-h-screen bg-base-200">
+                    <div className="hero-content text-center">
+                        <div className="max-w-md">
+                            <span className="loading loading-ring loading-lg text-secondary"></span>
+                        </div>
+                    </div>
+                </div>
+                : <Outlet />
+            }
+        </>
     )
 }
 
