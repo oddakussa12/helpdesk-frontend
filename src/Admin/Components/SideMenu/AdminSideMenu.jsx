@@ -1,7 +1,24 @@
 import { Link } from "react-router-dom";
 import { UserCircleIcon, ArrowLeftOnRectangleIcon, TicketIcon, QuestionMarkCircleIcon, Cog6ToothIcon, UsersIcon, ChartBarIcon, ChartPieIcon } from '@heroicons/react/24/solid';
+import useSideMenuService from "./Api/sideMenu.Service";
+import { useNavigate } from "react-router-dom";
 
 const AdminSideMenu = () => {
+
+    const { logout } = useSideMenuService();
+    const navigate = useNavigate();
+
+    const signout = async () => {
+        try {
+          await logout();
+          localStorage.clear();
+          sessionStorage.clear();
+          navigate('/');
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
     return (
         <>
             <li className="hover-bordered"><Link to="" style={{ fontSize: '32px' }}>Help Desk</Link></li>
@@ -47,7 +64,7 @@ const AdminSideMenu = () => {
                     Profile
                 </Link>
             </li>
-            <li className="hover-bordered mt-2">
+            <li className="hover-bordered mt-2" onClick={() => signout()}>
                 <Link to='/' className="py-3">
                     <ArrowLeftOnRectangleIcon className="h-6 w-6" />
                     Signout

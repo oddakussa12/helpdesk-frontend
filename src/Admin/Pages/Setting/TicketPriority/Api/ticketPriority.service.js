@@ -4,7 +4,8 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 export const ticketPriorityApi = createApi({
     reducerPath: 'ticketPriorityApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: `${BASE_URL}/admin/ticket-priority/`
+        baseUrl: `${BASE_URL}/admin/ticket-priority/`,
+        credentials: 'include'
     }),
     tagTypes: ['TicketPriority'],
     endpoints: (builder) => ({

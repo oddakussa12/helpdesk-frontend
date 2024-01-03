@@ -3,7 +3,10 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 
 export const dashboardApi = createApi({
     reducerPath: 'dashboardApi',
-    baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}/admin/dashboard/` }),
+    baseQuery: fetchBaseQuery({ 
+        baseUrl: `${BASE_URL}/admin/dashboard/`,
+        credentials: 'include'
+    }),
     endpoints: (builder) => ({
         getUserRoleCount: builder.query({
             query: () => 'user_count',

@@ -1,5 +1,5 @@
 import AdminNav from "../Components/AdminNav";
-import AdminSideMenu from "../Components/AdminSideMenu";
+import AdminSideMenu from "../Components/SideMenu/AdminSideMenu";
 import { Outlet } from "react-router-dom";
 
 const AdminLayout = () => {

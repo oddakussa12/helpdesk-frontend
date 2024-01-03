@@ -94,7 +94,7 @@ const Ticket = () => {
                                                         <td>
                                                             {
                                                                 ticket?.assignee ? (
-                                                                    <div className="badge badge-success gap-2">{ticket?.assignee?.name}</div>
+                                                                    <p>{ticket?.assignee?.name}</p>
                                                                 ) : (
                                                                     <div className="badge badge-primary gap-2">Unassigned</div>
                                                                 )
@@ -127,7 +127,6 @@ const Ticket = () => {
                                                         <td colSpan={6} >No records found.</td>
                                                     ) : (
                                                         <td colSpan={6} ><span className="loading loading-spinner"></span></td>
-
                                                     )
                                                     }
                                                 </tr>

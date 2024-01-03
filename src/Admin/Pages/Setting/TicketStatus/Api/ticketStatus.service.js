@@ -4,7 +4,8 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 export const ticketStatusApi = createApi({
     reducerPath: 'ticketStatusApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: `${BASE_URL}/admin/ticket-status`
+        baseUrl: `${BASE_URL}/admin/ticket-status`,
+        credentials: 'include'
     }),
     tagTypes: ['TicketStatus'],
     endpoints: (builder) => ({
