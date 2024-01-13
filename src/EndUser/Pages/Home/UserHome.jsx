@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import useUserTicketService from "./Api/userTicket.service";
 import { EyeIcon, TrashIcon } from "@heroicons/react/24/solid";
 import ConfirmModal from "../../../common/ConfirmModal";
+import useAuth from "../../../hooks/useAuth";
 
 const UserHome = () => {
+  const { auth } = useAuth();
 
   const { getAllTickets, updateTicket, deleteTicket,
     changeTicketStatus, } = useUserTicketService();
@@ -125,11 +127,9 @@ const UserHome = () => {
             <div className="hero bg-base-100" style={{height:"500px"}}>
               <div className="hero-content text-center">
                 <div className="max-w-md">
-                  <h1 className="text-5xl font-bold">Welcome, Odda</h1>
+                  <h1 className="text-5xl font-bold">Welcome, {auth?.user?.name}</h1>
                   <p className="py-6">It seems you have't created any tickets yet.</p>
-                  <Link to="create-ticket" className="btn btn-warning"
-                    style={{ borderRadius: '2px' }}
-                  >Create your first ticket
+                  <Link to="create-ticket" className="btn btn-primary">Create your first ticket
                   </Link>
                 </div >
               </div >

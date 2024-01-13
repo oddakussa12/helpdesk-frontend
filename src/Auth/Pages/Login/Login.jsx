@@ -54,6 +54,7 @@ const Login = () => {
 
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('roles', JSON.stringify(roles));
+      localStorage.setItem('access_token', JSON.stringify(access_token));
 
       setAuth({ access_token, user, roles });
       setEmail("");
@@ -76,7 +77,6 @@ const Login = () => {
   return (
     <div className="card lg:card-side bg-base-200 shadow-xl"
       style={{ display: 'flex', alignItems: 'center', margin: 'auto' }}>
-      <div>{auth.name}</div>
       <figure><img src="/login-image.png" alt="Album" /></figure>
       <div className="card-body">
         <h2 className="card-title">Login to your account</h2>
@@ -118,8 +118,8 @@ const Login = () => {
               className="input input-bordered" />
           </div>
           <div className="card-actions justify-center">
-            <button className="btn btn-warning mt-10"
-              style={{ width: '100px', borderRadius: '2px' }}>
+            <button className="btn btn-primary mt-10"
+              style={{ width: '120px' }}>
               {isLoading ? <span className="loading loading-spinner"></span> : "Login"}
             </button>
           </div>

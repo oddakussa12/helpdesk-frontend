@@ -1,5 +1,7 @@
+import useAuth from "../../hooks/useAuth";
 
 const SupportNav = () => {
+    const { auth } = useAuth();
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -15,7 +17,7 @@ const SupportNav = () => {
                     <span tabIndex={0} className="inline-flex items-baseline">
                         <img src="/pp.jpg" alt=""
                             className="self-center w-12 h-12 rounded-full mx-1 ring ring-warning ring-offset-base-100 ring-offset-" />
-                        <span className="mt-3">Odda Kussa</span>
+                        <span className="mt-3">{auth?.user?.name}</span>
                     </span>
 
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">

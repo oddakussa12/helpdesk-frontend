@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const NavBar = () => {
-    return (
+    const { auth } = useAuth();
 
-        <div className="bg-base-200 py-2">
+    return (
+        <div className="bg-base-200">
             <div className="max-w-7xl mx-auto navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -68,14 +70,11 @@ const NavBar = () => {
                     </Link>
                 </div>
                 <div className="navbar-end lg:flex">
-                    {/* <ul className="menu menu-horizontal px-1">
+                    <ul className="menu menu-horizontal px-1">
                         <li>
-                            <Link className="text-warning" to="/login" >Login</Link>
+                            <Link className="text-primary text-lg" to="/register" >{auth?.user?.name}</Link>
                         </li>
-                        <li>
-                            <Link className="text-warning" to="/register" >Register</Link>
-                        </li>
-                    </ul> */}
+                    </ul>
                 </div>
                 <div className="flex-none gap-2">
                     <div className="dropdown dropdown-end">

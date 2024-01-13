@@ -20,13 +20,13 @@ const WorldHome = () => {
                         <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center"
                             style={{ height: "200px", maxWidth: "50%", padding: '30px' }}>
                             <p>Checkout frequently asked question that might help you with your issues</p>
-                            <Link to="faqs" className="btn btn-warning" style={{ width: '200px', borderRadius:'2px' }}>Go To FAQs</Link>
+                            <Link to="faqs" className="btn btn-primary" style={{ width: '200px' }}>Go To FAQs</Link>
                         </div>
                         <div className="divider lg:divider-horizontal"></div>
                         <div className="grid flex-grow h-32 card bg-base-300 rounded-box place-items-center"
                             style={{ height: "200px", maxWidth: '50%', padding: '30px' }}>
                             <p>Please create your ticket to get support for your issues</p>
-                            <Link to="/login" className="btn btn-warning" style={{ width: '200px', borderRadius:'2px' }}>Create Ticket</Link>
+                            <Link to="/login" className="btn btn-primary" style={{ width: '200px' }}>Create Ticket</Link>
                         </div>
                     </div>
                 </div>

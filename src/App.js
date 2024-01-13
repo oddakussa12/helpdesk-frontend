@@ -48,10 +48,12 @@ function App() {
       <Routes>
         <Route element={<PersistLogin />}>
           {/*  end user routes */}
-          <Route path="/home" element={<UserLayout />}>
-            <Route path="" element={<UserHome />} />
-            <Route path="create-ticket" element={<CreateTicket />} />
-            <Route path="view-ticket/:ticketId" element={<ViewTicket />} />
+          <Route element={<RequireAuth allowedRoles={["User"]} />}>
+            <Route path="/home" element={<UserLayout />}>
+              <Route path="" element={<UserHome />} />
+              <Route path="create-ticket" element={<CreateTicket />} />
+              <Route path="view-ticket/:ticketId" element={<ViewTicket />} />
+            </Route>
           </Route>
 
           {/* support role routes */}

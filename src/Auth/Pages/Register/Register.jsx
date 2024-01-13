@@ -173,8 +173,8 @@ const Register = () => {
                         )}
                     </div>
                     <div className="card-actions justify-center">
-                        <button className="btn btn-warning mt-10" type="submit"
-                            style={{ width: '100px', borderRadius: '2px' }}>
+                        <button className="btn btn-primary mt-10" type="submit"
+                            style={{ width: '120px' }}>
                             {isLoading ? <span className="loading loading-spinner"></span> : "Signup"}
                         </button>
                     </div>
