@@ -1,19 +1,30 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useUserTicketService from "../Home/Api/userTicket.service";
-import AddComplainModal from "../Complain/AddComplainModal";
+import AddComplainModal from "../Complain/Modal/AddComplainModal";
+import ConfirmModal from "../../../common/ConfirmModal";
+import { useDeleteComplainMutation } from "../Complain/Api/userComplain.service";
 
 const ViewTicket = () => {
     let navigate = useNavigate();
     const { ticketId } = useParams();
+    const [deleteComplain] = useDeleteComplainMutation();
+
+    const [ticket, setTicket] = useState({});
+    const [selectedItem, setSelectedItem] = useState({});
 
     const [showAddComplainModal, setShowAddComplainModal] = useState(false);
     const handleShowAddComplainModal = () => setShowAddComplainModal(true);
     const handleCloseAddComplainModal = () => setShowAddComplainModal(false);
 
-    const { showTicket } = useUserTicketService();
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
+    const handleCloseConfirmModal = () => setShowConfirmModal(false);
+    const handleShowConfirmModal = (complain) => {
+        setSelectedItem(complain);
+        setShowConfirmModal(true);
+    }
 
-    const [ticket, setTicket] = useState({});
+    const { showTicket } = useUserTicketService();
 
     const fetchTicket = async () => {
         try {
@@ -35,6 +46,13 @@ const ViewTicket = () => {
                 handleCloseAddComplainModal={handleCloseAddComplainModal}
                 ticketId={ticketId}
                 fetchTicket={fetchTicket}
+            />
+            <ConfirmModal
+                showConfirmModal={showConfirmModal}
+                handleCloseConfirmModal={handleCloseConfirmModal}
+                selectedItem={selectedItem}
+                deleteAction={deleteComplain}
+                fetchAction={fetchTicket}
             />
             <div className="grid grid-cols-2 gap-4">
                 <div className="grid-cols-1">
@@ -66,8 +84,7 @@ const ViewTicket = () => {
                         Delivered
                     </div>
                 </div>
-                {
-                    ticket?.response ? (
+                {ticket?.response ? (
                         <div className="chat chat-end">
                             <div className="chat-image avatar">
                                 <div className="w-10 rounded-full">
@@ -95,20 +112,18 @@ const ViewTicket = () => {
                                 <p>{ticket?.complain?.description}</p>
                                 <i>Date: {ticket?.complain?.createdAt}</i>
                                 <i>Status: {ticket?.complain?.status}</i>
-
                                 <div className="card-actions justify-end">
                                     <button className="btn btn-sm btn-primary">Edit</button>
-                                    <button className="btn btn-sm btn-error">Delete</button>
+                                    <button className="btn btn-sm btn-error"
+                                        onClick={() => handleShowConfirmModal(ticket?.complain)}>Delete</button>
                                 </div>
-
                             </div>
                         </div>
                     </div> :
-                    <div className="text-center" style={{marginTop:"80px"}} >
+                    <div className="text-center" style={{ marginTop: "80px" }} >
                         <button className="btn btn-primary" onClick={handleShowAddComplainModal} >Write a complain</button>
                     </div>
                 }
-
             </div>
         </div>
     )
