@@ -5,8 +5,8 @@ import RequireAuth from "./middleware/RequireAuth";
 
 // end user routes
 import UserHome from "./EndUser/Pages/Home/UserHome";
-import CreateTicket from "./EndUser/Pages/CreateTicket";
-import ViewTicket from "./EndUser/Pages/ViewTicket";
+import CreateTicket from "./EndUser/Pages/Ticket/CreateTicket";
+import ViewTicket from "./EndUser/Pages/Ticket/ViewTicket";
 import UserLayout from "./EndUser/Layouts/UserLayout";
 
 // support role routes

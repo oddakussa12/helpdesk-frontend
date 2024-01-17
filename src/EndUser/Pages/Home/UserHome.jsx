@@ -8,8 +8,7 @@ import useAuth from "../../../hooks/useAuth";
 const UserHome = () => {
   const { auth } = useAuth();
 
-  const { getAllTickets, updateTicket, deleteTicket,
-    changeTicketStatus, } = useUserTicketService();
+  const { getAllTickets, deleteTicket } = useUserTicketService();
 
   const [tickets, setTickets] = useState([]);
   const [selectedItem, setSelectedItem] = useState([]);

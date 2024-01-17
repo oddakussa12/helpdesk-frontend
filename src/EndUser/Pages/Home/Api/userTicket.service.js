@@ -6,7 +6,7 @@ const useUserTicketService = () => {
   const axiosPrivate = useAxiosPrivate();
 
   function getAllTickets() {
-    return axiosPrivate.get(`${url}/created_by_me`);
+    return axiosPrivate.get(`${url}/`);
   }
 
   function showTicket(ticketId) {

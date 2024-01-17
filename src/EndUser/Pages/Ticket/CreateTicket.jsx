@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import useUserTicketService from "./Home/Api/userTicket.service";
+import useUserTicketService from "../Home/Api/userTicket.service";
 
 const CreateTicket = () => {
     let navigate = useNavigate();

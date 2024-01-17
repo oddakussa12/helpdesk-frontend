@@ -4,12 +4,16 @@ import { Outlet } from 'react-router-dom'
 
 const WorldLayout = () => {
   return (
-    <div>
-      <NavBar />
-      <div style={{ maxWidth: '1200px', margin: 'auto' }}>
-        <Outlet />
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: '1' }}>
+        <NavBar />
+        <div style={{ maxWidth: '1200px', margin: 'auto' }}>
+          <Outlet />
+        </div>
       </div>
-      <Footer />
+      <div style={{ position: 'sticky', color: 'white', textAlign: 'center', padding: '1em', bottom: '0' }}>
+        <Footer />
+      </div>
     </div>
   )
 }
