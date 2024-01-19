@@ -31,7 +31,7 @@ const CreateTicket = () => {
                 </div>
                 <div className="grid grid-cols-1 place-items-end">
                     <label
-                        className="btn btn-warning btn-sm"
+                        className="btn btn-primary btn-sm"
                         onClick={() => navigate(-1)}>Back
                     </label>
                 </div>
@@ -94,25 +94,19 @@ const CreateTicket = () => {
 
                 {ticketCategory?.length ?
                     <div>
-                        <div className="flex flex-row flex-wrap">
+                        <div className="flex flex-row flex-wrap mt-10">
                             {ticketCategory.map((category, index) => (
-                                <div className="basis-1/2 md:basis-1/4 lg:basis-1/4" key={index}>
-                                    <div className="px-3 py-2">
-                                        <div className="card bg-base-100 shadow-xl">
-                                            <div className="card-body">
-                                                <div className="flex items-center pl-4 border border-gray-100 rounded dark:border-gray-700">
-                                                    <input id={`bordered-radio-${category?._id}`} type="radio" value={category?._id}
-                                                        className="radio radio-warning"
-                                                        {...register("category", {
-                                                            required: {
-                                                                value: true,
-                                                                message: "Please select issue category",
-                                                            },
-                                                        })} />
-                                                    <label htmlFor={`bordered-radio-${category?._id}`} className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{category?.name}</label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div className="basis-1/2 md:basis-1/4 lg:basis-1/4 mr-5" key={index}>
+                                    <div className="flex items-center pl-4 border border-gray-100 rounded dark:border-gray-700">
+                                        <input id={`bordered-radio-${category?._id}`} type="radio" value={category?._id}
+                                            className="radio radio-warning"
+                                            {...register("category", {
+                                                required: {
+                                                    value: true,
+                                                    message: "Please select issue category",
+                                                },
+                                            })} />
+                                        <label htmlFor={`bordered-radio-${category?._id}`} className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{category?.name}</label>
                                     </div>
                                 </div>
                             ))}
@@ -126,9 +120,9 @@ const CreateTicket = () => {
                     </div>
                 }
                 <div className="text-center mt-10" >
-                    <button className="btn btn-warning"
+                    <button className="btn btn-primary"
                         type="submit"
-                        style={{ width: '200px', borderRadius: '2px' }}>
+                        style={{ width: '170px' }}>
                         {isLoading ? <span className="loading loading-spinner"></span> : "Create"}
                     </button>
                 </div>
