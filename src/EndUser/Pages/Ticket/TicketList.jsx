@@ -1,18 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import useUserTicketService from "./Api/userTicket.service";
 import { EyeIcon, TrashIcon } from "@heroicons/react/24/solid";
 import ConfirmModal from "../../../common/ConfirmModal";
 import useAuth from "../../../hooks/useAuth";
+import { useGetAllTicketsQuery, useDeleteTicketMutation } from "./Api/userTicketApi";
 
-const UserHome = () => {
+const TicketList = () => {
   const { auth } = useAuth();
 
-  const { getAllTickets, deleteTicket } = useUserTicketService();
+  const { data: tickets, isLoading } = useGetAllTicketsQuery();
+  const [deleteTicket] = useDeleteTicketMutation();
 
-  const [tickets, setTickets] = useState([]);
   const [selectedItem, setSelectedItem] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const handleShowConfirmModal = (ticket) => {
@@ -21,32 +20,18 @@ const UserHome = () => {
   }
   const handleCloseConfirmModal = () => setShowConfirmModal(false);
 
-  const fetchMyTickets = async () => {
-    try {
-      setIsLoading(true);
-      const response = await getAllTickets();
-      setTickets(response.data);
-      setIsLoading(false);
-    } catch (err) {
-      setIsLoading(false);
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    fetchMyTickets();
-  }, [])
-
   return (
     <div className="mt-10">
       <ConfirmModal
         showConfirmModal={showConfirmModal}
         deleteAction={deleteTicket}
-        fetchAction={fetchMyTickets}
         handleCloseConfirmModal={handleCloseConfirmModal}
         selectedItem={selectedItem}
       />
-      {
+      {isLoading ?
+        <div className="text-center">
+          <span className="loading loading-dots loading-lg"></span>
+        </div> :
         tickets?.length ? (
           <div style={{ marginTop: '60px' }}>
             <div className="grid grid-cols-2 gap-4">
@@ -107,7 +92,8 @@ const UserHome = () => {
                           </Link>
                           <button className="btn btn-sm btn-error"
                             onClick={() => handleShowConfirmModal(ticket)}>
-                            <TrashIcon className="h-5 w-5" />  Delete
+                            <TrashIcon className="h-5 w-5" />
+                            {isLoading ? "Deleting" : "Delete"}
                           </button>
                         </div>
                       </td>
@@ -118,26 +104,20 @@ const UserHome = () => {
             </div>
           </div>
         ) : (
-          isLoading ? (
-              <div className="text-center">
-                <span className="loading loading-dots loading-lg"></span>
-              </div>
-          ) :(
-            <div className="hero bg-base-100" style={{height:"500px"}}>
-              <div className="hero-content text-center">
-                <div className="max-w-md">
-                  <h1 className="text-5xl font-bold">Welcome, {auth?.user?.name}</h1>
-                  <p className="py-6">It seems you have't created any tickets yet.</p>
-                  <Link to="create-ticket" className="btn btn-primary">Create your first ticket
-                  </Link>
-                </div >
+          <div className="hero bg-base-100" style={{ height: "500px" }}>
+            <div className="hero-content text-center">
+              <div className="max-w-md">
+                <h1 className="text-5xl font-bold">Welcome, {auth?.user?.name}</h1>
+                <p className="py-6">It seems you have't created any tickets yet.</p>
+                <Link to="create-ticket" className="btn btn-primary">Create your first ticket
+                </Link>
               </div >
             </div >
-          )
+          </div >
         )
       }
     </div >
   )
 }
 
-export default UserHome
+export default TicketList

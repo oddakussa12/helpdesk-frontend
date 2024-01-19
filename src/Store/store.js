@@ -6,6 +6,7 @@ import { ticketApi } from "../Admin/Pages/Ticket/Api/tickt.service";
 import { ticketPriorityApi } from "../Admin/Pages/Setting/TicketPriority/Api/ticketPriority.service";
 import { ticketStatusApi } from "../Admin/Pages/Setting/TicketStatus/Api/ticketStatus.service";
 import { userComplainApi } from "../EndUser/Pages/Complain/Api/userComplain.service";
+import { userTicketApi } from "../EndUser/Pages/Ticket/Api/userTicketApi";
 
 export const store = configureStore({
   reducer: {
@@ -15,12 +16,13 @@ export const store = configureStore({
     [ticketPriorityApi.reducerPath]: ticketPriorityApi.reducer,
     [ticketStatusApi.reducerPath]: ticketStatusApi.reducer,
     [userComplainApi.reducerPath]: userComplainApi.reducer,
+    [userTicketApi.reducerPath]: userTicketApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(dashboardApi.middleware, ticketApi.middleware, ticketPriorityApi.middleware,
-      ticketStatusApi.middleware, userComplainApi.middleware),
+      ticketStatusApi.middleware, userComplainApi.middleware, userTicketApi.middleware),
 });
 
 // export default store;

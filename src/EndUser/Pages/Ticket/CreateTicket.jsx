@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import useUserTicketService from "../Home/Api/userTicket.service";
+import { useCreateTicketMutation, useGetTicketCAtegoriesQuery } from "./Api/userTicketApi";
 
 const CreateTicket = () => {
     let navigate = useNavigate();
 
-    const { createTicket, getTicketCAtegories } = useUserTicketService();
+    const { data: ticketCategory } = useGetTicketCAtegoriesQuery();
+    const [createTicket, { isLoading }] = useCreateTicketMutation();
 
     const {
         register,
@@ -14,37 +14,14 @@ const CreateTicket = () => {
         formState: { errors },
     } = useForm();
 
-    const [ticketCategory, setTicketCategory] = useState([]);
-    const [isBtnLoading, setIsBtnLoading] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const fetchTicketCategory = async () => {
-        try {
-            setIsLoading(true);
-            const response = await getTicketCAtegories();
-            setTicketCategory(response.data);
-            setIsLoading(false);
-        } catch (err) {
-            setIsLoading(false);
-            console.log(err);
-        }
-    }
-
     const storeTicket = async (data) => {
         try {
-            setIsBtnLoading(true);
             await createTicket(data);
-            setIsBtnLoading(false);
             navigate(-1);
         } catch (err) {
-            setIsBtnLoading(false);
             console.log(err);
         }
     }
-
-    useEffect(() => {
-        fetchTicketCategory();
-    }, []);
 
     return (
         <div>
@@ -143,18 +120,16 @@ const CreateTicket = () => {
                         {errors.category && (
                             <small className="text-error mt-1">{errors.category?.message}</small>
                         )}
+                    </div> :
+                    <div className="text-center">
+                        <span className="loading loading-dots loading-lg"></span>
                     </div>
-
-                    : (
-                        <div className="text-center">
-                            <span className="loading loading-dots loading-lg"></span>
-                        </div>
-                    )}
+                }
                 <div className="text-center mt-10" >
                     <button className="btn btn-warning"
                         type="submit"
                         style={{ width: '200px', borderRadius: '2px' }}>
-                        {isBtnLoading ? <span className="loading loading-spinner"></span> : "Create"}
+                        {isLoading ? <span className="loading loading-spinner"></span> : "Create"}
                     </button>
                 </div>
             </form>

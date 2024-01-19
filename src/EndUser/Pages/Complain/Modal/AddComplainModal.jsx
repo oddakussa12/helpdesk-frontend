@@ -4,7 +4,7 @@ import { useCreateComplainMutation } from "../Api/userComplain.service";
 const AddComplainModal = (props) => {
 
     const { showAddComplainModal, handleCloseAddComplainModal, ticketId, fetchTicket } = props;
-    const [createComplain] = useCreateComplainMutation();
+    const [createComplain, { isLoading }] = useCreateComplainMutation();
 
     const {
         register,
@@ -61,7 +61,7 @@ const AddComplainModal = (props) => {
 
                         <div className="text-center mt-10">
                             <button className="btn btn-primary" type="submit">
-                                Create
+                                {isLoading ? <span className="loading loading-spinner"></span> : "Create"}
                             </button>
                         </div>
                     </form>

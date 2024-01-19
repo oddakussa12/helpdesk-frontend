@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 export default function ConfirmModal(props) {
   const {
@@ -8,10 +9,14 @@ export default function ConfirmModal(props) {
     selectedItem,
   } = props;
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const deleteData = async (id) => {
     try {
+      setIsLoading(true);
       await deleteAction(id);
-      fetchAction();
+      fetchAction && fetchAction();
+      setIsLoading(false);
       handleCloseConfirmModal();
 
     } catch (err) {
@@ -29,7 +34,9 @@ export default function ConfirmModal(props) {
           <p className="py-4">The action is inreversible and may also delete associated data.</p>
           <div className="modal-action">
             <button className="btn btn-sm btn-light" onClick={() => handleCloseConfirmModal()}>Cancel</button>
-            <button className="btn btn-sm btn-error" onClick={() => deleteData(selectedItem._id)}>Delete</button>
+            <button className="btn btn-sm btn-error" onClick={() => deleteData(selectedItem._id)}>
+              {isLoading ? <span className="loading loading-spinner"></span> : "Delete"}
+            </button>
           </div>
         </div>
       </div>

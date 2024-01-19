@@ -4,7 +4,7 @@ import PersistLogin from "./Auth/components/PersistLogin";
 import RequireAuth from "./middleware/RequireAuth";
 
 // end user routes
-import UserHome from "./EndUser/Pages/Home/UserHome";
+import TicketList from "./EndUser/Pages/Ticket/TicketList";
 import CreateTicket from "./EndUser/Pages/Ticket/CreateTicket";
 import ViewTicket from "./EndUser/Pages/Ticket/ViewTicket";
 import UserLayout from "./EndUser/Layouts/UserLayout";
@@ -50,7 +50,7 @@ function App() {
           {/*  end user routes */}
           <Route element={<RequireAuth allowedRoles={["User"]} />}>
             <Route path="/home" element={<UserLayout />}>
-              <Route path="" element={<UserHome />} />
+              <Route path="" element={<TicketList />} />
               <Route path="create-ticket" element={<CreateTicket />} />
               <Route path="view-ticket/:ticketId" element={<ViewTicket />} />
             </Route>
