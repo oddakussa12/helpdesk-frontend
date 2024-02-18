@@ -5,12 +5,14 @@ import useSupportTicketService from "./Home/Api/ticket.service";
 import useSupportBaseDataService from "../Api/baseData.service";
 import useAuth from "../../hooks/useAuth";
 import ToastNotification from "../../common/ToastNotification";
+import { useShowTicketQuery } from "./Home/Api/supportTicketApi";
+import { useReplyTicketMutation } from "./Home/Api/supportTicketApi";
 
 const ViewTicket = () => {
-    const {auth} = useAuth();
+    const { auth } = useAuth();
     let navigate = useNavigate();
     const { ticketId } = useParams();
-    const { showTicket, reply, updateStatus } = useSupportTicketService();
+    const { updateStatus } = useSupportTicketService();
     const { getAllTicketStatuses } = useSupportBaseDataService();
 
     const {
@@ -26,22 +28,10 @@ const ViewTicket = () => {
         variant: "success",
     }));
 
-    const [ticket, setTicket] = useState({});
-    const [ticketStatuses, setTicketStatuses] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isBtnLoading, setIsBtnLoading] = useState(false);
+    const { data: ticket, isLoading, refetch } = useShowTicketQuery(ticketId);
+    const [ticketReplay] = useReplyTicketMutation();
 
-    const fetchTicket = async () => {
-        try {
-            const response = await showTicket(ticketId);
-            setTicket(response.data);
-            setIsLoading(false);
-            setIsBtnLoading(false);
-        } catch (err) {
-            setIsLoading(false);
-            console.log(err);
-        }
-    };
+    const [ticketStatuses, setTicketStatuses] = useState([]);
 
     const getTicketStatuses = async () => {
         try {
@@ -54,9 +44,9 @@ const ViewTicket = () => {
 
     const replyToTicket = async (data) => {
         try {
-            setIsBtnLoading(true);
-            await reply(ticketId, data);
-            fetchTicket();
+            const finalData = {...data, ticket_id: ticketId};
+            await ticketReplay(finalData);
+            navigate(-1);
         } catch (err) {
             console.log(err);
         }
@@ -64,12 +54,12 @@ const ViewTicket = () => {
 
     const handleStatusChange = async (e) => {
         e.preventDefault();
-        try{
+        try {
             const data = {
                 "status_id": e?.target?.value
             }
             await updateStatus(ticketId, data);
-            fetchTicket();
+            refetch();
             setToastProps({
                 ...toastProps,
                 message: "Ticket status changed successfully.",
@@ -79,16 +69,16 @@ const ViewTicket = () => {
             setTimeout(() => {
                 toggleShowToast();
             }, 3000);
-                
-        }catch (err) {
+
+        } catch (err) {
             console.log(err);
         }
     }
 
     useEffect(() => {
-        fetchTicket();
         getTicketStatuses();
     }, [])
+
     return (
         <div className="px-3 mt-10">
             <ToastNotification
@@ -193,7 +183,7 @@ const ViewTicket = () => {
                                                             </div>
                                                             <div className="chat-footer">
                                                                 <button type="submit" className="btn btn-warning btn-sm mt-2">
-                                                                    {isBtnLoading ? (<span className="loading loading-spinner"></span>): "Reply"}
+                                                                    {isLoading ? (<span className="loading loading-spinner"></span>) : "Reply"}
                                                                 </button>
                                                             </div>
                                                         </div>

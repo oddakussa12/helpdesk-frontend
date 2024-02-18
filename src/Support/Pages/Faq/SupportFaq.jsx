@@ -1,23 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ConfirmModal from "../../../common/ConfirmModal";
-import useAdminFaqService from "./Api/faq.service"
+import useSupportFaqService from "./Api/faq.service"
 import { PencilIcon } from "@heroicons/react/24/solid";
 import { EyeIcon } from "@heroicons/react/24/solid";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import parse from "html-react-parser";
-
+import { useGetAllFaqsQuery } from "./Api/supportFaqApi";
 
 const SupportFaq = () => {
 
   const {
-    getAllFaqs,
     deleteFaq
-  } = useAdminFaqService();
+  } = useSupportFaqService();
 
-  const [faqs, setFaqs] = useState({});
+  const { data:faqs, isLoading} = useGetAllFaqsQuery();
+
   const [selectedItem, setSelectedItem] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const handleShowConfirmModal = (faq) => {
@@ -26,21 +25,6 @@ const SupportFaq = () => {
   }
   const handleCloseConfirmModal = () => setShowConfirmModal(false);
 
-  const fetchFaqs = async () => {
-    try {
-      const response = await getAllFaqs();
-      setFaqs(response.data);
-      setIsLoading(false);
-    } catch (err) {
-      setIsLoading(false);
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    fetchFaqs();
-  }, [])
-
   return (
     <div className="px-3 mt-10">
       <ConfirmModal
@@ -48,7 +32,7 @@ const SupportFaq = () => {
         handleCloseConfirmModal={handleCloseConfirmModal}
         selectedItem={selectedItem}
         deleteAction={deleteFaq}
-        fetchAction={fetchFaqs}
+        // fetchAction={fetchFaqs}
       />
       <div className="card bg-base-100 shadow-md" style={{ minHeight: '600px', borderRadius: '5px' }}>
         <div className="card-body">

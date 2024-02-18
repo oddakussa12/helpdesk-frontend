@@ -1,30 +1,9 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import useSupportTicketService from "./Api/ticket.service";
+import { useAssignedToMeQuery } from "./Api/supportTicketApi";
 
 const SupportHome = () => {
 
-  const { getAllTickets,
-    showTicket,
-    changeStatus } = useSupportTicketService();
-
-  const [tickets, setTickets] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchTickets = async () => {
-    try {
-      const response = await getAllTickets();
-      setTickets(response.data);
-      setIsLoading(false);
-    } catch (err) {
-      console.log(err);
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    fetchTickets();
-  }, []);
+  const { data: tickets, isLoading } = useAssignedToMeQuery();
 
   return (
     <div className="px-3 mt-10">

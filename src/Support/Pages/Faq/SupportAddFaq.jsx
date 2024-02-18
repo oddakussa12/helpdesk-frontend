@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import useAdminFaqService from "./Api/faq.service";
 import { Editor } from "@tinymce/tinymce-react";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCreateFaqMutation } from "./Api/supportFaqApi";
 
 const SupportAddFaq = () => {
 
@@ -15,11 +15,11 @@ const SupportAddFaq = () => {
   let navigate = useNavigate();
   const editorRef = useRef();
 
-  const { createFaq } = useAdminFaqService();
+  const [createFaq, { isLoading }] = useCreateFaqMutation();
 
   const storeFaq = async (data) => {
     try {
-      const finalData = {...data, answer: editorRef.current.getContent()}
+      const finalData = { ...data, answer: editorRef.current.getContent() }
       await createFaq(finalData);
       navigate(-1);
     } catch (err) {
@@ -92,8 +92,8 @@ const SupportAddFaq = () => {
                     )}
                   </div>
                   <div className="text-center mt-10">
-                    <button className="btn btn-warning" style={{width:'150px', borderRadius:'2px'}} type="submit">
-                      Submit
+                    <button className="btn btn-warning" style={{ width: '150px', borderRadius: '2px' }} type="submit">
+                      {isLoading ? <span className="loading loading-spinner"></span> : "Create"}
                     </button>
                   </div>
                 </form>

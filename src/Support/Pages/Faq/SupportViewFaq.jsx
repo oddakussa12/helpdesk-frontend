@@ -1,36 +1,11 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useAdminFaqService from "./Api/faq.service";
+import { useShowFaqQuery } from "./Api/supportFaqApi";
 
 const SupportViewFaq = () => {
-
   let navigate = useNavigate();
   const { faqId } = useParams();
 
-  const { showFaq, changeStatus } = useAdminFaqService();
-  const [faq, setFaq] = useState({});
-
-  const fetchFaq = async () => {
-    try {
-      const response = await showFaq(faqId);
-      setFaq(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  const updateStatus = async (id) => {
-    try {
-      await changeStatus(id);
-      fetchFaq();
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    fetchFaq();
-  }, []);
+  const { data: faq } = useShowFaqQuery(faqId);
 
   return (
     <div className="px-3 mt-10">
